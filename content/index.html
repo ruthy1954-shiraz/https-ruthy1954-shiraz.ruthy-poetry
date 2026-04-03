@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>הספר של רותי</title>
+    <link rel="stylesheet" href="styles/book.css">
+</head>
+<body>
+
+<div id="book"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+async function loadChapter(path) {
+    const response = await fetch(path);
+    const text = await response.text();
+    return marked.parse(text);
+}
+
+async function buildBook() {
+    const chapters = [
+        "content/01-intro.md"
+    ];
+
+    let html = "";
+    for (const chapter of chapters) {
+        html += `<section class="chapter">${await loadChapter(chapter)}</section>`;
+    }
+
+    document.getElementById("book").innerHTML = html;
+}
+
+buildBook();
+</script>
+
+</body>
+</html>
 
