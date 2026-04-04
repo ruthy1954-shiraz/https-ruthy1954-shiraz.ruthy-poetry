@@ -1,1 +1,11 @@
 <link rel="stylesheet" href="style.css">
+.intro-box, .content-box {
+    background-color: #ffffff;
+    width: 60%;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: right;
+    line-height: 1.6;
+}
