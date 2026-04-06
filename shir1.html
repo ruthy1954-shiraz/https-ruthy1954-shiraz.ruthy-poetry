@@ -15,19 +15,19 @@
     }
 
     .wrapper {
-        max-width: 700px;
+        max-width: 650px;
         margin: 40px auto;
         background: #ffffffee;
-        padding: 30px;
-        border-radius: 18px;
+        padding: 25px;
+        border-radius: 16px;
         box-shadow: 0 4px 18px rgba(0,0,0,0.08);
         border: 1px solid #e7dcd5;
     }
 
     h1 {
         text-align: center;
-        font-size: 2em;
-        margin-bottom: 30px;
+        font-size: 1.7em;
+        margin-bottom: 20px;
         color: #6b4f4f;
     }
 
@@ -35,35 +35,37 @@
     .content-box {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        gap: 15px;
         align-items: flex-start;
     }
 
-    /* הציור בצד שמאל */
+    /* הציור בצד שמאל — קטן יותר */
     .art-box img {
-        width: 180px;
-        border-radius: 12px;
+        width: 130px; /* קטן יותר */
+        border-radius: 10px;
         box-shadow: 0 3px 10px rgba(0,0,0,0.15);
     }
 
-    /* השיר בצד ימין */
+    /* השיר — אותיות קטנות יותר ורווחים מצומצמים */
     .poem {
         white-space: pre-line;
-        font-size: 1.2em;
-        line-height: 1.8;
+        font-size: 1.05em; /* קטן יותר */
+        line-height: 1.55; /* רווחים מצומצמים */
         flex: 1;
         color: #4a3f35;
+        margin-top: 5px;
     }
 
     .back {
         display: inline-block;
-        padding: 12px 24px;
+        padding: 10px 20px;
         background: #c9a9a6;
         color: white;
         border-radius: 12px;
         text-decoration: none;
         transition: 0.25s;
         margin: 5px;
+        font-size: 0.9em;
     }
 
     .back:hover {
@@ -110,7 +112,7 @@
 
     </div>
 
-    <div style="text-align:center; margin-top:30px;">
+    <div style="text-align:center; margin-top:25px;">
         <a href="songs.html" class="back">חזרה לרשימת השירים</a>
         <a href="index.html" class="back">חזרה לדף הראשי</a>
     </div>
