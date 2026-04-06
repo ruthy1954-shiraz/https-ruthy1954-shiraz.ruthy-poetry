@@ -29,31 +29,28 @@
         margin-bottom: 4px;
         color: #6b4f4f;
     }
-/* שיר מימין, ציור משמאל */
 
-.content-box {
-    display: flex !important;
-    flex-direction: row-reverse !important; 
-    gap: 12px !important;
-    align-items: flex-start !important;
-}
+    /* שיר משמאל, תמונה מימין */
+    .content-box {
+        display: flex;
+        flex-direction: row; /* ברירת מחדל: טקסט משמאל, תמונה מימין */
+        gap: 12px;
+        align-items: flex-start;
+    }
 
-.art-box {
-    order: 2 !important; /* הציור משמאל */
-}
+    .art-box img {
+        width: 150px; /* גודל ציור */
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
 
-.poem {
-    order: 1 !important; /* השיר מימין */
-    color: #4a3f35 !important;
-}
-
-.art-box img {
-    width: 180px !important;
-    border-radius: 10px !important;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15) !important;
-}
-
-   color: #4a3f35;
+    .poem {
+        white-space: pre-line;
+        font-size: 0.78em;
+        line-height: 1.18;
+        flex: 1;
+        margin-top: 0;
+        color: #4a3f35;
     }
 
     .back {
@@ -121,4 +118,3 @@
 
 </body>
 </html>
-
