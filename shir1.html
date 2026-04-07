@@ -14,7 +14,7 @@
     }
 
     .wrapper {
-        max-width: 600px;
+        max-width: 750px;
         margin: 20px auto;
         background: #ffffffee;
         padding: 16px;
@@ -30,28 +30,26 @@
         color: #6b4f4f;
     }
 
-    /* שיר משמאל, תמונה מימין */
     .content-box {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: flex-start;
-    justify-content: center; /* מרכז את התוכן */
-    margin: 0 auto; /* ממקם את כל הקופסה באמצע */
-    max-width: 450px; /* מצמצם רוחב כדי שהכול ייראה ממורכז */
-
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 450px;
     }
 
     .art-box img {
-        width: 200px; /* גודל ציור */
+        width: 200px;
         border-radius: 10px;
         box-shadow: 0 3px 10px rgba(0,0,0,0.15);
     }
 
     .poem {
         white-space: pre-line;
-        font-size: 0.78em;
-        line-height: 1.18;
+        font-size: 1em;
+        line-height: 1.45;
         flex: 1;
         margin-top: 0;
         color: #4a3f35;
@@ -72,7 +70,27 @@
     .back:hover {
         background: #b8928f;
     }
+
+    /* עיצוב מיוחד לנייד */
+    @media (max-width: 600px) {
+        .content-box {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .art-box img {
+            width: 70%;
+            max-width: 260px;
+        }
+
+        .poem {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+    }
 </style>
+
 </head>
 
 <body>
@@ -122,4 +140,5 @@
 
 </body>
 </html>
+
 
