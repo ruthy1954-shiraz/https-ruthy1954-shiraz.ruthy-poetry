@@ -32,13 +32,16 @@
 
     /* שיר משמאל, תמונה מימין */
     .content-box {
-        display: flex;
-        flex-direction: row; /* טקסט משמאל, תמונה מימין */
-        gap: 12px;
-        align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: flex-start;
+    justify-content: center; /* מרכז את התוכן */
+    margin: 0 auto; /* ממקם את כל הקופסה באמצע */
+    max-width: 450px; /* מצמצם רוחב כדי שהכול ייראה ממורכז */
+
     }
 
-    
     .art-box img {
         width: 200px; /* גודל ציור */
         border-radius: 10px;
