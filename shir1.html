@@ -18,9 +18,9 @@
 
     .wrapper {
         max-width: 900px;
-        margin: 40px auto;
+        margin: 20px auto;      /* פחות רווח מסביב */
         background: #ffffffee;
-        padding: 50px;
+        padding: 30px;          /* פחות padding */
         border-radius: 14px;
         box-shadow: 0 4px 18px rgba(0,0,0,0.08);
         border: 1px solid #e7dcd5;
@@ -28,8 +28,8 @@
 
     h1 {
         text-align: center;
-        font-size: 2.4em;
-        margin-bottom: 40px;
+        font-size: 2.2em;
+        margin-bottom: 20px;    /* פחות רווח */
         color: #6b4f4f;
     }
 
@@ -37,32 +37,32 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 25px; /* מרווח קטן יותר בין חלקי השיר */
+        gap: 15px;              /* מרווח קטן בין חלקי השיר */
         margin: 0 auto;
-        max-width: 700px;
+        max-width: 650px;
     }
 
     /* מסגרת עדינה סביב חלקי השיר */
     .poem-box {
         border: 1px solid #e2d6cf;
-        padding: 20px; /* פחות רווח */
-        border-radius: 12px;
+        padding: 14px;          /* הרבה פחות רווח */
+        border-radius: 10px;
         background: #fffdfb;
         width: 100%;
     }
 
     .poem {
         white-space: pre-line;
-        font-size: 1.9em;
-        line-height: 1.6; /* פחות רווח בין שורות */
+        font-size: 1.7em;       /* טיפה קטן כדי שייכנס בנייד */
+        line-height: 1.45;      /* הרבה פחות רווח בין שורות */
         text-align: center;
         color: #4a3f35;
     }
 
     /* מסגרת עדינה סביב התמונה */
     .art-box img {
-        width: 360px;
-        border-radius: 12px;
+        width: 280px;           /* תמונה קטנה יותר */
+        border-radius: 10px;
         border: 1px solid #e2d6cf;
         box-shadow: 0 3px 12px rgba(0,0,0,0.18);
     }
@@ -70,14 +70,14 @@
     /* כפתורים יפים וגדולים */
     .back {
         display: inline-block;
-        padding: 16px 32px;
+        padding: 14px 26px;
         background: #c9a9a6;
         color: white;
         border-radius: 14px;
         text-decoration: none;
         transition: 0.25s;
-        margin: 8px;
-        font-size: 1.5em;
+        margin: 6px;
+        font-size: 1.4em;
         font-weight: 600;
         letter-spacing: 0.5px;
     }
@@ -88,27 +88,28 @@
 
     /* מובייל */
     @media (max-width: 600px) {
+
         .wrapper {
-            padding: 30px;
+            padding: 20px;
         }
 
         h1 {
-            font-size: 2.6em;
+            font-size: 2.3em;
         }
 
         .poem {
-            font-size: 2.2em;
-            line-height: 1.7;
+            font-size: 1.9em;   /* עדיין גדול, אבל נכנס למסך */
+            line-height: 1.45;
         }
 
         .art-box img {
-            width: 95%;
-            max-width: 380px;
+            width: 75%;         /* קטנה יותר בנייד */
+            max-width: 260px;
         }
 
         .back {
-            font-size: 1.8em;
-            padding: 18px 34px;
+            font-size: 1.6em;
+            padding: 16px 28px;
         }
     }
 </style>
@@ -159,7 +160,7 @@
 
     </div>
 
-    <div style="text-align:center; margin-top:30px;">
+    <div style="text-align:center; margin-top:20px;">
         <a href="songs.html" class="back">חזרה לרשימת השירים</a>
         <a href="index.html" class="back">חזרה לדף הראשי</a>
     </div>
