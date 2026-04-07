@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>בין תשומת לב לאהבה  / רות שנן</title>
+
+<!-- פונט שירי -->
+<link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "David Libre", serif;
+        background: #f7f3f0;
+        color: #4a3f35;
+    }
+
+    .wrapper {
+        max-width: 900px;
+        margin: 10px auto;
+        background: #ffffffee;
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        border: 1px solid #e7dcd5;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2.1em;
+        margin-bottom: 10px;
+        color: #6b4f4f;
+    }
+
+    .content-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+        max-width: 650px;
+    }
+
+    .poem-box {
+        border: 1px solid #e2d6cf;
+        padding: 12px;
+        border-radius: 10px;
+        background: #fffdfb;
+        width: 100%;
+    }
+
+    .poem {
+        white-space: pre-line;
+        font-size: 1.6em;
+        line-height: 1.35;
+        text-align: center;
+        color: #4a3f35;
+    }
+
+    .art-box img {
+        width: 240px;
+        border-radius: 10px;
+        border: 1px solid #e2d6cf;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+        margin: 5px 0;
+    }
+
+    .back {
+        display: inline-block;
+        padding: 12px 22px;
+        background: #c9a9a6;
+        color: white;
+        border-radius: 14px;
+        text-decoration: none;
+        transition: 0.25s;
+        margin: 4px;
+        font-size: 1.3em;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .back:hover {
+        background: #b8928f;
+    }
+
+    @media (max-width: 600px) {
+        .wrapper {
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        .poem {
+            font-size: 1.8em;
+            line-height: 1.35;
+        }
+
+        .art-box img {
+            width: 70%;
+            max-width: 230px;
+        }
+
+        .back {
+            font-size: 1.5em;
+            padding: 14px 26px;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <h1>בין תשומת לב לאהבה  / רות שנן</h1>
+
+    <div class="content-box">
+
+        <div class="poem-box">
+            <div class="poem">
+שתי דמויות בחיי. 
+האחת מאוד מורגשת, 
+אור חד על פני מים, 
+מעלה בי רטט של עכשיו, 
+מבקשת תשובה מיידית.
+
+השנייה יודעת את מפת הלב שלי, 
+מבינה אותי 
+דרך שכבות של שקט 
+לעומקם של שנים. 
+לא זקוקה להופיע כדי להיות.
+
+כשהן נפגשות, 
+זהו רגע נדיר שבו הברק של האחת 
+נשען על העומק של השנייה, 
+והעולם מתיישר סביבי 
+לרגעים של קסם אמיתי.
+
+כאשר אני צריכה לבחור, 
+תשומת הלב כובשת, 
+מנצנצת כמו הבטחה 
+שנולדה רק עכשיו.
+.
+            </div>
+        </div>
+
+        <div class="art-box">
+            <img src="IMAGE.jpg" alt="תמונה לשיר">
+        </div>
+
+        <div class="poem-box">
+            <div class="poem">
+האהבה ממתינה, 
+לא מתוך חולשה, 
+אלא מתוך ידיעה קדומה 
+שמה שנועד להישאר 
+אינו צריך לרדוף.
+
+אני עומדת ביניהן, 
+האחת מורגשת על עורי, 
+שופעת הבטחות. 
+השנייה מהדהדת אל ליבי 
+מבלי לומר דבר.
+
+ומתוך הרווח הדק ביניהן 
+אני לומדת את עצמי מחדש: 
+כמה קל להימשך לאור חולף, 
+וכמה עמוק הדבר 
+שאינו מבקש דבר 
+ובכל זאת נשאר.
+.
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:10px;">
+        <a href="songs.html" class="back">חזרה לרשימת השירים</a>
+        <a href="index.html" class="back">חזרה לדף הראשי</a>
+    </div>
+
+</div>
+
+</body>
+</html>
