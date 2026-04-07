@@ -14,10 +14,10 @@
     }
 
     .wrapper {
-        max-width: 750px;
-        margin: 20px auto;
+        max-width: 850px; /* דף רחב יותר */
+        margin: 40px auto;
         background: #ffffffee;
-        padding: 16px;
+        padding: 40px; /* הרבה רווח */
         border-radius: 14px;
         box-shadow: 0 4px 18px rgba(0,0,0,0.08);
         border: 1px solid #e7dcd5;
@@ -25,68 +25,65 @@
 
     h1 {
         text-align: center;
-        font-size: 1.28em;
-        margin-bottom: 4px;
+        font-size: 1.9em; /* כותרת גדולה */
+        margin-bottom: 30px;
         color: #6b4f4f;
     }
 
+    /* שיר + תמונה במרכז */
     .content-box {
         display: flex;
-        flex-direction: row;
-        gap: 12px;
-        align-items: flex-start;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
         margin: 0 auto;
-        max-width: 450px;
-    }
-
-    .art-box img {
-        width: 200px;
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        max-width: 650px;
     }
 
     .poem {
         white-space: pre-line;
-        font-size: 1em;
-        line-height: 1.45;
-        flex: 1;
-        margin-top: 0;
+        font-size: 1.45em; /* פונט גדול מאוד */
+        line-height: 1.9;  /* ריווח נעים */
         color: #4a3f35;
+        text-align: center; /* מרכז את השיר */
+    }
+
+    .art-box img {
+        width: 320px; /* תמונה גדולה */
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.18);
     }
 
     .back {
         display: inline-block;
-        padding: 8px 16px;
+        padding: 12px 22px;
         background: #c9a9a6;
         color: white;
         border-radius: 12px;
         text-decoration: none;
         transition: 0.25s;
         margin: 5px;
-        font-size: 0.8em;
+        font-size: 1em;
     }
 
     .back:hover {
         background: #b8928f;
     }
 
-    /* עיצוב מיוחד לנייד */
+    /* מובייל */
     @media (max-width: 600px) {
-        .content-box {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .art-box img {
-            width: 70%;
-            max-width: 260px;
+        .wrapper {
+            padding: 25px;
         }
 
         .poem {
-            font-size: 1.1em;
-            line-height: 1.5;
+            font-size: 1.55em; /* עוד יותר גדול בנייד */
+            line-height: 2;
+        }
+
+        .art-box img {
+            width: 85%;
+            max-width: 330px;
         }
     }
 </style>
@@ -111,7 +108,13 @@
 מרוב אמת צורבת, כואבת,
 כזו המגיעה בלי אזהרה
 ומפילה על הברכיים.
+        </div>
 
+        <div class="art-box">
+            <img src="bgida.jpg" alt="ציור לשיר בגידה">
+        </div>
+
+        <div class="poem">
 רגע אחד של שקט רועם.
 הלב, מבולבל, מחפש יד,
 מחפש תשובה,
@@ -125,13 +128,9 @@
 עד שהוא נרגע.
         </div>
 
-        <div class="art-box">
-            <img src="bgida.jpg" alt="ציור לשיר בגידה">
-        </div>
-
     </div>
 
-    <div style="text-align:center; margin-top:14px;">
+    <div style="text-align:center; margin-top:30px;">
         <a href="songs.html" class="back">חזרה לרשימת השירים</a>
         <a href="index.html" class="back">חזרה לדף הראשי</a>
     </div>
@@ -140,5 +139,3 @@
 
 </body>
 </html>
-
-
