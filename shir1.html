@@ -14,10 +14,10 @@
     }
 
     .wrapper {
-        max-width: 850px; /* דף רחב יותר */
+        max-width: 900px;
         margin: 40px auto;
         background: #ffffffee;
-        padding: 40px; /* הרבה רווח */
+        padding: 50px;
         border-radius: 14px;
         box-shadow: 0 4px 18px rgba(0,0,0,0.08);
         border: 1px solid #e7dcd5;
@@ -25,31 +25,30 @@
 
     h1 {
         text-align: center;
-        font-size: 1.9em; /* כותרת גדולה */
-        margin-bottom: 30px;
+        font-size: 2em;
+        margin-bottom: 40px;
         color: #6b4f4f;
     }
 
-    /* שיר + תמונה במרכז */
     .content-box {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 35px;
+        gap: 40px;
         margin: 0 auto;
-        max-width: 650px;
+        max-width: 700px;
     }
 
     .poem {
         white-space: pre-line;
-        font-size: 1.45em; /* פונט גדול מאוד */
-        line-height: 1.9;  /* ריווח נעים */
+        font-size: 1.6em;   /* גדול יותר במחשב */
+        line-height: 2;
         color: #4a3f35;
-        text-align: center; /* מרכז את השיר */
+        text-align: center;
     }
 
     .art-box img {
-        width: 320px; /* תמונה גדולה */
+        width: 340px;
         border-radius: 12px;
         box-shadow: 0 3px 12px rgba(0,0,0,0.18);
     }
@@ -70,20 +69,24 @@
         background: #b8928f;
     }
 
-    /* מובייל */
+    /* מובייל — פונט ענק וקריא */
     @media (max-width: 600px) {
         .wrapper {
-            padding: 25px;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 2.2em;
         }
 
         .poem {
-            font-size: 1.55em; /* עוד יותר גדול בנייד */
-            line-height: 2;
+            font-size: 1.9em;  /* כאן הגדלתי משמעותית */
+            line-height: 2.2;
         }
 
         .art-box img {
-            width: 85%;
-            max-width: 330px;
+            width: 90%;
+            max-width: 360px;
         }
     }
 </style>
@@ -139,3 +142,4 @@
 
 </body>
 </html>
+
