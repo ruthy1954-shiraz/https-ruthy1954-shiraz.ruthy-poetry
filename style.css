@@ -38,3 +38,19 @@
     text-decoration: none;
     color: #333;
 }
+
+.button {
+    display: inline-block;
+    background-color: #f2f2f2;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none; /* מבטל את הקו */
+    color: #333;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #e6e6e6;
+}
