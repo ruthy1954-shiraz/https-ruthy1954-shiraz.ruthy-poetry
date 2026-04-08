@@ -1,84 +1,98 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>רשימת השירים</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רשימת השירים</title>
+    <link rel="stylesheet" href="style.css">
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: "Assistant", sans-serif;
-        background: linear-gradient(#f7f3f0, #f0e8e4);
-        color: #4a3f35;
-        text-align: center;
-    }
+    <style>
+        .songs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-    .wrapper {
-        max-width: 800px;
-        margin: 60px auto;
-        background: #ffffffdd;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        border: 1px solid #e7dcd5;
-    }
+        .btn {
+            display: block;
+            background-color: #f2e6ff;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4a2c6b;
+            font-size: 18px;
+            font-weight: bold;
+            border: 1px solid #d3b8ff;
+            transition: 0.2s;
+        }
 
-    h1 {
-        font-size: 2.4em;
-        margin-bottom: 20px;
-        color: #6b4f4f;
-    }
+        .btn:hover {
+            background-color: #e8d6ff;
+        }
 
-    .btn {
-        display: block;
-        width: 70%;
-        margin: 12px auto;
-        padding: 14px;
-        font-size: 1.2em;
-        border-radius: 12px;
-        border: none;
-        cursor: pointer;
-        transition: 0.25s;
-        text-decoration: none;
-        background: #e8ddd7;
-        color: #4a3f35;
-    }
-
-    .btn:hover {
-        background: #d6cbc4;
-    }
-
-    .back {
-        margin-top: 40px;
-        display: inline-block;
-        padding: 12px 24px;
-        background: #c9a9a6;
-        color: white;
-        border-radius: 12px;
-        text-decoration: none;
-        transition: 0.25s;
-    }
-
-    .back:hover {
-        background: #b8928f;
-    }
-</style>
+        .back {
+            display: block;
+            margin: 40px auto;
+            width: 200px;
+            text-align: center;
+            padding: 12px;
+            background-color: #ddd;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-    <h1>רשימת השירים</h1>
+<h1 style="text-align:center;">רשימת השירים</h1>
 
-    <a href="shir1.html" class="btn">בגידה</a>
-    <a href="shir2.html" class="btn">בין תשומת לב לאהבה</a>
+<div class="songs-grid">
+
+    <a href="shir1.html" class="btn">שיר 1</a>
+    <a href="shir2.html" class="btn">שיר 2</a>
     <a href="shir3.html" class="btn">שיר 3</a>
     <a href="shir4.html" class="btn">שיר 4</a>
-    <a href="shir4.html" class="btn">שיר 5</a>
-    <a href="index.html" class="back">חזרה לדף הראשי</a>
+    <a href="shir5.html" class="btn">שיר 5</a>
+    <a href="shir6.html" class="btn">שיר 6</a>
+    <a href="shir7.html" class="btn">שיר 7</a>
+    <a href="shir8.html" class="btn">שיר 8</a>
+    <a href="shir9.html" class="btn">שיר 9</a>
+    <a href="shir10.html" class="btn">שיר 10</a>
+
+    <a href="shir11.html" class="btn">שיר 11</a>
+    <a href="shir12.html" class="btn">שיר 12</a>
+    <a href="shir13.html" class="btn">שיר 13</a>
+    <a href="shir14.html" class="btn">שיר 14</a>
+    <a href="shir15.html" class="btn">שיר 15</a>
+    <a href="shir16.html" class="btn">שיר 16</a>
+    <a href="shir17.html" class="btn">שיר 17</a>
+    <a href="shir18.html" class="btn">שיר 18</a>
+    <a href="shir19.html" class="btn">שיר 19</a>
+    <a href="shir20.html" class="btn">שיר 20</a>
+
+    <a href="shir21.html" class="btn">שיר 21</a>
+    <a href="shir22.html" class="btn">שיר 22</a>
+    <a href="shir23.html" class="btn">שיר 23</a>
+    <a href="shir24.html" class="btn">שיר 24</a>
+    <a href="shir25.html" class="btn">שיר 25</a>
+    <a href="shir26.html" class="btn">שיר 26</a>
+    <a href="shir27.html" class="btn">שיר 27</a>
+    <a href="shir28.html" class="btn">שיר 28</a>
+    <a href="shir29.html" class="btn">שיר 29</a>
+    <a href="shir30.html" class="btn">שיר 30</a>
+
 </div>
+
+<a href="index.html" class="back">חזרה לדף הראשי</a>
 
 </body>
 </html>
+
 
