@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>החירות / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+            <h1>החירות / רות שנן</h1>
+
+            <p>בלילה שקט ושופע כוכבים</p>
+            <p>עולה רוח דקה של תקווה.</p>
+            <p>היא לוחשת על דלתות הלב הסגורות</p>
+            <p>ומזכירה שכל שער יכול להיפתח.</p>
+
+            <br>
+
+            <p>מעבר למדבר הפנימי,</p>
+            <p>מעבר למדינות המזרח התיכון,</p>
+            <p>זורח אור רך של חירות,</p>
+            <p>לא צועקת, לא מצווה,</p>
+            <p>רק מזמינה ללכת.</p>
+
+            <br>
+
+            <p>בצעדים חוששים</p>
+            <p>האדמה מגישה כפה תומכת.</p>
+            <p>כי כך הדרך אל החירות:</p>
+            <p>לא במכות, לא בניסים גדולים,</p>
+            <p>אלא בלב המאמין, הרוצה לפרוח.</p>
+
+            <br>
+
+            <p>וכאשר רוח חזקה נושבת</p>
+            <p>עוד עלה של פחד נושר.</p>
+            <p>החירות אינה מתנה,</p>
+            <p>היא ברית בין האדם לנפשו.</p>
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir4.jpeg" alt="ציור לשיר">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        // מספר הווטסאפ שלך
+        const phone = "972545305123";
+
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
