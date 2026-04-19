@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דיירת לרגע / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+            <h1>דיירת לרגע / רות שנן</h1>
+
+            <p>יצאתי מהגוף</p>
+            <p>וראיתי מי גרה בו.</p>
+            <p>דיירת לרגע,</p>
+            <p>רודפת חלום</p>
+            <p>ובורחת מהמוות שבתוכי</p>
+            <p>כאילו הוא זה שמאחר לפגישה.</p>
+
+            <br>
+
+            <p>מחפשת ביטחון</p>
+            <p>בפוליסה ריקה,</p>
+            <p>עוד הבטחה שמישהו ישכח למלא.</p>
+            <p>רואה אנשים בלי כלום</p>
+            <p>והחיים רוקדים בהם סמבה,</p>
+            <p>כאילו מישהו שכח לספר להם</p>
+            <p>שצריך אישור בשביל להיות שמחים.</p>
+
+            <br>
+
+            <p>יש כאלה בלי מוסר,</p>
+            <p>והם פשוט הולכים ומצליחים,</p>
+            <p>לא כי מגיע להם,</p>
+            <p>כי הם לא שואלים.</p>
+            <p>היקום שומע תדר,</p>
+            <p>לא תירוצים.</p>
+
+            <br>
+
+            <p>הכעס שלי במרתף,</p>
+            <p>משכיר חדרים</p>
+            <p>לדור הבא,</p>
+            <p>עסק משפחתי קטן</p>
+            <p>של רגשות שלא קיבלו במה.</p>
+            <p>החלומות שלי נשרפו</p>
+            <p>בפחדים של אחרים,</p>
+            <p>אש זרה,</p>
+            <p>אבל הכוויות שלי.</p>
+
+            <br>
+
+            <p>מתי אקבל את מותי</p>
+            <p>כדי להתחיל לחיות הכול,</p>
+            <p>כי מי שיודע למה הוא קם</p>
+            <p>לא צריך שעון,</p>
+            <p>רק אומץ.</p>
+
+            <br>
+
+            <p>ויום אחד</p>
+            <p>אפסיק לרדוף</p>
+            <p>אחרי החיים</p>
+            <p>ואתחיל</p>
+            <p>להשיג אותם</p>
+            <p>בלי לבקש רשות.</p>
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir6.jpeg" alt="ציור לשיר" style="max-width: 600px;">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
