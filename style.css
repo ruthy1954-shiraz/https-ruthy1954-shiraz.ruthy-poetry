@@ -138,4 +138,22 @@ p {
         max-width: 80%;
     }
 }
+.notes-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 30px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.notes-box h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #444;
+}
+
+.notes-placeholder {
+    color: #777;
+    font-style: italic;
+}
 
