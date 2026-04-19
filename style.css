@@ -168,3 +168,8 @@ p {
     font-family: "Assistant", sans-serif;
     margin-bottom: 15px;
 }
+.note-info {
+    font-size: 0.9em;
+    color: #7a6a63;
+    margin-top: 8px;
+}
