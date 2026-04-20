@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>משבר</title>
-
+    <title>משבר / רות שנן</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -16,7 +15,9 @@
 
         <!-- טקסט השיר -->
         <div class="song-text">
+
             <h1 class="song-title">משבר</h1>
+            <h2 class="song-author">רות שנן</h2>
 
             <p>
                 איבדתי אותי <br>
@@ -121,29 +122,46 @@
                 רק אני <br>
                 ואלוהים.
             </p>
+
         </div>
 
-        <!-- תמונה לשיר -->
+        <!-- תמונת השיר -->
         <div class="song-image">
-            <img src="../content/images/song11.jpeg" alt="תמונה לשיר 11">
+            <img src="images/song11.jpeg" alt="ציור לשיר" style="max-width: 600px;">
         </div>
 
     </div> <!-- סוף song-layout -->
 
-    <!-- כפתורי ניווט -->
-    <div class="song-footer">
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
 
-        <a class="btn btn-whatsapp" href="https://wa.me/972000000000" target="_blank">
-            שליחת הערות בווצאפ
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
         </a>
 
-        <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-        <a href="../index.html" class="btn btn-main">חזרה לעמוד הראשי</a>
-
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
     </div>
 
-</div> <!-- wrapper -->
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
 
 </body>
 </html>
