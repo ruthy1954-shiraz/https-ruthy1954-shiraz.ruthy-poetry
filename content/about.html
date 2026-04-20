@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>על הספר, לגעת / רות שנן</title>
+    <title>על הספר, לגעת</title>
 
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* מסגרת אלגנטית ועדינה */
+        .about-box {
+            border: 1px solid #d8d8d8;
+            padding: 25px;
+            border-radius: 12px;
+            background: #fafafa;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* הקטנת התמונה */
+        .about-image img {
+            max-width: 350px;
+            border-radius: 10px;
+            opacity: 0.95;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,11 +32,10 @@
 
     <div class="song-layout">
 
-        <!-- טקסט "על הספר" -->
-        <div class="song-text">
+        <!-- טקסט "על הספר" בתוך מסגרת -->
+        <div class="song-text about-box">
 
             <h1 class="song-title">על הספר</h1>
-            <h2 class="song-author">רות שנן</h2>
 
             <p>הספר <strong>לגעת</strong> נכתב מתוך חיים שלמים של שתיקה, מילים כלואות, רגעים שלא קיבלו מקום.</p>
             <p>רק בשנים האחרונות העזתי לתת לקול שלי לצאת, לאט, בזהירות, ואז בזרימה שלא יכולתי לעצור.</p>
@@ -39,9 +56,9 @@
 
         </div>
 
-        <!-- תמונה אופציונלית -->
-        <div class="song-image">
-            <img src="images/about-book.jpeg" alt="עטיפת הספר לגעת" style="max-width: 600px;">
+        <!-- תמונה קטנה ועדינה -->
+        <div class="song-image about-image">
+            <img src="images/about-book.jpeg" alt="עטיפת הספר לגעת">
         </div>
 
     </div> <!-- סוף song-layout -->
@@ -53,4 +70,5 @@
 
 </body>
 </html>
+
 
