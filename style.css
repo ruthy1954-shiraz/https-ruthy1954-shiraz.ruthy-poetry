@@ -196,6 +196,14 @@ p {
     .song-image img {
         max-width: 80%;
     }
+
+    .author {
+    font-size: 0.95rem;
+    margin-top: -12px;
+    letter-spacing: 0.5px;
 }
+
+
+
 
 
