@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הסערה – רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+
+            <h1 class="song-title">הסערה</h1>
+            <h2 class="song-author">רות שנן</h2>
+
+            <div class="song-box">
+
+                <p>
+                    הלילה נפלתי לתוך עצמי.<br>
+                    האדמה הייתה קרובה מדי.<br>
+                    הפחד לחש לי לוותר,<br>
+                    אני המשכתי לנשום.
+                </p>
+
+                <p>
+                    דרך השפל,<br>
+                    במקומות שאף אחד לא רואה,<br>
+                    בתוך הסדקים של חיי,<br>
+                    מצאתי ניצוץ שלא מוותר עליי.
+                </p>
+
+                <p>
+                    הסערה לא ביקשה רשות.<br>
+                    היא הגיעה,<br>
+                    ניערה את מה שחשבתי שאני,<br>
+                    והשאירה אותי חשופה מול האמת.
+                </p>
+
+                <p>
+                    ושם, מול הרוח,<br>
+                    כשאני רועדת,<br>
+                    הבנתי: רגעי השקט<br>
+                    לא מחכים לי בסוף הדרך.
+                </p>
+
+                <p>
+                    הם נבנים בי,<br>
+                    מסערה לסערה,<br>
+                    בכל פעם שאני קמה.<br>
+                    הם לא ניצחון על העולם,<br>
+                    הם פיוס עם עצמי.
+                </p>
+
+            </div>
+        </div>
+
+        <!-- תמונה (תעלה כשתהיה מוכנה) -->
+        <div class="song-image">
+            <!-- <img src="../content/images/shir17.jpeg" alt="ציור לשיר"> -->
+        </div>
+
+    </div> <!-- song-layout -->
+
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>מה השיר עורר בך</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההתרשמות בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">לרשימת השירים</a>
+
+</div> <!-- wrapper -->
+
+</body>
+</html>
