@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>כאב אחר – רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+
+            <h1 class="song-title">כאב אחר</h1>
+            <h2 class="song-author">רות שנן</h2>
+
+            <div class="song-box">
+
+                <p>הכאב של אחר<br>
+                הוא הכאב שלי,<br>
+                כשהלב נפתח.</p>
+
+                <p>אנחה של אחר<br>
+                מזיזה בי משהו.</p>
+
+                <p>הוא נוגע<br>
+                כמו צל המחליק על הקיר,<br>
+                שקט, אבל מורגש.</p>
+
+                <p>אני מרגישה את הרעד,<br>
+                את המשקל שהוא סוחב.</p>
+
+                <p>הלב שלי מתרחב<br>
+                כדי להכיל עוד לב,<br>
+                ולהזכיר לי<br>
+                שאני לא לבד בעולם הזה.</p>
+
+            </div>
+        </div>
+
+        <!-- תמונה (אם תרצי להוסיף בהמשך) -->
+        <div class="song-image">
+            <!-- <img src="../images/your-image.jpeg" alt=""> -->
+        </div>
+
+    </div>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>מה השיר עורר בך</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההתרשמות בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">לרשימת השירים</a>
+
+</div>
+
+</body>
+</html>
