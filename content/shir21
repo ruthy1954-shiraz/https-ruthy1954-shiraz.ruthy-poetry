@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>להיראות / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+            <h1>להיראות</h1>
+            <h2 class="author">רות שנן</h2>
+
+            <p>יש רגעים<br>
+            שאני עומדת מול העולם<br>
+            כמו חלון בלי וילון.</p>
+
+            <br>
+
+            <p>רואה הכול,<br>
+            אבל לא בטוחה שמישהו<br>
+            רואה אותי.</p>
+
+            <br>
+
+            <p>אז אני אוספת את עצמי<br>
+            לצורה חזקה,<br>
+            שלא תבריח אף אחד.</p>
+
+            <br>
+
+            <p>אבל בפנים<br>
+            יש ילדה קטנה<br>
+            שמחכה שמישהו<br>
+            ישים לב<br>
+            שהיא עדיין שם.</p>
+
+            <br>
+
+            <p>יש לילות<br>
+            שאני מניחה את הראש<br>
+            על הכר של עצמי,</p>
+
+            <br>
+
+            <p>ומקשיבה לשקט<br>
+            שמספר לי אמת<br>
+            שאיש לא שומע:</p>
+
+            <br>
+
+            <p>כמה אני מתאמצת<br>
+            להיות חזקה,<br>
+            וכמה אני רק רוצה<br>
+            שמישהו יראה<br>
+            שאני גם רכה.</p>
+
+            <br>
+
+            <p>ויש ימים<br>
+            שאני הולכת ביניהם<br>
+            כמו צל שקוף,</p>
+
+            <br>
+
+            <p>מחייכת במקום הנכון,<br>
+            מדברת בקול יציב,<br>
+            אבל בפנים<br>
+            משהו קטן בי<br>
+            מבקש שיראו<br>
+            כמה אני מתאמצת<br>
+            להחזיק את העולם<br>
+            שלא ייפול לי מהידיים.</p>
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir21.jpeg" alt="ציור לשיר">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
