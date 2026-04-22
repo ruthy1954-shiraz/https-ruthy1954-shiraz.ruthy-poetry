@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זכרונות / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+            <h1>זכרונות</h1>
+            <h2 class="author">רות שנן</h2>
+
+            <p>ישנם רגעים<br>
+            של זיכרונות רחוקים,<br>
+            כמעט שקופים,<br>
+            נוגעים והולכים.</p>
+
+            <br>
+
+            <p>סוחפים ונמוגים,<br>
+            שבילים שלא הובילו לשום מקום,<br>
+            דלתות שלא חזרתי לפתוח,<br>
+            מילים אשר שנשארו תלויות באוויר.</p>
+
+            <br>
+
+            <p>לפעמים הם שבים,<br>
+            כמו רוח קלה בין העלים,<br>
+            מזכירים שהיה שם משהו,<br>
+            אבל אני כבר במקום אחר.</p>
+
+            <br>
+
+            <p>אני נותנת להם לעבור דרכי<br>
+            בלי להחזיק, בלי להילחם,<br>
+            כמו מעיין הזורם הלאה<br>
+            ומשאיר אחריו אדמה רוויה וריחנית.</p>
+
+            <br>
+
+            <p>ומתוך האדמה הזו<br>
+            נובטים בי חיים חדשים,<br>
+            מציאות שאין בה מאמץ לגדול.<br>
+            ואני צומחת וגדלה לעצמי.</p>
+
+            <br>
+
+            <p>אני זוכרת,<br>
+            אבל לא נשארת.<br>
+            אני ממשיכה לצמוח<br>
+            במקום שבו הלב שלי חי עכשיו.</p>
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir22.jpeg" alt="ציור לשיר">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
