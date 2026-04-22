@@ -77,18 +77,30 @@
         <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+<script>
+const songTitle = "מחפשת שלווה"; // ← שם השיר
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
+function updateWhatsAppLink() {
+    const note = document.getElementById("userNote").value;
 
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
-    </script>
+    // שליחה לוואטסאפ
+    const encoded = encodeURIComponent(
+        `שיר: ${songTitle}\nתאריך: ${new Date().toLocaleString()}\nהערה: ${note}`
+    );
+    const phone = "972545305123";
+    document.getElementById("waLink").href = `https://wa.me/${phone}?text=${encoded}`;
+
+    // שליחה לשרת לשמירה
+    fetch("save_note.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `song=${encodeURIComponent(songTitle)}&note=${encodeURIComponent(note)}`
+    });
+}
+
+document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+</script>
+
 
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
     <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
