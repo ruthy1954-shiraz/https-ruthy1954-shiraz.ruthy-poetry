@@ -65,8 +65,10 @@
     </div> <!-- סוף song-layout -->
 
     <!-- משבצת הערות + שליחה לוואטסאפ -->
-    <div class="notes-box">
+    <div class="notes-box"> 
         <h3>הערות והתרשמויות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
@@ -74,33 +76,65 @@
             שליחת ההערה בווטסאפ
         </a>
 
+        <!-- כפתור שמירת הערה לענן -->
+        <button class="btn btn-light" onclick="saveNote(
+            document.getElementById('userName').value,
+            document.getElementById('userNote').value
+        )">שמירת ההערה בענן</button>
+
         <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+
+        <h4>הערות שנשמרו:</h4>
+
+        <!-- כאן יוצגו ההערות מהענן -->
+        <div id="notes"></div>
     </div>
 
-<script>
-const songTitle = "מחפשת שלווה"; // ← שם השיר
+<!-- Firebase SDKs -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } 
+    from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-function updateWhatsAppLink() {
-    const note = document.getElementById("userNote").value;
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+    authDomain: "ruthy-notes.firebaseapp.com",
+    projectId: "ruthy-notes",
+    storageBucket: "ruthy-notes.firebasestorage.app",
+    messagingSenderId: "276333962292",
+    appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+    measurementId: "G-6MDZNCXET4"
+  };
 
-    // שליחה לוואטסאפ
-    const encoded = encodeURIComponent(
-        `שיר: ${songTitle}\nתאריך: ${new Date().toLocaleString()}\nהערה: ${note}`
-    );
-    const phone = "972545305123";
-    document.getElementById("waLink").href = `https://wa.me/${phone}?text=${encoded}`;
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-    // שליחה לשרת לשמירה
-    fetch("save_note.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `song=${encodeURIComponent(songTitle)}&note=${encodeURIComponent(note)}`
+  async function saveNote(name, note) {
+    await addDoc(collection(db, "notes"), {
+      name: name,
+      note: note,
+      timestamp: new Date()
     });
-}
+    alert("ההערה נשמרה בהצלחה!");
+    loadNotes();
+  }
 
-document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+  async function loadNotes() {
+    const querySnapshot = await getDocs(collection(db, "notes"));
+    let html = "";
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      html += `<p><strong>${data.name}:</strong> ${data.note}</p>`;
+    });
+    document.getElementById("notes").innerHTML = html;
+  }
+
+  window.saveNote = saveNote;
+  window.loadNotes = loadNotes;
+
+  // טוען הערות אוטומטית כשנכנסים לדף
+  loadNotes();
 </script>
-
 
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
     <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
