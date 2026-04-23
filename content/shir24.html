@@ -64,110 +64,32 @@
 
     </div> <!-- סוף song-layout -->
 
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- משבצת הערות -->
     <div class="notes-box"> 
         <h3>הערות והתרשמויות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
-
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- כפתור וואטסאפ -->
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
-
-        <!-- כפתור שמירת הערה לענן -->
+        <a id="waLink" class="btn btn-main" target="_blank">שליחת ההערה בווטסאפ</a>
         <button class="btn btn-light" id="saveBtn">שמירת ההערה בענן</button>
 
         <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
 
         <h4>הערות שנשמרו:</h4>
-
         <div id="notes"></div>
     </div>
 
-<!-- Firebase SDKs -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs } 
-    from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
-    authDomain: "ruthy-notes.firebaseapp.com",
-    projectId: "ruthy-notes",
-    storageBucket: "ruthy-notes.firebasestorage.app",
-    messagingSenderId: "276333962292",
-    appId: "1:276333962292:web:298a0e8db8b5f77c359661",
-    measurementId: "G-6MDZNCXET4"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // שמירת הערה
-  async function saveNote() {
-    const name = document.getElementById("userName").value;
-    const note = document.getElementById("userNote").value;
-
-    if (!name || !note) {
-      alert("נא למלא שם והערה");
-      return;
-    }
-
-    await addDoc(collection(db, "notes"), {
-      name: name,
-      note: note,
-      timestamp: new Date()
-    });
-
-    alert("ההערה נשמרה בהצלחה!");
-    loadNotes();
-  }
-
-  // טעינת הערות
-  async function loadNotes() {
-    const querySnapshot = await getDocs(collection(db, "notes"));
-    let html = "";
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      html += `<p><strong>${data.name}:</strong> ${data.note}</p>`;
-    });
-    document.getElementById("notes").innerHTML = html;
-  }
-
-  // עדכון קישור וואטסאפ
-  function updateWhatsAppLink() {
-    const name = document.getElementById("userName").value;
-    const note = document.getElementById("userNote").value;
-
-    const text = `שם: ${name}\nהערה: ${note}`;
-    const url = "https://wa.me/972545305123?text=" + encodeURIComponent(text);
-
-    document.getElementById("waLink").href = url;
-  }
-
-  // מאזינים
-  document.getElementById("userName").addEventListener("input", updateWhatsAppLink);
-  document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
-  document.getElementById("saveBtn").addEventListener("click", saveNote);
-
-  // טעינה ראשונית
-  loadNotes();
-</script>
-
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
     <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-    <script type="module">
-  import { initNoteSystem } from "../NOTE.js";
-  initNoteSystem();
-</script>
 
+    <!-- מערכת ההערות החדשה -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
+    </script>
 
 </div> <!-- סוף wrapper -->
 
 </body>
 </html>
-
-
