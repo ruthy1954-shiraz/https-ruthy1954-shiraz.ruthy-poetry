@@ -1,4 +1,6 @@
-// Firebase SDKs
+// ----------------------------------------------------
+// 1. טעינת Firebase
+// ----------------------------------------------------
 import { 
   initializeApp 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -8,9 +10,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 
-// -------------------------
-// 1. הגדרות Firebase
-// -------------------------
+// הגדרות Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
   authDomain: "ruthy-notes.firebaseapp.com",
@@ -25,10 +25,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-// -------------------------
+// ----------------------------------------------------
 // 2. שמירת הערה
-// -------------------------
-export async function saveNote() {
+// ----------------------------------------------------
+async function saveNote() {
   const name = document.getElementById("userName").value;
   const note = document.getElementById("userNote").value;
 
@@ -48,10 +48,10 @@ export async function saveNote() {
 }
 
 
-// -------------------------
+// ----------------------------------------------------
 // 3. טעינת הערות + כפתור מחיקה
-// -------------------------
-export async function loadNotes() {
+// ----------------------------------------------------
+async function loadNotes() {
   const querySnapshot = await getDocs(collection(db, "notes"));
   let html = "";
 
@@ -70,10 +70,10 @@ export async function loadNotes() {
 }
 
 
-// -------------------------
+// ----------------------------------------------------
 // 4. מחיקת הערה
-// -------------------------
-export async function deleteNote(id) {
+// ----------------------------------------------------
+async function deleteNote(id) {
   if (!confirm("למחוק את ההערה?")) return;
 
   await deleteDoc(doc(db, "notes", id));
@@ -81,10 +81,10 @@ export async function deleteNote(id) {
 }
 
 
-// -------------------------
+// ----------------------------------------------------
 // 5. עדכון קישור וואטסאפ
-// -------------------------
-export function updateWhatsAppLink() {
+// ----------------------------------------------------
+function updateWhatsAppLink() {
   const name = document.getElementById("userName").value;
   const note = document.getElementById("userNote").value;
 
@@ -95,9 +95,9 @@ export function updateWhatsAppLink() {
 }
 
 
-// -------------------------
-// 6. הפעלת מאזינים
-// -------------------------
+// ----------------------------------------------------
+// 6. הפעלת המערכת
+// ----------------------------------------------------
 export function initNoteSystem() {
   document.getElementById("userName").addEventListener("input", updateWhatsAppLink);
   document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
@@ -105,5 +105,11 @@ export function initNoteSystem() {
 
   loadNotes();
 }
+
+
+// ----------------------------------------------------
+// 7. חשיפת פונקציות למחיקה (נדרש לכפתור)
+// ----------------------------------------------------
+window.deleteNote = deleteNote;
 
 
