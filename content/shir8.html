@@ -11,86 +11,75 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir8.jpeg" alt="ציור לשיר הותר לפרסום">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
+    <!-- כותרות -->
+    <h1 class="song-title">הותר לפרסום</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <h1 class="song-title">הותר לפרסום</h1>
-            <h2 class="song-author">רות שנן</h2>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>"הותר לפרסום",<br>
+        ובפייסבוק שוב מופיע ריבוע שחור<br>
+        על מועד ההלוויה.<br>
+        העולם גולל מטה,<br>
+        ואני גוללת פנימה.</p>
 
-            <p>"הותר לפרסום",</p>
-            <p>ובפייסבוק שוב מופיע ריבוע שחור</p>
-            <p>על מועד ההלוויה.</p>
-            <p>העולם גולל מטה,</p>
-            <p>ואני גוללת פנימה.</p>
+        <p>מרבים אל הפרט,<br>
+        אל השם, אל הגיל, אל התמונה,<br>
+        אל השכול המתרחב כמו כתם דיו<br>
+        על דף שכבר מזמן לא לבן.</p>
 
-            <br>
+        <p>"הותר לפרסום",<br>
+        צביטה מוכרת בלב,<br>
+        דלת נטרקת ברוח.<br>
+        עוד חיל מצטרף לרשימות ללא סוף,<br>
+        גדלות איתנו,<br>
+        גדולות עלינו.</p>
 
-            <p>מרבים אל הפרט,</p>
-            <p>אל השם, אל הגיל, אל התמונה,</p>
-            <p>אל השכול המתרחב כמו כתם דיו</p>
-            <p>על דף שכבר מזמן לא לבן.</p>
+        <p>שואלת,<br>
+        איך הלב עדיין מוצא מקום<br>
+        לעוד שם,<br>
+        לעוד סיפור,<br>
+        לעוד ריבוע שחור<br>
+        עם כיתוב משתנה,<br>
+        לעיתים קרובות מדי,<br>
+        המשאיר חלל שלא נגמר?</p>
+    </div>
 
-            <br>
-
-            <p>"הותר לפרסום",</p>
-            <p>צביטה מוכרת בלב,</p>
-            <p>דלת נטרקת ברוח.</p>
-            <p>עוד חיל מצטרף לרשימות ללא סוף,</p>
-            <p>גדלות איתנו,</p>
-            <p>גדולות עלינו.</p>
-
-            <br>
-
-            <p>שואלת,</p>
-            <p>איך הלב עדיין מוצא מקום</p>
-            <p>לעוד שם,</p>
-            <p>לעוד סיפור,</p>
-            <p>לעוד ריבוע שחור</p>
-            <p>עם כיתוב משתנה,</p>
-            <p>לעיתים קרובות מדי,</p>
-            <p>המשאיר חלל שלא נגמר?</p>
-
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir8.jpeg" alt="ציור לשיר" style="max-width: 600px;">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
