@@ -11,105 +11,93 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir6.jpeg" alt="ציור לשיר דיירת לרגע">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>דיירת לרגע / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">דיירת לרגע</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>יצאתי מהגוף</p>
-            <p>וראיתי מי גרה בו.</p>
-            <p>דיירת לרגע,</p>
-            <p>רודפת חלום</p>
-            <p>ובורחת מהמוות שבתוכי</p>
-            <p>כאילו הוא זה שמאחר לפגישה.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>יצאתי מהגוף<br>
+        וראיתי מי גרה בו.<br>
+        דיירת לרגע,<br>
+        רודפת חלום<br>
+        ובורחת מהמוות שבתוכי<br>
+        כאילו הוא זה שמאחר לפגישה.</p>
 
-            <br>
+        <p>מחפשת ביטחון<br>
+        בפוליסה ריקה,<br>
+        עוד הבטחה שמישהו ישכח למלא.<br>
+        רואה אנשים בלי כלום<br>
+        והחיים רוקדים בהם סמבה,<br>
+        כאילו מישהו שכח לספר להם<br>
+        שצריך אישור בשביל להיות שמחים.</p>
 
-            <p>מחפשת ביטחון</p>
-            <p>בפוליסה ריקה,</p>
-            <p>עוד הבטחה שמישהו ישכח למלא.</p>
-            <p>רואה אנשים בלי כלום</p>
-            <p>והחיים רוקדים בהם סמבה,</p>
-            <p>כאילו מישהו שכח לספר להם</p>
-            <p>שצריך אישור בשביל להיות שמחים.</p>
+        <p>יש כאלה בלי מוסר,<br>
+        והם פשוט הולכים ומצליחים,<br>
+        לא כי מגיע להם,<br>
+        כי הם לא שואלים.<br>
+        היקום שומע תדר,<br>
+        לא תירוצים.</p>
 
-            <br>
+        <p>הכעס שלי במרתף,<br>
+        משכיר חדרים<br>
+        לדור הבא,<br>
+        עסק משפחתי קטן<br>
+        של רגשות שלא קיבלו במה.<br>
+        החלומות שלי נשרפו<br>
+        בפחדים של אחרים,<br>
+        אש זרה,<br>
+        אבל הכוויות שלי.</p>
 
-            <p>יש כאלה בלי מוסר,</p>
-            <p>והם פשוט הולכים ומצליחים,</p>
-            <p>לא כי מגיע להם,</p>
-            <p>כי הם לא שואלים.</p>
-            <p>היקום שומע תדר,</p>
-            <p>לא תירוצים.</p>
+        <p>מתי אקבל את מותי<br>
+        כדי להתחיל לחיות הכול,<br>
+        כי מי שיודע למה הוא קם<br>
+        לא צריך שעון,<br>
+        רק אומץ.</p>
 
-            <br>
+        <p>ויום אחד<br>
+        אפסיק לרדוף<br>
+        אחרי החיים<br>
+        ואתחיל<br>
+        להשיג אותם<br>
+        בלי לבקש רשות.</p>
+    </div>
 
-            <p>הכעס שלי במרתף,</p>
-            <p>משכיר חדרים</p>
-            <p>לדור הבא,</p>
-            <p>עסק משפחתי קטן</p>
-            <p>של רגשות שלא קיבלו במה.</p>
-            <p>החלומות שלי נשרפו</p>
-            <p>בפחדים של אחרים,</p>
-            <p>אש זרה,</p>
-            <p>אבל הכוויות שלי.</p>
-
-            <br>
-
-            <p>מתי אקבל את מותי</p>
-            <p>כדי להתחיל לחיות הכול,</p>
-            <p>כי מי שיודע למה הוא קם</p>
-            <p>לא צריך שעון,</p>
-            <p>רק אומץ.</p>
-
-            <br>
-
-            <p>ויום אחד</p>
-            <p>אפסיק לרדוף</p>
-            <p>אחרי החיים</p>
-            <p>ואתחיל</p>
-            <p>להשיג אותם</p>
-            <p>בלי לבקש רשות.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir6.jpeg" alt="ציור לשיר" style="max-width: 600px;">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
