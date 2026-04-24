@@ -11,63 +11,59 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir7.jpeg" alt="ציור לשיר חדות וכהות">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1 class="song-title">חדות וכהות</h1>
-            <h2 class="song-author">רות שנן</h2>
+    <!-- כותרות -->
+    <h1 class="song-title">חדות וכהות</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>חדות וכהות,</p>
-            <p>שני קולות בנשימה אחת.</p>
-            <p>אני ביניהם</p>
-            <p>נעה על התפר הדק</p>
-            <p>בין מה שמפלח</p>
-            <p>לבין מה שמקהה,</p>
-            <p>בין אור מסנוור</p>
-            <p>לצל המרכך את הקצוות.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>חדות וכהות,<br>
+        שני קולות בנשימה אחת.<br>
+        אני ביניהם<br>
+        נעה על התפר הדק<br>
+        בין מה שמפלח<br>
+        לבין מה שמקהה,<br>
+        בין אור מסנוור<br>
+        לצל המרכך את הקצוות.</p>
+    </div>
 
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir7.jpeg" alt="ציור לשיר" style="max-width: 600px;">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
 
 
