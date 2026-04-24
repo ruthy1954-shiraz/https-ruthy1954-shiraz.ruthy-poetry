@@ -11,91 +11,78 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir22.jpeg" alt="ציור לשיר זכרונות">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>זכרונות</h1>
-            <h2 class="author">רות שנן</h2>
+    <!-- כותרות -->
+    <h1 class="song-title">זכרונות</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>ישנם רגעים<br>
-            של זיכרונות רחוקים,<br>
-            כמעט שקופים,<br>
-            נוגעים והולכים.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>ישנם רגעים<br>
+        של זיכרונות רחוקים,<br>
+        כמעט שקופים,<br>
+        נוגעים והולכים.</p>
 
-            <br>
+        <p>סוחפים ונמוגים,<br>
+        שבילים שלא הובילו לשום מקום,<br>
+        דלתות שלא חזרתי לפתוח,<br>
+        מילים אשר שנשארו תלויות באוויר.</p>
 
-            <p>סוחפים ונמוגים,<br>
-            שבילים שלא הובילו לשום מקום,<br>
-            דלתות שלא חזרתי לפתוח,<br>
-            מילים אשר שנשארו תלויות באוויר.</p>
+        <p>לפעמים הם שבים,<br>
+        כמו רוח קלה בין העלים,<br>
+        מזכירים שהיה שם משהו,<br>
+        אבל אני כבר במקום אחר.</p>
 
-            <br>
+        <p>אני נותנת להם לעבור דרכי<br>
+        בלי להחזיק, בלי להילחם,<br>
+        כמו מעיין הזורם הלאה<br>
+        ומשאיר אחריו אדמה רוויה וריחנית.</p>
 
-            <p>לפעמים הם שבים,<br>
-            כמו רוח קלה בין העלים,<br>
-            מזכירים שהיה שם משהו,<br>
-            אבל אני כבר במקום אחר.</p>
+        <p>ומתוך האדמה הזו<br>
+        נובטים בי חיים חדשים,<br>
+        מציאות שאין בה מאמץ לגדול.<br>
+        ואני צומחת וגדלה לעצמי.</p>
 
-            <br>
+        <p>אני זוכרת,<br>
+        אבל לא נשארת.<br>
+        אני ממשיכה לצמוח<br>
+        במקום שבו הלב שלי חי עכשיו.</p>
+    </div>
 
-            <p>אני נותנת להם לעבור דרכי<br>
-            בלי להחזיק, בלי להילחם,<br>
-            כמו מעיין הזורם הלאה<br>
-            ומשאיר אחריו אדמה רוויה וריחנית.</p>
-
-            <br>
-
-            <p>ומתוך האדמה הזו<br>
-            נובטים בי חיים חדשים,<br>
-            מציאות שאין בה מאמץ לגדול.<br>
-            ואני צומחת וגדלה לעצמי.</p>
-
-            <br>
-
-            <p>אני זוכרת,<br>
-            אבל לא נשארת.<br>
-            אני ממשיכה לצמוח<br>
-            במקום שבו הלב שלי חי עכשיו.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir22.jpeg" alt="ציור לשיר">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
