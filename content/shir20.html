@@ -11,95 +11,85 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir20.jpeg" alt="ציור לשיר זיכרונות מכבדים">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>זיכרונות מכבדים / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">זיכרונות מכבדים</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>יש בי זיכרונות<br>
-            שאני סוחבת שנים,<br>
-            גם כשאף אחד כבר לא רואה,<br>
-            הם מושכים לי את הכתף קצת למטה.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>יש בי זיכרונות<br>
+        שאני סוחבת שנים,<br>
+        גם כשאף אחד כבר לא רואה,<br>
+        הם מושכים לי את הכתף קצת למטה.</p>
 
-            <br>
+        <p>פעם הם היו רעש גדול,<br>
+        דפיקות לב,<br>
+        מילים שלא נאמרו בזמן.<br>
+        היום הם שקטים יותר,<br>
+        כמו רהיט ישן בבית<br>
+        שכבר לא שואלים למה הוא שם.</p>
 
-            <p>פעם הם היו רעש גדול,<br>
-            דפיקות לב,<br>
-            מילים שלא נאמרו בזמן.<br>
-            היום הם שקטים יותר,<br>
-            כמו רהיט ישן בבית<br>
-            שכבר לא שואלים למה הוא שם.</p>
+        <p>למדתי לזרום איתם,<br>
+        להניח אותם ליד המיטה בלילה,<br>
+        להרים אותם שוב בבוקר,<br>
+        בלי לשאול שאלות.<br>
+        הם הפכו להרגל,<br>
+        כמו נשימה עמוקה מדי<br>
+        שאני כבר לא שמה לב אליה.</p>
 
-            <br>
+        <p>ולפעמים,<br>
+        כשאני עוצרת לרגע,<br>
+        אני מרגישה איך הם עדיין חיים בי,<br>
+        לא רק ככאב,<br>
+        אלא גם כעדות<br>
+        לכל מה שעברתי,<br>
+        לכל מה שהייתי צריכה לשאת,<br>
+        כדי להיות מי שאני עכשיו.</p>
 
-            <p>למדתי לזרום איתם,<br>
-            להניח אותם ליד המיטה בלילה,<br>
-            להרים אותם שוב בבוקר,<br>
-            בלי לשאול שאלות.<br>
-            הם הפכו להרגל,<br>
-            כמו נשימה עמוקה מדי<br>
-            שאני כבר לא שמה לב אליה.</p>
+        <p>ואולי זה הסוד:<br>
+        הכובד לא נעלם,<br>
+        אבל הוא משתנה.<br>
+        הוא הופך לסיפור,<br>
+        לשכבה דקה של אמת,<br>
+        שאני נוגעת בה<br>
+        וממשיכה ללכת.</p>
+    </div>
 
-            <br>
-
-            <p>ולפעמים,<br>
-            כשאני עוצרת לרגע,<br>
-            אני מרגישה איך הם עדיין חיים בי,<br>
-            לא רק ככאב,<br>
-            אלא גם כעדות<br>
-            לכל מה שעברתי,<br>
-            לכל מה שהייתי צריכה לשאת,<br>
-            כדי להיות מי שאני עכשיו.</p>
-
-            <br>
-
-            <p>ואולי זה הסוד:<br>
-            הכובד לא נעלם,<br>
-            אבל הוא משתנה.<br>
-            הוא הופך לסיפור,<br>
-            לשכבה דקה של אמת,<br>
-            שאני נוגעת בה<br>
-            וממשיכה ללכת.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir20.jpeg" alt="ציור לשיר">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
