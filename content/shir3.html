@@ -11,82 +11,74 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir3.jpeg" alt="ציור לשיר אושר">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>אושר / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">אושר</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>זהו צעד</p>
-            <p>אל חדר נסתר בלב</p>
-            <p>שלא תמיד העזתי לפתוח.</p>
-            <p>הדרך אליו עוברת</p>
-            <p>בשבילים מלאי אבק</p>
-            <p>שבהם נמנעתי לגעת.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>זהו צעד<br>
+        אל חדר נסתר בלב<br>
+        שלא תמיד העזתי לפתוח.<br>
+        הדרך אליו עוברת<br>
+        בשבילים מלאי אבק<br>
+        שבהם נמנעתי לגעת.</p>
 
-            <br>
+        <p>אושר אינו פרס.<br>
+        ואינו יעד על מפה.<br>
+        הוא רגע של הכרה,<br>
+        בו אני עוצרת, נושמת,<br>
+        מניחה יד על הלב<br>
+        ומודה על מה שיש.</p>
 
-            <p>אושר אינו פרס.</p>
-            <p>ואינו יעד על מפה.</p>
-            <p>הוא רגע של הכרה,</p>
-            <p>בו אני עוצרת, נושמת,</p>
-            <p>מניחה יד על הלב</p>
-            <p>ומודה על מה שיש.</p>
+        <p>בין הסדקים של חיי<br>
+        האושר נכנס רק כשאני<br>
+        מסכימה להיות פגיעה,<br>
+        מסכימה להיפתח.<br>
+        עד אשר<br>
+        האושר מוצא את מקומו,<br>
+        מסכים להישאר<br>
+        ולו רק לרגע.</p>
+    </div>
 
-            <br>
-
-            <p>בין הסדקים של חיי</p>
-            <p>האושר נכנס רק כשאני</p>
-            <p>מסכימה להיות פגיעה,</p>
-            <p>מסכימה להיפתח.</p>
-            <p>עד אשר</p>
-            <p>האושר מוצא את מקומו,</p>
-            <p>מסכים להישאר</p>
-            <p>ולו רק לרגע</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir3.jpeg" alt="ציור לשיר">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        // מספר הווטסאפ שלך
-        const phone = "972545305123";
-
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
 
 
 
