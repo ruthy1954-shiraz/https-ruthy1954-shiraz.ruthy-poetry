@@ -11,95 +11,72 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir14.jpeg" alt="ציור לשיר קול חד מפרס">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
+    <!-- כותרות -->
+    <h1 class="song-title">קול חד מפרס</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <h1 class="song-title">קול חד מפרס</h1>
-            <h2 class="song-author">רות שנן</h2>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>היינו עם של נהרות קדומים,<br>
+        שורשי תרבות ראשונים בעולם.<br>
+        עמדנו זקופים מול רוחות הזמן,<br>
+        והאור שזרחנו האיר יבשות.</p>
 
-            <p>
-                היינו עם של נהרות קדומים, <br>
-                שורשי תרבות ראשונים בעולם. <br>
-                עמדנו זקופים מול רוחות הזמן, <br>
-                והאור שזרחנו האיר יבשות.
-            </p>
+        <p>אך יד זרה כפתה עלינו חושך,<br>
+        שליטים אכזריים כבלו את שמנו.<br>
+        הפכנו לצל בין אומות,<br>
+        לשם הנלחש בפחד ובכאב.</p>
 
-            <br>
+        <p>אנחנו לא המפלצות שציירו,<br>
+        לא רוצחים, לא אנסים, לא חיות.<br>
+        אנחנו לב פועם, עתיק ונדיב,<br>
+        המבקש לשוב להיות אנוש.</p>
 
-            <p>
-                אך יד זרה כפתה עלינו חושך, <br>
-                שליטים אכזריים כבלו את שמנו. <br>
-                הפכנו לצל בין אומות, <br>
-                לשם הנלחש בפחד ובכאב.
-            </p>
+        <p>זה הזמן לשבור את הכבלים,<br>
+        להרים את הראש אל השחר.<br>
+        להחזיר את הגדולה אשר אבדה,<br>
+        ולצעוד לעידן של שגשוג.</p>
 
-            <br>
+        <p>בחרנו לקום,<br>
+        לשוב להיות אור כקדם,<br>
+        לשיר, לרקוד את החיים.</p>
+    </div>
 
-            <p>
-                אנחנו לא המפלצות שציירו, <br>
-                לא רוצחים, לא אנסים, לא חיות. <br>
-                אנחנו לב פועם, עתיק ונדיב, <br>
-                המבקש לשוב להיות אנוש.
-            </p>
-
-            <br>
-
-            <p>
-                זה הזמן לשבור את הכבלים, <br>
-                להרים את הראש אל השחר. <br>
-                להחזיר את הגדולה אשר אבדה, <br>
-                ולצעוד לעידן של שגשוג.
-            </p>
-
-            <br>
-
-            <p>
-                בחרנו לקום, <br>
-                לשוב להיות אור כקדם, <br>
-                לשיר, לרקוד את החיים.
-            </p>
-
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir14.jpeg" alt="ציור לשיר" style="max-width: 600px;">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- wrapper -->
+</div>
 
 </body>
 </html>
+
