@@ -11,79 +11,71 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir4.jpeg" alt="ציור לשיר החירות">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>החירות / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">החירות</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>בלילה שקט ושופע כוכבים</p>
-            <p>עולה רוח דקה של תקווה.</p>
-            <p>היא לוחשת על דלתות הלב הסגורות</p>
-            <p>ומזכירה שכל שער יכול להיפתח.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>בלילה שקט ושופע כוכבים<br>
+        עולה רוח דקה של תקווה.<br>
+        היא לוחשת על דלתות הלב הסגורות<br>
+        ומזכירה שכל שער יכול להיפתח.</p>
 
-            <br>
+        <p>מעבר למדבר הפנימי,<br>
+        מעבר למדינות המזרח התיכון,<br>
+        זורח אור רך של חירות,<br>
+        לא צועקת, לא מצווה,<br>
+        רק מזמינה ללכת.</p>
 
-            <p>מעבר למדבר הפנימי,</p>
-            <p>מעבר למדינות המזרח התיכון,</p>
-            <p>זורח אור רך של חירות,</p>
-            <p>לא צועקת, לא מצווה,</p>
-            <p>רק מזמינה ללכת.</p>
+        <p>בצעדים חוששים<br>
+        האדמה מגישה כפה תומכת.<br>
+        כי כך הדרך אל החירות:<br>
+        לא במכות, לא בניסים גדולים,<br>
+        אלא בלב המאמין, הרוצה לפרוח.</p>
 
-            <br>
+        <p>וכאשר רוח חזקה נושבת<br>
+        עוד עלה של פחד נושר.<br>
+        החירות אינה מתנה,<br>
+        היא ברית בין האדם לנפשו.</p>
+    </div>
 
-            <p>בצעדים חוששים</p>
-            <p>האדמה מגישה כפה תומכת.</p>
-            <p>כי כך הדרך אל החירות:</p>
-            <p>לא במכות, לא בניסים גדולים,</p>
-            <p>אלא בלב המאמין, הרוצה לפרוח.</p>
-
-            <br>
-
-            <p>וכאשר רוח חזקה נושבת</p>
-            <p>עוד עלה של פחד נושר.</p>
-            <p>החירות אינה מתנה,</p>
-            <p>היא ברית בין האדם לנפשו.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir4.jpeg" alt="ציור לשיר" style="max-width: 600px;">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
 
