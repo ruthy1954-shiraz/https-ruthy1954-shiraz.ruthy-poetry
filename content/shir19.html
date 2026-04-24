@@ -11,53 +11,75 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir19.jpeg" alt="ציור לשיר כמיהה">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>כמיהה / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">כמיהה</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>הוויתי כמהה,<br>
-            לנפש אשר תבחין<br>
-            בנשמה שלי המסתתרת<br>
-            במתאר גופי.<br>
-            שיביט אליה,<br>
-            עד אשר<br>
-            תרגיש שהיא קיימת.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>הוויתי כמהה,<br>
+        לנפש אשר תבחין<br>
+        בנשמה שלי המסתתרת<br>
+        במתאר גופי.<br>
+        שיביט אליה,<br>
+        עד אשר<br>
+        תרגיש שהיא קיימת.</p>
 
-            <br>
+        <p>תאסוף אותי ברוך,<br>
+        כמו לוכדת אור<br>
+        הנשפך בין האצבעות.<br>
+        שתדע לקרוא<br>
+        את השקטים שלי,<br>
+        את הפחדים הקטנים,<br>
+        שלא ביקשו קול.</p>
 
-            <p>תאסוף אותי ברוך,<br>
-            כמו לוכדת אור<br>
-            הנשפך בין האצבעות.<br>
-            שתדע לקרוא<br>
-            את השקטים שלי,<br>
-            את הפחדים הקטנים,<br>
-            שלא ביקשו קול.</p>
+        <p>תראה בי,<br>
+        לא רק צורה,<br>
+        אלא סיפור שלם<br>
+        המבקש להישמע.</p>
 
-            <br>
+        <p>כשיפגשו עינינו,<br>
+        אדע,<br>
+        שמצאתי סוף־סוף<br>
+        מקום בעיניי עצמי.<br>
+        שלא הלכתי לי לאיבוד.</p>
+    </div>
 
-            <p>תראה בי,<br>
-            לא רק צורה,<br>
-            אלא סיפור שלם<br>
-            המבקש להישמע.</p>
-
-            <br>
-
-            <p>כשיפגשו עינינו,<br>
-            אדע,<br>
-            שמצאתי סוף־סוף<br>
-            מקום בעיניי עצמי.<br>
-            שלא הלכתי לי לאיבוד.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir19.jpeg" alt="ציור לשיר">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
+
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
+    </script>
+
+</div>
+
+</body>
+</html>
+
