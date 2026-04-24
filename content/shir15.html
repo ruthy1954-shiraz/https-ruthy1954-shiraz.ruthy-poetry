@@ -11,76 +11,79 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
-
-        <div class="song-text">
-            <h1>השמש בחיי / רות שנן</h1>
-
-            <p>אני זקוקה לשמש.<br>
-            כמו זו שנגעה בי היום.<br>
-            עומדת, פני אל הים,<br>
-            מקשיבה לקולות השקיעה,<br>
-            לרגעים שסיימו את יומם,<br>
-            ולאחרים…<br>
-            המחכים מעבר לאופק.</p>
-
-            <br>
-
-            <p>ישנם רגעים,<br>
-            עננים מכסים שקיעות יפות.<br>
-            ואז,<br>
-            קרני אור חצופים<br>
-            מבליחים ביניהם,<br>
-            מקרינים אור חד, ברור,<br>
-            על מחשבות שלא העזתי לחשוב,<br>
-            ועל כאב קטן<br>
-            שלא ידעתי שקיים.</p>
-
-            <br>
-
-            <p>לאט… לאט…<br>
-            בין אור מלטף<br>
-            לבין ענן המבקש מקום,<br>
-            אני מגלה עוד משהו קטן על עצמי.</p>
-
-            <br>
-
-            <p>על הכוח שיש<br>
-            בשבריר של תקווה.<br>
-            על היופי<br>
-            שבפחד אשר נרגע.<br>
-            ועל הלב שלי,<br>
-            היודע לנשום לכל היופי הזה!</p>
-        </div>
-
-        <div class="song-image">
-            <img src="images/shir15.jpeg" alt="ציור לשיר">
-        </div>
-
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir15.jpeg" alt="ציור לשיר השמש בחיי">
     </div>
 
+    <!-- כותרות -->
+    <h1 class="song-title">השמש בחיי</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>אני זקוקה לשמש.<br>
+        כמו זו שנגעה בי היום.<br>
+        עומדת, פני אל הים,<br>
+        מקשיבה לקולות השקיעה,<br>
+        לרגעים שסיימו את יומם,<br>
+        ולאחרים…<br>
+        המחכים מעבר לאופק.</p>
+
+        <p>ישנם רגעים,<br>
+        עננים מכסים שקיעות יפות.<br>
+        ואז,<br>
+        קרני אור חצופים<br>
+        מבליחים ביניהם,<br>
+        מקרינים אור חד, ברור,<br>
+        על מחשבות שלא העזתי לחשוב,<br>
+        ועל כאב קטן<br>
+        שלא ידעתי שקיים.</p>
+
+        <p>לאט… לאט…<br>
+        בין אור מלטף<br>
+        לבין ענן המבקש מקום,<br>
+        אני מגלה עוד משהו קטן על עצמי.</p>
+
+        <p>על הכוח שיש<br>
+        בשבריר של תקווה.<br>
+        על היופי<br>
+        שבפחד אשר נרגע.<br>
+        ועל הלב שלי,<br>
+        היודע לנשום לכל היופי הזה!</p>
+    </div>
+
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
-        <a id="waLink" class="btn btn-main" target="_blank">שליחת ההערה בווטסאפ</a>
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
-        const phone = "972545305123";
-        document.getElementById("waLink").href = `https://wa.me/${phone}?text=${encoded}`;
-    }
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
-    </script>
-
+    <!-- כפתורי ניווט -->
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
+
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
+    </script>
 
 </div>
 
 </body>
 </html>
+
 
