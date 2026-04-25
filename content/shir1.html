@@ -49,7 +49,16 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
+        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
+
+        <!-- תאריך -->
+        <input id="userDate" type="date" />
+
+        <!-- שם השיר -->
+        <input id="userSong" placeholder="שם השיר..." value="בגידה" />
+
+        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="btn-row">
@@ -79,7 +88,7 @@
     // כפתור הווצאפ
     const waLink = document.getElementById("waLink");
 
-    // הווצאפ ייפתח ריק — בלי טקסט מוכן
+    // הווצאפ ייפתח ריק — הקורא יכתוב לבד
     const message = "";
 
     // מספר הטלפון שלך
@@ -94,4 +103,5 @@
 
 </body>
 </html>
+
 
