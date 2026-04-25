@@ -47,7 +47,7 @@ export function initNoteSystem() {
             "הערה: " + note;
 
         waLink.href =
-            "https://wa.me/9725XXXXXXXX?text=" + encodeURIComponent(message);
+            "https://wa.me/972545305123?text=" + encodeURIComponent(message);
     }
 
     // הצגת הערות
