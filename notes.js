@@ -1,116 +1,80 @@
-// ----------------------------------------------------
-// 1. טעינת Firebase
-// ----------------------------------------------------
-import { 
-  initializeApp 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-
-import { 
-  getFirestore, collection, addDoc, getDocs, deleteDoc, doc 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-
-// הגדרות Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
-  authDomain: "ruthy-notes.firebaseapp.com",
-  projectId: "ruthy-notes",
-  storageBucket: "ruthy-notes.firebasestorage.app",
-  messagingSenderId: "276333962292",
-  appId: "1:276333962292:web:298a0e8db8b5f77c359661",
-  measurementId: "G-6MDZNCXET4"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-
-// ----------------------------------------------------
-// 2. שמירת הערה — לפי songId
-// ----------------------------------------------------
-async function saveNote() {
-  const name = document.getElementById("userName").value;
-  const note = document.getElementById("userNote").value;
-
-  if (!name || !note) {
-    alert("נא למלא שם והערה");
-    return;
-  }
-
-  await addDoc(collection(db, "notes_" + songId), {
-    name: name,
-    note: note,
-    timestamp: new Date()
-  });
-
-  alert("ההערה נשמרה בהצלחה!");
-  loadNotes();
-}
-
-
-// ----------------------------------------------------
-// 3. טעינת הערות — לפי songId
-// ----------------------------------------------------
-async function loadNotes() {
-  const querySnapshot = await getDocs(collection(db, "notes_" + songId));
-  let html = "";
-
-  querySnapshot.forEach((docItem) => {
-    const data = docItem.data();
-
-    html += `
-      <div class="note-item">
-        <p><strong>${data.name}:</strong> ${data.note}</p>
-        <button class="delete-btn" onclick="deleteNote('${docItem.id}')">מחיקה</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("notes").innerHTML = html;
-}
-
-
-// ----------------------------------------------------
-// 4. מחיקת הערה — לפי songId
-// ----------------------------------------------------
-async function deleteNote(id) {
-  if (!confirm("למחוק את ההערה?")) return;
-
-  await deleteDoc(doc(db, "notes_" + songId, id));
-  loadNotes();
-}
-
-
-// ----------------------------------------------------
-// 5. עדכון קישור וואטסאפ
-// ----------------------------------------------------
-function updateWhatsAppLink() {
-  const name = document.getElementById("userName").value;
-  const note = document.getElementById("userNote").value;
-
-  const text = `שם: ${name}\nהערה: ${note}`;
-  const url = "https://wa.me/972545305123?text=" + encodeURIComponent(text);
-
-  document.getElementById("waLink").href = url;
-}
-
-
-// ----------------------------------------------------
-// 6. הפעלת המערכת
-// ----------------------------------------------------
+// מערכת ההערות לכל השירים
 export function initNoteSystem() {
-  document.getElementById("userName").addEventListener("input", updateWhatsAppLink);
-  document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
-  document.getElementById("saveBtn").addEventListener("click", saveNote);
 
-  loadNotes();
+    const userNameInput = document.getElementById("userName");
+    const userNoteInput = document.getElementById("userNote");
+    const saveBtn = document.getElementById("saveBtn");
+    const notesContainer = document.getElementById("notes");
+    const waLink = document.getElementById("waLink");
+
+    // לוקחים את שם השיר מהעמוד
+    const songTitle = document.querySelector(".song-title").innerText;
+
+    // טוענים הערות קיימות
+    const savedNotes = JSON.parse(localStorage.getItem(songId)) || [];
+    renderNotes();
+
+    // שמירת הערה
+    saveBtn.addEventListener("click", () => {
+        const name = userNameInput.value.trim();
+        const note = userNoteInput.value.trim();
+
+        if (!name || !note) {
+            alert("נא למלא שם והערה");
+            return;
+        }
+
+        const newNote = { name, note };
+        savedNotes.push(newNote);
+
+        localStorage.setItem(songId, JSON.stringify(savedNotes));
+
+        userNameInput.value = "";
+        userNoteInput.value = "";
+
+        renderNotes();
+        updateWhatsAppLink();
+    });
+
+    // יצירת קישור וואטסאפ
+    function updateWhatsAppLink() {
+        const name = userNameInput.value.trim();
+        const note = userNoteInput.value.trim();
+
+        const message =
+            "שם הכותב: " + name + "\n" +
+            "שיר: " + songTitle + "\n" +
+            "הערה: " + note;
+
+        waLink.href =
+            "https://wa.me/9725XXXXXXXX?text=" + encodeURIComponent(message);
+    }
+
+    // הצגת הערות
+    function renderNotes() {
+        notesContainer.innerHTML = "";
+
+        savedNotes.forEach((item) => {
+            const div = document.createElement("div");
+            div.classList.add("note-item");
+
+            div.innerHTML = `
+                <strong>${item.name}:</strong><br>
+                ${item.note}
+                <hr>
+            `;
+
+            notesContainer.appendChild(div);
+        });
+    }
+
+    // עדכון קישור וואטסאפ בזמן כתיבה
+    userNameInput.addEventListener("input", updateWhatsAppLink);
+    userNoteInput.addEventListener("input", updateWhatsAppLink);
+
+    updateWhatsAppLink();
 }
 
-
-// ----------------------------------------------------
-// 7. חשיפת פונקציות למחיקה
-// ----------------------------------------------------
-window.deleteNote = deleteNote;
 
 
 
