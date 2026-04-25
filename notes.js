@@ -1,10 +1,7 @@
-// notes.js — מערכת הערות מלאה
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy } 
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// הגדרות Firebase שלך
 const firebaseConfig = {
     apiKey: "YOUR_KEY",
     authDomain: "YOUR_DOMAIN",
@@ -17,24 +14,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// שמירת הערה לענן
+// שמירת הערה
 export async function saveNoteToFirestore(name, song, note, songId) {
-    try {
-        await addDoc(collection(db, "notes_" + songId), {
-            name: name,
-            song: song,
-            note: note,
-            timestamp: Date.now()
-        });
-        alert("ההערה נשמרה בהצלחה!");
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        alert("אירעה שגיאה בשמירת ההערה");
-    }
+    await addDoc(collection(db, "notes_" + songId), {
+        name: name,
+        song: song,
+        note: note,
+        timestamp: Date.now()
+    });
 }
 
-// טעינת הערות מהענן
+// טעינת הערות
 export async function initNoteSystem() {
+    loadNotes();
+}
+
+async function loadNotes() {
     const notesDiv = document.getElementById("notes");
 
     const q = query(
@@ -46,21 +41,29 @@ export async function initNoteSystem() {
 
     notesDiv.innerHTML = "";
 
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
+    querySnapshot.forEach((docItem) => {
+        const data = docItem.data();
+        const id = docItem.id;
 
         const date = new Date(data.timestamp).toLocaleDateString("he-IL");
 
         notesDiv.innerHTML += `
-            <p>
-                <strong>${data.name}</strong> (${date})<br>
-                <em>${data.song}</em><br>
+            <div class="note-card">
+                <div class="note-delete" onclick="deleteNote('${id}')">×</div>
+                <strong>${data.name}</strong><br>
+                <small>${data.song} — ${date}</small><br><br>
                 ${data.note}
-            </p>
-            <hr>
+            </div>
         `;
     });
 }
+
+// מחיקת הערה
+window.deleteNote = async function(id) {
+    await deleteDoc(doc(db, "notes_" + songId, id));
+    loadNotes();
+}
+
 
 
 
