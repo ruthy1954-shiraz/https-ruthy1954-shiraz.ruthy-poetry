@@ -54,17 +54,36 @@ export function initNoteSystem() {
     function renderNotes() {
         notesContainer.innerHTML = "";
 
-        savedNotes.forEach((item) => {
+        savedNotes.forEach((item, index) => {
             const div = document.createElement("div");
             div.classList.add("note-item");
 
             div.innerHTML = `
-                <strong>${item.name}:</strong><br>
-                ${item.note}
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <strong>${item.name}:</strong><br>
+                        ${item.note}
+                    </div>
+
+                    <button class="delete-btn" data-index="${index}">
+                        ✖
+                    </button>
+                </div>
                 <hr>
             `;
 
             notesContainer.appendChild(div);
+        });
+
+        // כפתורי מחיקה
+        const deleteButtons = document.querySelectorAll(".delete-btn");
+        deleteButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const index = btn.getAttribute("data-index");
+                savedNotes.splice(index, 1);
+                localStorage.setItem(songId, JSON.stringify(savedNotes));
+                renderNotes();
+            });
         });
     }
 
