@@ -26,7 +26,7 @@ const db = getFirestore(app);
 
 
 // ----------------------------------------------------
-// 2. שמירת הערה
+// 2. שמירת הערה — עכשיו לפי songId
 // ----------------------------------------------------
 async function saveNote() {
   const name = document.getElementById("userName").value;
@@ -37,7 +37,7 @@ async function saveNote() {
     return;
   }
 
-  await addDoc(collection(db, "notes"), {
+  await addDoc(collection(db, "notes/" + songId), {
     name: name,
     note: note,
     timestamp: new Date()
@@ -49,10 +49,10 @@ async function saveNote() {
 
 
 // ----------------------------------------------------
-// 3. טעינת הערות + כפתור מחיקה
+// 3. טעינת הערות — לפי songId
 // ----------------------------------------------------
 async function loadNotes() {
-  const querySnapshot = await getDocs(collection(db, "notes"));
+  const querySnapshot = await getDocs(collection(db, "notes/" + songId));
   let html = "";
 
   querySnapshot.forEach((docItem) => {
@@ -71,12 +71,12 @@ async function loadNotes() {
 
 
 // ----------------------------------------------------
-// 4. מחיקת הערה
+// 4. מחיקת הערה — לפי songId
 // ----------------------------------------------------
 async function deleteNote(id) {
   if (!confirm("למחוק את ההערה?")) return;
 
-  await deleteDoc(doc(db, "notes", id));
+  await deleteDoc(doc(db, "notes/" + songId, id));
   loadNotes();
 }
 
@@ -108,8 +108,9 @@ export function initNoteSystem() {
 
 
 // ----------------------------------------------------
-// 7. חשיפת פונקציות למחיקה (נדרש לכפתור)
+// 7. חשיפת פונקציות למחיקה
 // ----------------------------------------------------
 window.deleteNote = deleteNote;
+
 
 
