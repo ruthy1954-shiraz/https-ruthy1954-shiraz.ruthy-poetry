@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+/* הגדרות Firebase שלך */
 const firebaseConfig = {
     apiKey: "YOUR_KEY",
     authDomain: "YOUR_DOMAIN",
@@ -14,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// שמירת הערה
+/* שמירת הערה */
 export async function saveNoteToFirestore(name, song, note, songId) {
     await addDoc(collection(db, "notes_" + songId), {
         name: name,
@@ -22,14 +23,15 @@ export async function saveNoteToFirestore(name, song, note, songId) {
         note: note,
         timestamp: Date.now()
     });
+    loadNotes(songId);
 }
 
-// טעינת הערות
+/* טעינת הערות */
 export async function initNoteSystem() {
-    loadNotes();
+    loadNotes(songId);
 }
 
-async function loadNotes() {
+async function loadNotes(songId) {
     const notesDiv = document.getElementById("notes");
 
     const q = query(
@@ -58,14 +60,10 @@ async function loadNotes() {
     });
 }
 
-// מחיקת הערה
+/* מחיקת הערה */
 window.deleteNote = async function(id) {
     await deleteDoc(doc(db, "notes_" + songId, id));
-    loadNotes();
+    loadNotes(songId);
 }
-
-
-
-
 
 
