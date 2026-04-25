@@ -52,9 +52,6 @@
         <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
 
-        <!-- תאריך -->
-        <input id="userDate" type="date" />
-
         <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
 
@@ -83,25 +80,42 @@
 
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
-    import { initNoteSystem } from "../notes.js";
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-    // כפתור הווצאפ
     const waLink = document.getElementById("waLink");
+    const saveBtn = document.getElementById("saveBtn");
 
-    // הווצאפ ייפתח ריק — הקורא יכתוב לבד
-    const message = "";
-
-    // מספר הטלפון שלך
     const phone = "972545305123";
 
-    // יצירת קישור הווצאפ
-    waLink.href = `https://wa.me/${phone}?text=${message}`;
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
-    // הפעלת מערכת ההערות
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        waLink.href = `https://wa.me/${phone}?text=${encoded}`;
+    });
+
+    // שמירת הערה בענן
+    saveBtn.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+
     initNoteSystem();
 </script>
 
 </body>
 </html>
+
 
 
