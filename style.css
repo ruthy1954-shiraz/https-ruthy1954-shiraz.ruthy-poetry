@@ -82,26 +82,29 @@ html, body {
     height: 110px;
 }
 
-/* כפתורים אלגנטיים חדשים */
+/* כפתורים אלגנטיים */
 .nice-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 160px;
-    height: 50px;
+    width: 165px;
+    height: 52px;
     padding: 0;
     font-size: 18px;
     font-weight: 600;
-    border-radius: 12px;
+    border-radius: 14px;
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
     border: none;
+
+    /* אלגנטיות אמיתית */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
     transition: 0.25s ease;
 }
 
-/* צבעים אלגנטיים */
+/* צבעים */
 .nice-main {
     background: #8b5e3c;
     color: white;
@@ -109,6 +112,7 @@ html, body {
 
 .nice-main:hover {
     background: #7a5234;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 .nice-light {
@@ -119,6 +123,7 @@ html, body {
 
 .nice-light:hover {
     background: #ded6cc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 /* שורת כפתורים */
@@ -126,7 +131,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     margin: 20px 0;
 }
 
