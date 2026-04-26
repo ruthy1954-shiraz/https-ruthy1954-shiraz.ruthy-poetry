@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     direction: rtl;
-    text-align: right; /* ← תיקון חשוב */
+    text-align: right; /* ← יישור לימין */
 }
 
 /* עטיפת הדף */
@@ -81,12 +81,13 @@ body {
 
 .footer-nav a {
     color: #5a4a3f;
-    text-decoration: underline; /* ← מחזיר קו תחתון */
+    text-decoration: underline; /* ← קו תחתון */
 }
 
 .footer-nav a:hover {
     text-decoration: underline;
 }
+
 
 
 
