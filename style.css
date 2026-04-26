@@ -28,7 +28,7 @@ body {
     font-size: 2.4rem;
     margin-bottom: 5px;
     color: #5a4a3f;
-    text-align: center; /* כותרת במרכז */
+    text-align: center;
 }
 
 .song-author {
@@ -36,7 +36,7 @@ body {
     margin-top: 0;
     margin-bottom: 20px;
     color: #7a6a5f;
-    text-align: center; /* שם המחברת במרכז */
+    text-align: center;
 }
 
 /* טקסט השיר */
@@ -45,7 +45,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #ddd;
-    text-align: center; /* ← מרכז השיר */
+    text-align: center; /* מרכז את השיר */
     line-height: 1.8;
     font-size: 1.2rem;
 }
@@ -54,12 +54,13 @@ body {
 .notes-box {
     margin-top: 30px;
     padding: 20px;
-    background: #fff8d6; /* הצהוב הרך */
-    border: 1px solid #e6d8a8;
+    background: #FFE5D4; /* Pastel Peach */
+    border: 1px solid #e6c7b8;
     border-radius: 10px;
     text-align: right;
 }
 
+/* שדות */
 .notes-box input,
 .notes-box textarea {
     width: 100%;
@@ -75,11 +76,25 @@ body {
     resize: vertical;
 }
 
+/* כפתור מחיקה (X) */
+.delete-note {
+    float: left; /* מעביר את ה‑X לצד שמאל */
+    color: #b85c5c;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.delete-note:hover {
+    color: #8a3f3f;
+}
+
 /* קישורים */
 .footer-nav {
     margin-top: 20px;
     font-size: 1.1rem;
-    text-align: center; /* מרכז את הקישורים */
+    text-align: center;
 }
 
 .footer-nav a {
