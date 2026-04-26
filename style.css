@@ -84,31 +84,22 @@ html, body {
     height: 110px;
 }
 
-/* כפתורים קטנים ועדינים */
+/* כפתורים אחידים בקו אחד */
 .btn,
-.btn:link,
-.btn:visited,
-.btn:active,
-.btn:hover,
-button.btn {
+button.btn,
+a.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 18px;
+    width: 140px;      /* רוחב אחיד */
+    height: 46px;      /* גובה אחיד */
+    padding: 0;
     font-size: 16px;
-    border-radius: 10px;
-    min-width: 130px;
-    height: 44px;
-    box-sizing: border-box;
     font-weight: 600;
+    border-radius: 10px;
     text-decoration: none;
     cursor: pointer;
-}
-
-/* אחידות מוחלטת */
-.btn-main,
-.btn-light {
-    width: 130px;
+    box-sizing: border-box;
 }
 
 /* צבעים */
@@ -127,7 +118,8 @@ button.btn {
 .btn-row {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
     margin: 20px 0;
 }
 
