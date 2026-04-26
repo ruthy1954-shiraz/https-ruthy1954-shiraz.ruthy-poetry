@@ -18,9 +18,11 @@ body {
 
 /* תמונת שיר */
 .song-image img {
-    width: 100%;
+    width: 80%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
     border-radius: 12px;
-    margin-top: 20px;
 }
 
 /* כותרות */
@@ -45,6 +47,7 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     line-height: 1.8;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 /* תיבת הערות */
@@ -93,8 +96,16 @@ body {
 
 .btn-row {
     display: flex;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
+}
+
+/* כפתורי ניווט בתחתית */
+.wrapper a.btn {
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
 }
 
 /* כרטיס הערה */
@@ -130,6 +141,7 @@ body {
 #notes {
     margin-top: 20px;
 }
+
 
 
 
