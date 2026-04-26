@@ -13,22 +13,19 @@
 
     <!-- עיצוב מיוחד רק לדף הפתיחה -->
     <style>
-        html { font-size: 22px; }
 
-        body {
+        /* כל העיצוב של דף הפתיחה עטוף במחלקה home-page */
+        .home-page {
             font-family: "David", "Arial", sans-serif;
             background-color: #fdfaf6;
             color: #333;
             text-align: center;
-            margin: 0;
             padding: 30px;
-            direction: rtl;
             border: 12px solid #d8c3a5;
             box-sizing: border-box;
         }
 
-        /* תמונת פתיחה */
-        .cover img {
+        .home-page .cover img {
             width: 95%;
             max-width: 650px;
             border-radius: 14px;
@@ -36,34 +33,31 @@
             margin-top: 25px;
         }
 
-        /* כותרות */
-        h1 {
+        .home-page h1 {
             font-size: 3.6rem;
             margin-top: 30px;
             color: #5a4a3f;
         }
 
-        h2 {
+        .home-page h2 {
             font-size: 2rem;
             margin-top: -8px;
             color: #7a6a5f;
             font-weight: normal;
         }
 
-        /* טקסט פתיחה */
-        p {
+        .home-page p {
             font-size: 1.8rem;
             margin: 30px auto;
             width: 92%;
             line-height: 2.1;
         }
 
-        /* כפתורים */
-        .buttons {
+        .home-page .buttons {
             margin-top: 45px;
         }
 
-        .buttons a {
+        .home-page .buttons a {
             display: inline-block;
             margin: 12px;
             padding: 20px 40px;
@@ -75,12 +69,11 @@
             transition: background-color 0.3s;
         }
 
-        .buttons a:hover {
+        .home-page .buttons a:hover {
             background-color: #c0a98b;
         }
 
-        /* תיבת הערות */
-        .notes-box {
+        .home-page .notes-box {
             margin-top: 50px;
             padding: 25px;
             background: #fafafa;
@@ -91,8 +84,8 @@
             margin-right: auto;
         }
 
-        .notes-box input,
-        .notes-box textarea {
+        .home-page .notes-box input,
+        .home-page .notes-box textarea {
             width: 100%;
             font-size: 1.3rem;
             padding: 14px;
@@ -101,12 +94,12 @@
             margin-bottom: 14px;
         }
 
-        .notes-box textarea {
+        .home-page .notes-box textarea {
             height: 170px;
             resize: vertical;
         }
 
-        .notes-box a {
+        .home-page .notes-box a {
             padding: 14px 28px;
             font-size: 1.4rem;
             background-color: #d8c3a5;
@@ -118,42 +111,38 @@
             margin-top: 12px;
         }
 
-        .notes-box a:hover {
+        .home-page .notes-box a:hover {
             background-color: #c0a98b;
         }
 
-        #notes {
+        .home-page #notes {
             margin-top: 20px;
             text-align: right;
             font-size: 1.4rem;
             line-height: 1.7;
         }
 
-        /* התאמה לנייד */
         @media (max-width: 600px) {
-            html { font-size: 20px; }
-            h1 { font-size: 3.2rem; }
-            h2 { font-size: 1.8rem; }
-            p { font-size: 1.6rem; }
-            .buttons a { font-size: 1.3rem; padding: 18px 35px; }
+            .home-page h1 { font-size: 3.2rem; }
+            .home-page h2 { font-size: 1.8rem; }
+            .home-page p { font-size: 1.6rem; }
+            .home-page .buttons a { font-size: 1.3rem; padding: 18px 35px; }
         }
+
     </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="home-page">
 
-    <!-- תמונת הספר -->
     <div class="cover">
         <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
     </div>
 
-    <!-- כותרות -->
     <h1>לגעת</h1>
     <h2>ספר השירה של רות שנן</h2>
 
-    <!-- טקסט פתיחה -->
     <p>
         רגע לפני שהמילים נולדות,<br>
         היד נוגעת בדף,<br>
@@ -161,13 +150,11 @@
         הזמנה לגעת, להרגיש, להקשיב.
     </p>
 
-    <!-- ניווט -->
     <div class="buttons">
         <a href="content/song.html">שירים</a>
         <a href="content/about.html">על הספר</a>
     </div>
 
-    <!-- תיבת הערות -->
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
@@ -186,12 +173,10 @@
 
 </div>
 
-<!-- מזהה ייחודי לדף הבית -->
 <script>
     var songId = "homepage";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
@@ -200,7 +185,6 @@
 
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -215,7 +199,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -229,6 +212,7 @@
 
 </body>
 </html>
+
 
 
 
