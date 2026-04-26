@@ -73,23 +73,31 @@
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- כפתורים בשורה אחת -->
+        <!-- כפתורים אלגנטיים -->
         <div class="btn-row">
-            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
-            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+            <button class="nice-btn nice-light" id="saveBtn">שמירת הערה</button>
+
+            <a id="waLink" 
+               class="nice-btn nice-main" 
+               href="https://wa.me/972545305123" 
+               target="_blank">
+               ווצאפ לכותבת
+            </a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
     </div>
 
-    <!-- כפתורי ניווט -->
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="song.html" class="btn btn-light">חזרה לשירים</a>
+    <!-- ניווט עדין בתחתית -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
 
-    <!-- ⭐⭐ מזהה ייחודי לשיר ⭐⭐ -->
+    <!-- מזהה ייחודי לשיר -->
     <script>
-        var songId = "shir2";   /* ← התיקון החשוב */
+        var songId = "shir2";
     </script>
 
     <!-- מערכת ההערות -->
@@ -102,6 +110,7 @@
 
 </body>
 </html>
+
 
 
 
