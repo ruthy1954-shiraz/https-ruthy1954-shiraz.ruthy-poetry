@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
 
@@ -8,155 +8,61 @@
 
     <title>האתר של רותי</title>
 
-    <style>
-        html { font-size: 16px; }
-
-        body {
-            font-family: "David", "Arial", sans-serif;
-            background-color: #fdfaf6;
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            direction: rtl;
-            border: 10px solid #d8c3a5;
-            box-sizing: border-box;
-        }
-
-        .cover { margin-top: 20px; }
-
-        .cover img {
-            width: 70%;
-            max-width: 650px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        h1 {
-            font-size: 72px;
-            margin-top: 30px;
-            color: #5a4a3f;
-        }
-
-        h2 {
-            font-size: 36px;
-            margin-top: -10px;
-            color: #7a6a5f;
-            font-weight: normal;
-        }
-
-        p {
-            font-size: 28px;
-            margin: 20px auto;
-            width: 80%;
-            line-height: 1.8;
-        }
-
-        .buttons { margin-top: 40px; }
-
-        .buttons a {
-            display: inline-block;
-            margin: 10px;
-            padding: 20px 40px;
-            background-color: #d8c3a5;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 26px;
-            transition: background-color 0.3s;
-        }
-
-        .buttons a:hover { background-color: #c0a98b; }
-
-        .notes-box {
-            margin-top: 50px;
-            padding: 20px;
-            background: #fafafa;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .notes-box input,
-        .notes-box textarea {
-            width: 100%;
-            font-size: 18px;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
-
-        .notes-box textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .notes-box button,
-        .notes-box a {
-            padding: 12px 25px;
-            font-size: 20px;
-            background-color: #d8c3a5;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .notes-box button:hover,
-        .notes-box a:hover {
-            background-color: #c0a98b;
-        }
-
-        #notes {
-            margin-top: 20px;
-            text-align: right;
-            font-size: 20px;
-            line-height: 1.6;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="cover">
-    <img src="content/images/shir.jpeg" alt="יד כותבת מילים">
-</div>
+<div class="wrapper">
 
-<h1>לגעת</h1>
-<h2>ספר השירה של רות שנן</h2>
+    <!-- תמונת הספר -->
+    <div class="song-image">
+        <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
+    </div>
 
-<p>
-    רגע לפני שהמילים נולדות,<br>
-    היד נוגעת בדף,<br>
-    והלב נפתח.<br><br>
-    הזמנה לגעת, להרגיש, להקשיב.
-</p>
+    <!-- כותרות -->
+    <h1 class="song-title">לגעת</h1>
+    <h2 class="song-author">ספר השירה של רות שנן</h2>
 
-<div class="buttons">
-    <a href="content/song.html" class="btn">שירים</a>
-    <a href="content/about.html">על הספר</a>
-</div>
+    <!-- טקסט פתיחה -->
+    <div class="song-box">
+        <p>
+            רגע לפני שהמילים נולדות,<br>
+            היד נוגעת בדף,<br>
+            והלב נפתח.<br><br>
+            הזמנה לגעת, להרגיש, להקשיב.
+        </p>
+    </div>
 
-<!-- ⭐ מערכת הערות בענן ⭐ -->
-<div class="notes-box">
-    <h3>כתיבת הערות</h3>
+    <!-- ניווט -->
+    <div class="footer-nav" style="margin-top:20px;">
+        <a href="content/song.html">שירים</a> |
+        <a href="content/about.html">על הספר</a>
+    </div>
 
-    <input id="userName" placeholder="השם שלך..." />
-    <textarea id="userNote" placeholder="כתבי כאן את ההערה שלך..."></textarea>
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>כתיבת הערות והארות</h3>
 
-    <button id="saveBtn">שמירת הערה</button>
+        <!-- שם הכותב -->
+        <input id="userName" placeholder="השם שלך..." />
 
-    <h4>הערות שנשמרו:</h4>
-    <div id="notes"></div>
+        <!-- שם הדף -->
+        <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
 
-    <!-- כפתור ווצאפ -->
-    <a id="waLink" target="_blank">ווצאפ לכותבת</a>
+        <!-- הערה -->
+        <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
+
+        <!-- קישורים במקום כפתורים -->
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
 </div>
 
 <!-- מזהה ייחודי לדף הבית -->
@@ -166,22 +72,43 @@
 
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
-    import { initNoteSystem } from "./notes.js";
+    import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
-    // יצירת קישור ווצאפ אוטומטי
     const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
 
-    const message = encodeURIComponent("קראתי את האתר שלך ורציתי לשתף מחשבה...");
-    const phone = "972545305123";  // ← מספר הטלפון שלך
+    const phone = "972545305123";
 
-    waLink.href = `https://wa.me/${phone}?text=${message}`;
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
-    // הפעלת מערכת ההערות
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם הדף: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+
     initNoteSystem();
 </script>
 
 </body>
 </html>
+
 
 
 
