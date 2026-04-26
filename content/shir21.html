@@ -72,37 +72,75 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
+        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
 
+        <!-- שם השיר -->
+        <input id="userSong" placeholder="שם השיר..." value="להיראות" />
+
+        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- כפתורים בשורה אחת -->
-        <div class="btn-row">
-            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
-            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        <!-- קישורים במקום כפתורים -->
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
     </div>
 
-    <!-- כפתורי ניווט -->
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="song.html" class="btn btn-light">חזרה לשירים</a>
-
-    <!-- ⭐ מזהה ייחודי לשיר ⭐ -->
-    <script>
-        var songId = "shir21";
-    </script>
-
-    <!-- מערכת ההערות -->
-    <script type="module">
-        import { initNoteSystem } from "../notes.js";
-        initNoteSystem();
-    </script>
+    <!-- ניווט עדין -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
 
 </div>
 
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "shir21";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+
+    const phone = "972545305123";
+
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+
+    initNoteSystem();
+</script>
+
 </body>
 </html>
+
 
