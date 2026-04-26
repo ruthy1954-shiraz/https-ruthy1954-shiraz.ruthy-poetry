@@ -1,4 +1,4 @@
-/* מונע תזוזה ימינה ושמאלה */
+/* בסיס הדף */
 html, body {
     margin: 0;
     padding: 0;
@@ -50,7 +50,6 @@ html, body {
     line-height: 1.9;
     margin-bottom: 30px;
     text-align: center;
-    box-sizing: border-box;
 }
 
 /* תיבת הערות */
@@ -60,7 +59,6 @@ html, body {
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     margin-bottom: 30px;
-    box-sizing: border-box;
 }
 
 .notes-box h3 {
@@ -115,7 +113,7 @@ a.btn {
     border: 1px solid #cfc7bd;
 }
 
-/* שורת כפתורים – צמודים ויפים */
+/* שורת כפתורים – צמודים */
 .btn-row {
     display: flex;
     justify-content: center;
