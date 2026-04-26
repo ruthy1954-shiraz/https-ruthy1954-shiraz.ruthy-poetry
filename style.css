@@ -98,8 +98,6 @@ html, body {
     box-sizing: border-box;
     text-align: center;
     border: none;
-
-    /* אלגנטיות אמיתית */
     box-shadow: 0 3px 8px rgba(0,0,0,0.18);
     transition: 0.25s ease;
 }
@@ -163,12 +161,19 @@ html, body {
     color: #a00;
 }
 
-/* כפתורי ניווט */
-.wrapper a.nice-btn {
-    display: block;
-    width: fit-content;
-    margin: 10px auto;
+/* ניווט עדין בתחתית */
+.footer-nav {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 18px;
 }
+
+.footer-nav a {
+    color: #8b5e3c;
+    text-decoration: underline;
+    margin: 0 6px;
+}
+
 
 
 
