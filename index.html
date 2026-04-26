@@ -9,6 +9,132 @@
     <title>האתר של רותי</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        html { font-size: 18px; }
+
+        body {
+            font-family: "David", "Arial", sans-serif;
+            background-color: #fdfaf6;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            border: 10px solid #d8c3a5;
+            box-sizing: border-box;
+        }
+
+        /* תמונת פתיחה */
+        .cover img {
+            width: 90%;
+            max-width: 550px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        /* כותרות */
+        h1 {
+            font-size: 3.2rem;
+            margin-top: 25px;
+            color: #5a4a3f;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: -10px;
+            color: #7a6a5f;
+            font-weight: normal;
+        }
+
+        /* טקסט פתיחה */
+        p {
+            font-size: 1.6rem;
+            margin: 25px auto;
+            width: 90%;
+            line-height: 1.9;
+        }
+
+        /* כפתורים */
+        .buttons {
+            margin-top: 40px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 18px 35px;
+            background-color: #d8c3a5;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.4rem;
+            transition: background-color 0.3s;
+        }
+
+        .buttons a:hover {
+            background-color: #c0a98b;
+        }
+
+        /* תיבת הערות */
+        .notes-box {
+            margin-top: 50px;
+            padding: 20px;
+            background: #fafafa;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .notes-box input,
+        .notes-box textarea {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-bottom: 12px;
+        }
+
+        .notes-box textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .notes-box a {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            background-color: #d8c3a5;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .notes-box a:hover {
+            background-color: #c0a98b;
+        }
+
+        #notes {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* התאמה לנייד */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.6rem; }
+            h2 { font-size: 1.4rem; }
+            p { font-size: 1.4rem; }
+            .buttons a { font-size: 1.2rem; padding: 15px 30px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -16,27 +142,25 @@
 <div class="wrapper">
 
     <!-- תמונת הספר -->
-    <div class="song-image">
+    <div class="cover">
         <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
     </div>
 
     <!-- כותרות -->
-    <h1 class="song-title">לגעת</h1>
-    <h2 class="song-author">ספר השירה של רות שנן</h2>
+    <h1>לגעת</h1>
+    <h2>ספר השירה של רות שנן</h2>
 
     <!-- טקסט פתיחה -->
-    <div class="song-box">
-        <p>
-            רגע לפני שהמילים נולדות,<br>
-            היד נוגעת בדף,<br>
-            והלב נפתח.<br><br>
-            הזמנה לגעת, להרגיש, להקשיב.
-        </p>
-    </div>
+    <p>
+        רגע לפני שהמילים נולדות,<br>
+        היד נוגעת בדף,<br>
+        והלב נפתח.<br><br>
+        הזמנה לגעת, להרגיש, להקשיב.
+    </p>
 
     <!-- ניווט -->
-    <div class="footer-nav" style="margin-top:20px;">
-        <a href="content/song.html">שירים</a> |
+    <div class="buttons">
+        <a href="content/song.html">שירים</a>
         <a href="content/about.html">על הספר</a>
     </div>
 
@@ -44,16 +168,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלך..." />
-
-        <!-- שם הדף -->
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -108,6 +226,7 @@
 
 </body>
 </html>
+
 
 
 
