@@ -28,14 +28,12 @@
             ממשלת נתניהו תעשה הכול כדי להבעיר אש...
         </p>
 
-     <a id="moreBtn" class="more-link">...</a>
+        <!-- כפתור המשך -->
+        <a id="moreBtn" class="more-link">...</a>
 
-     <div id="moreText" style="display:none; margin-top:15px;">
-    <p>
-        (המשך התקשור המלא שלך)
-    </p>
-</div>
-
+        <!-- המשך התקשור -->
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
                 הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו. בנימין נתניהו יודע שזה יהיה הרגע שכל הכוחות העם יתאחדו והפגנות יפסקו.
                 <br><br>
                 או אז הוא יהיה המנהיג שיציל את עמו.
@@ -96,22 +94,9 @@
             </p>
         </div>
     </div>
-<!-- כפתור המשך -->
-        <a id="moreBtn" class="more-link">...</a>
 
-        <!-- המשך התקשור -->
-        <div id="moreText" class="hidden">
-            <p>
-                הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו...
-                <br><br>
-                (כאן כל המשך התקשור המלא שלך)
-                <br><br>
-                כאן אור האלה וכל המדריכים ממלכת האור האלוהי מברכת אתכם בתקווה ואמונה!
-                יהיה טוב — כבר טוב.
-                חיו בשלום עם עצמכם, בני ביתכם, עמכם והעולם!
-            </p>
-        </div>
-    </div>   
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
 
     <!-- תיבת הערות -->
     <div class="notes-box hidden">
@@ -156,7 +141,6 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -171,7 +155,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -189,13 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const moreBtn = document.getElementById("moreBtn");
     const moreText = document.getElementById("moreText");
 
-    // פתיחת המשך התקשור
     moreBtn.addEventListener("click", () => {
         moreText.classList.remove("hidden");
         moreBtn.style.display = "none";
     });
 
-    // פתיחה/סגירה של תיבת הערות
     toggleBtn.addEventListener("click", () => {
         notesBox.classList.toggle("hidden");
         toggleBtn.textContent = notesBox.classList.contains("hidden")
@@ -219,7 +200,7 @@ function shareTikshur() {
     }
 }
 </script>
-    
+
 </body>
 </html>
 
