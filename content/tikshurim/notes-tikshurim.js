@@ -29,7 +29,7 @@ export async function initTikshurimNotes(tikId) {
     const notesDiv = document.getElementById("notes");
     notesDiv.innerHTML = "";
 
-    const collectionName = "notes_" + tikId;
+    const collectionName = "tik_notes_" + tikId;
 
     try {
         const snap = await getDocs(collection(db, collectionName));
@@ -80,7 +80,7 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
     const now = new Date();
     const dateString = now.toLocaleString("he-IL");
 
- const collectionName = "tik_notes_" + tikId;
+    const collectionName = "tik_notes_" + tikId;
 
     try {
         const docRef = await addDoc(collection(db, collectionName), {
@@ -103,4 +103,5 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         return null;
     }
 }
+
 
