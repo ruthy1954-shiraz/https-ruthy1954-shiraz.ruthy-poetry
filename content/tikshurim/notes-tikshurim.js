@@ -29,6 +29,7 @@ export async function initTikshurimNotes(tikId) {
     const notesDiv = document.getElementById("notes");
     notesDiv.innerHTML = "";
 
+    // ⭐ שם האוסף החדש — נפרד מהשירים
     const collectionName = "tik_notes_" + tikId;
 
     try {
