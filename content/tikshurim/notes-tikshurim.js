@@ -80,7 +80,7 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
     const now = new Date();
     const dateString = now.toLocaleString("he-IL");
 
-    const collectionName = "notes_" + tikId;
+ const collectionName = "tik_notes_" + tikId;
 
     try {
         const docRef = await addDoc(collection(db, collectionName), {
