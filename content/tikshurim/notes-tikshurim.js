@@ -13,20 +13,7 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const db = getFirestore(app);
-
-// הגדרות Firebase שלך
-const firebaseConfig = {
-  apiKey: "AIzaSyDdagkGJI-uuz5dbFOelzsUKJL8QpcVgn4",
-  authDomain: "ruthy1954-tikshurim.firebaseapp.com",
-  projectId: "ruthy1954-tikshurim",
-  storageBucket: "ruthy1954-tikshurim.appspot.com",
-  messagingSenderId: "XXXXXXXXXXXX", // המספר שלך
-  appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX" // המספר שלך
-};
-
-// הפעלת Firebase
-const app = initializeApp(firebaseConfig);
+// יצירת חיבור למסד הנתונים
 const db = getFirestore(app);
 
 
@@ -85,6 +72,7 @@ export async function saveTikshurimNote(name, song, note, tikId) {
 }
 
 export { db };
+
 
 
 
