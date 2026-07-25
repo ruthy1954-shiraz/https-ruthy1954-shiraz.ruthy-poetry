@@ -1,9 +1,7 @@
 // notes-tikshurim.js — מערכת הערות לתקשורים
 
-import { 
-    initializeApp 
-} from "firebase/app";
-
+// טעינת ספריות Firebase ישירות מהשרת הרשמי
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { 
     getFirestore,
     collection,
@@ -13,16 +11,16 @@ import {
     query,
     deleteDoc,
     doc
-} from "firebase/firestore";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// הגדרות Firebase
+// הגדרות Firebase שלך
 const firebaseConfig = {
   apiKey: "AIzaSyDdagkGJI-uuz5dbFOelzsUKJL8QpcVgn4",
   authDomain: "ruthy1954-tikshurim.firebaseapp.com",
   projectId: "ruthy1954-tikshurim",
   storageBucket: "ruthy1954-tikshurim.appspot.com",
-  messagingSenderId: "XXXXXXXXXXXX",
-  appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  messagingSenderId: "XXXXXXXXXXXX", // המספר שלך
+  appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX" // המספר שלך
 };
 
 // הפעלת Firebase
@@ -85,6 +83,7 @@ export async function saveTikshurimNote(name, song, note, tikId) {
 }
 
 export { db };
+
 
 
 
