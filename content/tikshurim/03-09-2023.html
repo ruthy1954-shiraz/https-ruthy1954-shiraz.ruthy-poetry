@@ -188,8 +188,36 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "הערות והארות"
             : "הסתרת הערות";
     });
-});
+
 </script>
+<!-- כפתור פתיחה/סגירה של תיבת הערות -->
+<button class="toggle-notes">הערות והארות</button>
+
+<!-- תיבת הערות -->
+<div class="notes-box hidden">
+    <h3>כתיבת הערות והארות</h3>
+
+    <input id="userName" placeholder="השם שלכם..." />
+    <input id="userSong" placeholder="שם התקשור..." value="אזהרת מלחמה" />
+    <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+    <div class="footer-nav" style="margin-top:15px;">
+        <a id="waLink">ווצאפ לכותבת</a> |
+        <a id="saveLink">שמירת הערה</a>
+    </div>
+
+    <h4>הערות קוראים שנשמרו:</h4>
+    <div id="notes"></div>
+</div>
+
+<!-- ניווט תחתון -->
+<div class="footer-nav">
+    <a href="../../index.html">דף ראשי</a> |
+    <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+</div>
+
+<!-- כפתור שיתוף -->
+<button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
 
 </body>
 </html>
