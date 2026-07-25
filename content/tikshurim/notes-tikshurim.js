@@ -10,7 +10,7 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⭐ הגדרות Firebase — חייבים להיות אמיתיים
+// ⭐ הגדרות Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
@@ -29,7 +29,6 @@ export async function initTikshurimNotes(tikId) {
     const notesDiv = document.getElementById("notes");
     notesDiv.innerHTML = "";
 
-    // ⭐ שם האוסף החדש — נפרד מהשירים
     const collectionName = "tik_notes_" + tikId;
 
     try {
