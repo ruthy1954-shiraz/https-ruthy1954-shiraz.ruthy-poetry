@@ -1,6 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { 
+  getFirestore, 
+  collection, 
+  addDoc 
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -8,15 +12,26 @@ const firebaseConfig = {
   authDomain: "ruthy1954-tikshurim.firebaseapp.com",
   projectId: "ruthy1954-tikshurim",
   storageBucket: "ruthy1954-tikshurim.appspot.com",
-  messagingSenderId: "XXXXXXXXXXXX", // המספר שמופיע אצלך
-  appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX" // גם זה מופיע אצלך
+  messagingSenderId: "XXXXXXXXXXXX",
+  appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// ⭐ פונקציה ששומרת הערה בענן
+export async function saveNote(name, note, date) {
+  await addDoc(collection(db, "tik_notes_03-09-2023"), {
+    name,
+    note,
+    date
+  });
+}
+
+// מייצאים את db למקרה שהקובץ הראשי צריך אותו
 export { db };
+
 
 
 
