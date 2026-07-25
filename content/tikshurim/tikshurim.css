@@ -176,5 +176,9 @@ input, textarea {
     text-decoration: underline;
 }
 
+.wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+}
 
 
