@@ -30,7 +30,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-// ⭐ פונקציה שמטעינה את כל ההערות של התקשור
+// ⭐ טעינת הערות של התקשור
 export async function initTikshurimNotes(tikId) {
     const notesDiv = document.getElementById("notes");
 
@@ -67,7 +67,7 @@ export async function initTikshurimNotes(tikId) {
 }
 
 
-// ⭐ פונקציה ששומרת הערה חדשה
+// ⭐ שמירת הערה חדשה
 export async function saveTikshurimNote(name, song, note, tikId) {
     const docRef = await addDoc(collection(db, "tik_notes_" + tikId), {
         name,
@@ -85,6 +85,7 @@ export async function saveTikshurimNote(name, song, note, tikId) {
 }
 
 export { db };
+
 
 
 
