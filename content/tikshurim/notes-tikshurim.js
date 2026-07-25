@@ -1,17 +1,19 @@
 // notes-tikshurim.js — מערכת הערות לתקשורים
 
 // טעינת ספריות Firebase ישירות מהשרת הרשמי
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { app } from "./firebase.js";
 import { 
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    orderBy,
-    query,
-    deleteDoc,
-    doc
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  orderBy,
+  query,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const db = getFirestore(app);
 
 // הגדרות Firebase שלך
 const firebaseConfig = {
