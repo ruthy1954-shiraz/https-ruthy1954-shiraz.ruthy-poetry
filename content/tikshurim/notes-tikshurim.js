@@ -1,12 +1,21 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+// notes-tikshurim.js — מערכת הערות לתקשורים
+
 import { 
-  getFirestore, 
-  collection, 
-  addDoc 
+    initializeApp 
+} from "firebase/app";
+
+import { 
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    orderBy,
+    query,
+    deleteDoc,
+    doc
 } from "firebase/firestore";
 
-// Your web app's Firebase configuration
+// הגדרות Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDdagkGJI-uuz5dbFOelzsUKJL8QpcVgn4",
   authDomain: "ruthy1954-tikshurim.firebaseapp.com",
@@ -16,21 +25,67 @@ const firebaseConfig = {
   appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 };
 
-// Initialize Firebase
+// הפעלת Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ⭐ פונקציה ששומרת הערה בענן
-export async function saveNote(name, note, date) {
-  await addDoc(collection(db, "tik_notes_03-09-2023"), {
-    name,
-    note,
-    date
-  });
+
+// ⭐ טעינת הערות של התקשור
+export async function initTikshurimNotes(tikId) {
+    const notesDiv = document.getElementById("notes");
+
+    const q = query(
+        collection(db, "tik_notes_" + tikId),
+        orderBy("date", "desc")
+    );
+
+    const snapshot = await getDocs(q);
+
+    notesDiv.innerHTML = "";
+
+    snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+
+        const card = document.createElement("div");
+        card.className = "note-card";
+
+        card.innerHTML = `
+            <strong>${data.name}</strong><br>
+            ${data.note}<br>
+            <span class="note-date">${data.date}</span>
+            <button class="delete-btn" data-id="${docSnap.id}">✖</button>
+        `;
+
+        // מחיקה
+        card.querySelector(".delete-btn").addEventListener("click", async () => {
+            await deleteDoc(doc(db, "tik_notes_" + tikId, docSnap.id));
+            card.remove();
+        });
+
+        notesDiv.appendChild(card);
+    });
 }
 
-// מייצאים את db למקרה שהקובץ הראשי צריך אותו
+
+// ⭐ שמירת הערה חדשה
+export async function saveTikshurimNote(name, song, note, tikId) {
+    const docRef = await addDoc(collection(db, "tik_notes_" + tikId), {
+        name,
+        song,
+        note,
+        date: new Date().toLocaleString("he-IL")
+    });
+
+    return {
+        id: docRef.id,
+        name,
+        note,
+        date: new Date().toLocaleString("he-IL")
+    };
+}
+
 export { db };
+
 
 
 
