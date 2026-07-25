@@ -92,9 +92,27 @@
             </p>
         </div>
     </div>
+<!-- כפתור המשך -->
+        <a id="moreBtn" class="more-link">...</a>
 
+        <!-- המשך התקשור -->
+        <div id="moreText" class="hidden">
+            <p>
+                הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו...
+                <br><br>
+                (כאן כל המשך התקשור המלא שלך)
+                <br><br>
+                כאן אור האלה וכל המדריכים ממלכת האור האלוהי מברכת אתכם בתקווה ואמונה!
+                יהיה טוב — כבר טוב.
+                חיו בשלום עם עצמכם, בני ביתכם, עמכם והעולם!
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
+    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -111,24 +129,25 @@
         <div id="notes"></div>
     </div>
 
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
 </div>
 
+<!-- מזהה ייחודי לתקשור -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const btn = document.getElementById("moreBtn");
-    const more = document.getElementById("moreText");
-
-    btn.addEventListener("click", function() {
-        more.style.display = "block";
-        btn.style.display = "none";
-    });
-});
+    var tikId = "03-09-2023";
 </script>
 
+<!-- מערכת ההערות + ווצאפ -->
 <script type="module">
-    import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=7";
-
-    const tikId = "03-09-2023";
+    import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js";
 
     initTikshurimNotes(tikId);
 
@@ -136,93 +155,74 @@ document.addEventListener("DOMContentLoaded", function() {
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    waLink.addEventListener("click", () => {
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
-        const tik = document.getElementById("userSong").value.trim();
+        const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
-
-        const now = new Date();
-        const dateString = now.toLocaleString("he-IL");
 
         const message =
             `שם הכותב: ${name}\n` +
-            `תקשור: ${tik}\n` +
-            `הערה: ${note}\n` +
-            `תאריך: ${dateString}`;
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
 
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    saveLink.addEventListener("click", async () => {
+    // שמירת הערה בענן
+    saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
-        const tik = document.getElementById("userSong").value.trim();
+        const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        const saved = await saveTikshurimNote(name, tik, note, tikId);
-
-        if (saved) {
-            const card = document.createElement("div");
-            card.className = "note-card";
-            card.innerHTML = `
-                <strong>${saved.name}</strong><br>
-                ${saved.note}<br>
-                <span class="note-date">${saved.date}</span>
-                <button class="delete-btn" data-id="${saved.id}">✖</button>
-            `;
-            document.getElementById("notes").prepend(card);
-        }
-
-        document.getElementById("userNote").value = "";
+        saveTikshurimNote(name, song, note, tikId);
     });
 </script>
 
+<!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
     const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
 
+    // פתיחת המשך התקשור
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    // פתיחה/סגירה של תיבת הערות
     toggleBtn.addEventListener("click", () => {
         notesBox.classList.toggle("hidden");
-
         toggleBtn.textContent = notesBox.classList.contains("hidden")
             ? "הערות והארות"
             : "הסתרת הערות";
     });
-
+});
 </script>
-<!-- כפתור פתיחה/סגירה של תיבת הערות -->
-<button class="toggle-notes">הערות והארות</button>
 
-<!-- תיבת הערות -->
-<div class="notes-box hidden">
-    <h3>כתיבת הערות והארות</h3>
-
-    <input id="userName" placeholder="השם שלכם..." />
-    <input id="userSong" placeholder="שם התקשור..." value="אזהרת מלחמה" />
-    <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
-
-    <div class="footer-nav" style="margin-top:15px;">
-        <a id="waLink">ווצאפ לכותבת</a> |
-        <a id="saveLink">שמירת הערה</a>
-    </div>
-
-    <h4>הערות קוראים שנשמרו:</h4>
-    <div id="notes"></div>
-</div>
-
-<!-- ניווט תחתון -->
-<div class="footer-nav">
-    <a href="../../index.html">דף ראשי</a> |
-    <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
-</div>
-
-<!-- כפתור שיתוף -->
-<button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+<!-- פונקציית שיתוף -->
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
 
 </body>
 </html>
 
-
+   
 
 
 
