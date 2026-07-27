@@ -186,6 +186,18 @@ function shareTikshur() {
     }
 }
 </script>
+document.addEventListener("click", async function(e) {
+    if (e.target.classList.contains("delete-btn")) {
+
+        const noteId = e.target.dataset.id;
+
+        // מחיקה מהענן
+        await deleteTikshurimNote(noteId);
+
+        // מחיקה מהמסך מיד
+        e.target.closest(".note-card").remove();
+    }
+});
 
 </body>
 </html>
