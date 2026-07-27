@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תקשור 01-11-2023 / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת התקשור (לא חובה) -->
+    <div class="song-image">
+        <img src="images/01-11-2023.jpeg" alt="ציור לתקשור 01-11-2023">
+    </div>
+
+    <!-- פתיח -->
+    <div class="song-intro">
+        <p>
+            מסר של אור, חופש ואהבה —  
+            קריאה להיות רוח חופשית, נקייה ומקרינה תקווה לעולם כולו.
+        </p>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">תקשור 01-11-2023</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט התקשור -->
+    <div class="song-box">
+        <p>כאן אור האלה ממלכת האור האלוהי וכל מלאכי שרפי והמדרכים של המדרכים, מבקשים שתהיו כמו הרוח.<br>
+        כוחם הבלתי נראה כך מורגש. סרבו לכוחות האופל אשר מורידים אותכם. הפנו את הווייתכם קדימה.<br>
+        שימו לב איזו אנרגיה אתם משדרים. ואם אתם כרגע לא מיטבכם — נקו את הפחדים, את אי-הוודאות, את הספקות.<br>
+        הישארו צנועים ומכוונים. הישארו בתוך ההכלה, החמלה והאהבה והקרינו קדימה לעתיד לבוא.</p>
+
+        <p>הקרינו את האור אל מחילות החושך, אל התינוקות, האמהות והסבתות, אל החטופים, אל החיילים,<br>
+        אל מנהיגי העם העכשוויים והעתידיים לבוא. הקרינו כוח של אור ותקווה.<br>
+        זוהי הרוח אשר תשיט אתכם לחוף מבטחים — אל עצמכם, אל משפחתיכם, אל שכניכם, אל ארצכם והעולם כולו.<br>
+        אור של אהבה. אור שיקרין לעולם חדש, טוב ומטיב.</p>
+
+        <p>היו הרוח של חופש, אמונה ואהבה.</p>
+
+        <p>כאן אור האלה ממלכת האור האלוהי וכל כוחות השמים מקרינים איתכם את האור האלוהי.<br>
+        היו באור — היו בשלום.</p>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="תקשור 01-11-2023" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לתקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את התקשור</button>
+
+</div>
+
+<!-- מזהה ייחודי לתקשור -->
+<script>
+    var songId = "01-11-2023";
+</script>
+
+<!-- מערכת הערות -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- פונקציית שיתוף -->
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
