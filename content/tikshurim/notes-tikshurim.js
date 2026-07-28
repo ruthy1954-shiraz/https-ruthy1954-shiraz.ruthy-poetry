@@ -1,4 +1,3 @@
-
 // notes-tikshurim.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
@@ -77,6 +76,7 @@ export async function deleteTikshurimNote(noteId, tikId) {
     console.error("שגיאה במחיקת הערה:", error);
   }
 }
+
 
 
 
