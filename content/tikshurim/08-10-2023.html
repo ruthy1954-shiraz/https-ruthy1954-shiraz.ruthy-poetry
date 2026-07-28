@@ -115,9 +115,9 @@
     var tikId = "08-10-2023";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
+<!-- מערכת ההערות + ווצאפ + מחיקה -->
 <script type="module">
-    import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js";
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
 
     initTikshurimNotes(tikId);
 
@@ -162,6 +162,15 @@
 
         document.getElementById("userNote").value = "";
     });
+
+    // מחיקה מיידית מהמסך + מהענן
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
 </script>
 
 <!-- פתיחה/סגירה של תיבת הערות -->
@@ -205,3 +214,4 @@ function shareTikshur() {
 
 </body>
 </html>
+
