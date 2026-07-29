@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ריפוי הלב / תקשור 16-12-2023</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת התקשור -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">ריפוי הלב</h1>
+    <h2 class="song-author">16-12-2023</h2>
+
+    <!-- טקסט התקשור -->
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי. שאלת למה החטופים היו צריכים להיהרג,
+            מה אנחנו צריכים ללמוד מהאירוע הטרגי הזה?
+            <br><br>
+            חוויה קשה לראות את החופש ואת הלוחמים הישראלים ולהגיע אלינו.
+            מזכירה לכם שוב ושוב — זו הבחירה של הנשמות!
+            <br><br>
+            הכאב הזה מלמד!
+            הכאב הזה שומר עליכם שבבו הרגע ששיירת החטופים תמצא את הדרך אליכם,
+            החיילים יכבדו וישמרו את הדרך הבטוחה אליהם. את חייהם.
+            <br><br>
+            זה מלמד את החיילים לזהירות. להבחנה מדויקת יותר. וזה חייב לקרות בקרב.
+            מצבים כאילו מכינים את החיילים לרגע שיפסקו הקרבות.
+            בו ישובו לביתם.
+            <br><br>
+            רעש הקרבות עדיין יהדהד בראשם. תחושת הרעות תפעם בדמם.
+            הם יחזרו לשגרה, ליום רודף יום. או אז יחפשו משמעות לחייהם.
+            <br><br>
+            יהיו כאילו שיבינו שרק עם לב פתוח מלא חמלה ואהבה,
+            יוכלו לשרוד את העידן שיבוא אליכם לטובה.
+            הלב הפתוח הוא התנאי לשרוד את הזמנים החדשים.
+            <br><br>
+            אתם טועמים טעימה קטנה מהערבות ההדדית בזמני מלחמה.
+            אבל הטעם המתוק יבוא כאשר הדאגה, החמלה והאהבה תשכון במחוזותיכם
+            באיתות שלום — ולתמיד.
+            <br><br>
+            מזכירים לכם שהזמנים משתנים.
+            הנשמות שלכם רוצות את השקט והשלווה.
+            את הצמיחה והלמידה מהיש.
+            ויש כל כך הרבה תיקונים שהנשמה שלכם רוצה לעשות, לשנות.
+            <br><br>
+            כמו למשל:
+            למצוא מקורות טבעיים למקורות המזון שלכם.
+            לשחרר את חיות הבית מהניצול האכזרי.
+            לשחרר את הרצון לשלוט על עם אחר.
+            <br><br>
+            כל אילו יובילו אתכם לעשייה ברוכה בידע שלכם לייצר מה"יש מאין".
+            לחלוק את השפע במובן הכי רחב שניתן.
+            להבין שטעמה המר של מלחמה מצמצם, משמיד וסוגר את הלב.
+            <br><br>
+            אל דאגה — אנחנו נהיה בלבבכם להדריך ולעזור לכם להגיע לזמנים
+            שאליהם אנחנו מכוונים.
+            <br><br>
+            בינתיים:
+            רפאו את פצעי הילדות.
+            גייסו את החמלה, השיח והאהבה לעצמכם.
+            חיו את היש.
+            חיו את הכאב בפתיחת הלב.
+            חיו את השחרור מהפחד והייאוש.
+            חיו את החמלה המתעוררת בלבבכם לאחר.
+            חיו את הזריחה.
+            חיו את השקיעה.
+            חיו את התקווה.
+            חיו את אשר בעולמכם.
+            <br><br>
+            כאן אור האלה וכל צבאות השמים שולחים לכם אור גדול ללבבות שלכם.
+            חיו בשלום — והשלום ישכון בליבכם!
+        </p>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="ריפוי הלב" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<!-- מזהה ייחודי לתקשור -->
+<script>
+    var tikId = "16-12-2023";
+</script>
+
+<!-- מערכת הערות + ווצאפ + מחיקה -->
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן + הוספה למסך
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    // מחיקה מהענן + מהמסך
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- פונקציית שיתוף -->
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
