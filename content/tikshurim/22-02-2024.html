@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22-02-2024 חמלה ככוח מרפא</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת פתיחה -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">22-02-2024</h1>
+    <h2 class="song-author">חמלה ככוח מרפא</h2>
+
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי.  
+            אני כאן לידע אותך ואת מי שרוצה לשמוע.  
+            העת להסיר התנגדות. אילו זמנים של שיח והבנה שאתם מתרסקים על עצמכם אם תמשיכו בדרכי מלחמה.  
+            יותר מדי נשמות זועקות לכם משמיים: דיי!  
+            הזמנים לתת ולקבל. הזמנים לפתוח את הלב להבין שחמלה תביא החלמה לאדמה רווית הדם שעליה אתם שוכנים.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                שליחים באים ויבואו לרכך את לבבכם.  
+                אבל הכוח בליבכם — הביאו אור וחסד.  
+                מלחמה היא כמו סרטן: היא סר–טן.  
+                ואם לא תאירו ותבינו מהיכן מגיע הזעם והטינה בלבבכם — לעולם לא תוכלו ליהנות מהגאולה.
+                <br><br>
+                הממשלה שלכם אינה מועילה.  
+                בייאושכם אתם פועלים במקביל לממשלה.  
+                יבוא יום — והוא לא רחוק — כוחות צעירים וישרים ינהיגו אתכם בשיטות פורצות דרך.  
+                או אז יתחיל להתקיים שלום ושיח.
+                <br><br>
+                אילו ימים ששליחים מעמי האזור יבואו ללמוד מכם שפע, כי לבבכם יפתח ויפיץ שפע.  
+                בידכם להביא להחלמה — ולא על ידי מלחמה.  
+                רק החמלה ואור שבלבבכם יזכירו לעמי האזור שימי שגשוג ורוגע הם דרככם וייעודכם.
+                <br><br>
+                ולגבי החטופים — התפללו, דברו אליהם מלבכם המואר יום יום.  
+                תנו להם כוח לצאת מהמחילות אל האור.
+                <br><br>
+                כאן אור האלה וכל צבאות השמיים זורעים בלבבכם ים של חמלה והחלמה.  
+                היו בשלום — ויהיה שלום.
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="חמלה ככוח מרפא" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<script>
+    var tikId = "22-02-2024";
+</script>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
