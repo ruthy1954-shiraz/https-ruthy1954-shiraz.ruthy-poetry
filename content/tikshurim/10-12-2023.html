@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>החטופים / תקשור 10-12-2023</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת התקשור -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">החטופים</h1>
+    <h2 class="song-author">10-12-2023</h2>
+
+    <!-- טקסט התקשור -->
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי מבקשת ממך להרגע.
+            את שואלת על החטופים, את מרגישה אי ודאות לגביהם. בצדק הם נמצאים במקום של תמרות אש ועשן.
+            בסכנה קיומית בכל רגע. הם נמצאים עם חוטפים שגם הם בסכנה ושניהם לא יכולים לברוח.
+            <br><br>
+            יבוא רגע שהחוטפים והחטופים יצאו מהמחילות ומנהרות וירימו ידיים. התנאי של החוטפים יהיה שלא יעונה להם כל רע.
+            והחטופים והחטופות ירוצו לידיהם של החיילים המופתעים. זו תהיה התארגנות של החוטפים השומרים.
+            הם יבינו שזו הדרך היחידה לשרוד בחיים.
+            <br><br>
+            את שואלת מתי זה יקרה?
+            תשובתי שקרוב היום.
+            <br><br>
+            לא כולם יחזרו בחיים.
+            ואילו שיחזרו יעברו תקופת שיקום ארוכה וגם כאילו כל חייהם.
+            <br><br>
+            המלחמה תפסק באחת. החמס ייכנע.
+            עזה תישאר זמן מה בחורבותיה.
+            <br><br>
+            ברית אמריקאית, אנגלית, צרפתית וגרמנית ימנו מועצה מיוחדת להבנה כיצד עזה תתקיים.
+            ההבנה שהדרך הטובה לתת למשפחות להנהיג את עצמן תמצא כפתרון זמני.
+            יקום מתוכם מנהיג שיאסוף את שאריות הנשק. עזה תהפוך להיות פציפיסטית.
+            <br><br>
+            היא תקבל הרבה תרומות מהעולם.
+            המנהיגות המתונה תפתח עם הזמן תיירות משגשגת ויחסי עבודה עם ישראל.
+            בהדרגה היא תלמד להנות מההייטק והלוטק הישראלי.
+            היא גם תפתח חקלאות אורגנית משגשגת בעזרת מדריכים מישראל.
+            <br><br>
+            לאורך כמה שנים הגבול הישראלי יהיה סגור בפניהם. המגעים וכל שיתופי הפעולה יעברו דרך מצרים.
+            <br><br>
+            ואתם בני ישראל, תלמדו שיעור חשוב בהתפקחות אשר יביא אתכם לפקח ולשמור על המעמד שלכם כמעצמה אזורית חזקה,
+            אך גם אנושית. שיעור חשוב לאנושות אשר מתחילה להבין את הבעיה של המזרח התיכון ואת הבעיה שמביא האיסלם לעולם.
+            קרנו של האיסלם בכיוון ירידה.
+            <br><br>
+            בסופו של דבר ישראל והיהדות יקבלו מעמד חשוב וצודק בכל העולם.
+            <br><br>
+            כאן אור האלה ממלכת האור האלוהי מברכת אתכם בהרבה אור וחסד ובעיקר:
+            <strong>חיו בשלום — יהיה שלום!</strong>
+        </p>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="החטופים" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<!-- מזהה ייחודי לתקשור -->
+<script>
+    var tikId = "10-12-2023";
+</script>
+
+<!-- מערכת ההערות + ווצאפ + מחיקה -->
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן + הוספה למסך
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    // מחיקה מהענן + מהמסך
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- פונקציית שיתוף -->
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
