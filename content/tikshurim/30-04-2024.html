@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30-04-2024 יציאת מצרים כתהליך פנימי</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת פתיחה -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">30-04-2024.html</h1>
+    <h2 class="song-author">יציאת מצרים כתהליך פנימי</h2>
+
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי מבקשת ממך להעביר הלאה לכל האוזניים הקשובות.
+            אתם נמצאים בעידן שהעולם משתנה לכם מול העיניים. דברים ואירועים אשר סירבתם לראות
+            ולהאמין שהם קיימים — מופיעים לכם במציאות יומכם. מה שהיה נכון לכם פעם — לא מתאים
+            יותר היום.
+            שימו לב שלאמונה כוח קיום! האמינו בטוב, בישר ובעיקר באהבה.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                חשוב שתדעו שהיכן שהטוב נוכח — שם גם תמצאו את התקווה ואת האור.
+                הערב סביב שולחן החג, עם ישראל יקרא את האגדה והיא נסובה על נושא החירות,
+                על יציאת מצרים. מצרים שלכם היום הוא לצאת מהצר — מהצמצום — אל ההתרחבות,
+                בעיקר של הלב.
+                <br><br>
+                הביטו סביבכם וראו את הסבל. הושיטו יד — גם לא רק פיזית. ראו את האלמנה,
+                את היתום, את הזקן, את המשפחות שעולמן השתנה ללא הכר. ראו את החטוף ואת
+                החטופה שעולמם החשיך. ראו אותם וברכו אותם לימים שקטים וטובים. שלחו להם
+                תקווה והרבה אור.
+                <br><br>
+                ראו אתכם מביטים השמיימה. הקשיבו לקולות הלוחשים לליבכם — הם אומרים לכם
+                להתרחב, להאמין שימים טובים יותר בפתח. לסבל מטרה וגם תכלית. השבר הזה בו
+                אתם נמצאים — בא לתקן ולהעביר אתכם לעידן הבא, לעידן מדויק לכם.
+                <br><br>
+                עידן בו הלב יוביל.  
+                עידן שהאינטואיציה תתרחב ללא הכר.  
+                עידן בו האמון בטוב האדם יחזור לליבכם ולבתיכם.  
+                עידן בו כוחות של אור יתארחו בביתכם, ימלאו את הכיסאות הריקים ויזרימו לביתכם
+                שמחה ותקווה.
+                <br><br>
+                האמינו באור, האמינו! החזיקו וחיזקו את אמונתכם — וימים טובים ושמחים ישכנו
+                בביתכם ובעמכם.  
+                היו בשלום — ויהיה שלום!
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="יציאת מצרים כתהליך פנימי" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<script>
+    var tikId = "30-04-2024";
+</script>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
