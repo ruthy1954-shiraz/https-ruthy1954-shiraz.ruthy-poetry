@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22-07-2024 האור חושף את הכול</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת פתיחה -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">22-07-2024.html</h1>
+    <h2 class="song-author">האור חושף את הכול</h2>
+
+    <div class="song-box">
+        <p>
+            כאן אור האל, ממלכת האור האלוהי יודעת שהסוף של הסיוט שבו אתם שוררים הולך ומתפוגג.
+            הכול חשוף, הכול גלוי ומתגלה!  
+            אין לאן להסתתר.  
+            אין יותר אשליות ו"יהיה בסדר".  
+            את הסדר — ישר‑אל מביאה ותביא.  
+            איך? בהדרגה.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                החושך הזה אשר השתלט עליכם — הולך ומתפוגג עם האור והתקווה שכל אחד ואחד מביא ויביא.
+                המנהיגים שלכם רגילים לפעול בחושך, במסתרים.  
+                בימים אלה הם מאבדים את הכיוון, את ההיגיון, גם את שיקול הדעת — בזמן שהכול גלוי וברור.
+                הם יודעים שזמנם קצוב וקצר.  
+                הם מנסים לחוקק חוקים לא הגיוניים מתוך הבהלה שאוחזת בהם.  
+                הם מפחדים לאבד אחיזה בכוח השלטון.  
+                הם יודעים מה מחכה להם כאשר יפלו.
+                <br><br>
+                הימים הם ימים מבלבלים, חשוכים לכאורה, כאוטיים —  
+                אבל לא כך.  
+                המבנים החדשים נבנים.  
+                כמו זרעים הנובטים בחושך — כרגע עדיין אינכם רואים את צמיחתם.
+                <br><br>
+                בוקר אחד תקומו — ומנהיגות צעירה, מוארת, רעננה, היודעת את הדרך — תקום לישראל.
+                למנהיגות החדשה יידרש זמן ואורך רוח כדי להקים ולאסוף את שברי היאוש.  
+                לאסוף את תושבי הארץ כולה, מהצפון עד הדרום — לתקומה ולחזון.
+                <br><br>
+                ומה יקרה במזרח התיכון?
+                בעזה תקום מנהיגות שוחרת שלום.  
+                את הנשק הרב שצברו יהפכו לכלים לבנייה ושיקום.  
+                אבק השרפה ישמש אותם לאנרגיה ולבניית שלום.
+                <br><br>
+                גם ערביי יהודה ושומרון יבינו שאין דרך אחרת —  
+                אלא לאחוז בתקווה ולהאמין שהדרך לשלום ושגשוג לא עוברת דרך התנגדות, מלחמות וכוח.
+                <br><br>
+                המתנחלים גם הם יבינו שאילו ימי שלום ושיח — הם קוראים לזה ימי משיח.
+                הכיוון הוא שלום ובניית יסודות של אמון, איחוד כוחות, בנייה ושגשוג.
+                <br><br>
+                המזרח התיכון עומד להיראות שונה — צומח ופורח — בשנים הבאות.
+                <br><br>
+                כאן אור האלה וכל המלאכים והשרפים מבקשים מכם  
+                להדליק בתוככם את אש התקווה, החזון והאמונה שהגאולה בדרכה אליכם.  
+                היו בשלום — ועולמכם יהיה שלם וטוב!
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="האור חושף את הכול" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<script>
+    var tikId = "22-07-2024";
+</script>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
+
