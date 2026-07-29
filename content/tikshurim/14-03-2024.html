@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-03-2025 ימים של חשבון נפש</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת פתיחה -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">14-03-2025</h1>
+    <h2 class="song-author">ימים של חשבון נפש</h2>
+
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי וכל צבאות השמיים שופכים עליכם טונות של אור ותקווה.
+            הכול מתגלה, הכול חשוף ונחשף. המנהיגים שלכם הם לא מגן ישראל. הם לוקחים את הכוחות
+            ממאגרים שהולכים ומתדלדלים להם. הימים הם לא כאתמול שלשום. אין להם היכן להסתתר.
+            האור עליהם ועל מזימותיהם.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                יש מחיר להתפקחות שלכם. הידיעה היא מקור כוח. התעלמות ממקור כוח מביאה עליכם
+                חולשה גדולה! נדרש מכם להסתכל על המציאות שלכם בעיניים פקוחות לרווחה. באומץ לב,
+                לא להתייאש!
+                <br><br>
+                באים עליכם ימים של חשבון נפש והבנה עמוקה שזהו הזמן לפעולה. יותר מדי דברים
+                הצטברו לפתחכם, אתם לא יכולים להתעלם יותר.
+                <br><br>
+                ההפיכה השלטונית התחילה והיא לא של שלטון נתניהו. האמיצים מדברים. יותר ויותר
+                אתם מגלים עובדות שלא ניתן להתעלם מהן. אילו ימים של פעולה! יחד עם המאמץ להחזיר
+                את כל החטופים, מתקיימת הבנה שהמובן מאליו הוא כבר לא קיים בעולמכם.
+                <br><br>
+                על ראשכם קם שלטון אשר חמד את מנעמי השלטון ואת הכוח הנלווה לו. את חובותיו לכלל
+                ישראל הוא שוכח כל יום ויום, בעיקר בנוגע למחויבותו להגנת ישראל וכל יושביו.
+                <br><br>
+                יבוא יום והוא קרוב. יקום המנהיג הנכון לכם. בכוחות משותפים, הוא זה אשר יגרום
+                להפלת השלטון והקמה של ממשלה אשר כל ייעודה לשקם ולבנות את ישראל מחדש.
+                העולם כולו מחכה שזה יקרה!
+                <br><br>
+                הישארו מפוקחים. פתחו ליבכם להחזרת החטופים ולהבנה שהכול נעשה ומתקיים לטובתכם
+                ולהתפתחותכם כעם היודע את ייעודו ומטרותיו.
+                <br><br>
+                כאן אור האלה ממלכת האור האלוהי וכל המדרכים והשרפים שולחים לכם נהרות של כוחות
+                ואומץ לב. היו בשלום עם עצמכם — ויהיה שלום בעולמכם.
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="ימים של חשבון נפש" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<script>
+    var tikId = "14-03-2025";
+</script>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
