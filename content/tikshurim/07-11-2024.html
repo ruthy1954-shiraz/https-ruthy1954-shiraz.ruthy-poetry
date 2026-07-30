@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07-11-2024 בשורת השינוי הגדול</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת פתיחה -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">07-11-2024</h1>
+    <h2 class="song-author">בשורת השינוי הגדול</h2>
+
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי  
+            לשאלתך: מה יקרה לביבי בינתיים?
+            <br><br>
+            שיכרון הכוח שלו  
+            מעוור את עיניו.  
+            הוא כבר זמן מה  
+            לא קשור למציאות חייו.
+            <br><br>
+            השלטון נדבק בהווייתו.  
+            בריאתו — אין לה קיום  
+            ללא התפקיד ראש הממשלה.
+            <br><br>
+            נכלוליותו מביאה אותו  
+            להחלטות שהוא כבר לא מסתיר.  
+            מצב נפשו מעורער.
+            <br><br>
+            ישנה אשה אחת —  
+            היועצת המשפטית —  
+            ממנה הוא פוחד.  
+            ויש לו ממה לפחד.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                תוך זמן קצר  
+                היא תשהה אותו  
+                על סעיף של אי‑תפקוד.
+                <br><br>
+                הליכוד בתחילה יהיה בהלם —  
+                אך יתעשתו במהרה  
+                וימנו ראש ממשלה  
+                במקום נתניהו.
+                <br><br>
+                הקואליציה והאופוזיציה  
+                יתאחדו.  
+                יסיימו את המלחמה.  
+                החטופים יחזרו —  
+                זה יקרה בעוד כחודשיים.
+                <br><br>
+                בינתיים:  
+                איראן לא תתקוף את ישראל.  
+                לבנון תבקש הפסקת אש  
+                והסדר.  
+                הסכמי השלום יהיו תחת אש.
+                <br><br>
+                העזתיים יתערו מחמאס.  
+                הם יסגירו אותם —  
+                ויגרמו לכך שהחטופים  
+                יצאו מהמנהרות  
+                ובעזרת העזתיים  
+                יגיעו לגבול  
+                לזרועות החיילים.
+                <br><br>
+                תקום ועדת חקירה מזורזת.  
+                יהיו משפטים  
+                למעורבים ב־7/10/23.  
+                אחדים ישבו בכלא.
+                <br><br>
+                ביום שהמשטרה  
+                תגיע לביתו של ראש הממשלה —  
+                הוא יקבל דום לב  
+                ולא ישרוד.
+                <br><br>
+                ישראל תעבור תקופה קשה.  
+                ייקח כחמש שנים  
+                לחזור ולפרוח —  
+                בעזרת ממשלה חדשה,  
+                צעירה,  
+                ומחויבת למדינת ישראל.
+                <br><br>
+                כאן אור האלה  
+                ממלכת האור האלוהי.
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="בשורת השינוי הגדול" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<script>
+    var tikId = "07-11-2024";
+</script>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
