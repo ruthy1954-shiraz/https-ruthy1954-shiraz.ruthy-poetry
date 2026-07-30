@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11-08-2024 שמונה שערי הנשמה</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת פתיחה -->
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">11-08-2024</h1>
+    <h2 class="song-author">שמונה שערי הנשמה</h2>
+
+    <div class="song-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי  
+            מבקשת מכם להתחבר לנשמה שלכם.  
+            להיזכר שיש בה את כל התשובות.  
+            הרעש הקשה העוטף אתכם אינו מאפשר לכם  
+            להתחבר ולהתמקד ברצון הנשמה שלכם.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                ומהו הרעש אשר מפריע לכם להתחבר לתובנה האלוהית?  
+                כוחות חיצוניים המעוניינים להשאיר אתכם בתודעה נמוכה  
+                של פחד וחולי.  
+                הם מכבים את הניצוץ האלוהי איתו נולדתם.  
+                הם משאירים אתכם מכורים לתרופות, לחדשות,  
+                לאכילה בלתי מאוזנת — לחולי.
+                <br><br>
+                איך יוצאים מהמלכודת החיצונית?
+                מכריזים ביניכם לעצמכם על שינוי.  
+                והוא בא: בכוונה, בהקשבה, בחישה, בתנועה ובהתחברות.
+                <br><br>
+
+                <strong>1. כוונה</strong> — היא הסמן לשינוי.  
+                שבו בשקט 18 דקות בכל בוקר  
+                והקשיבו לכוונת הלב לאותו יום.
+                <br><br>
+
+                <strong>2. הקשבה לגוף</strong> — הוא מדבר אליכם.
+                <br><br>
+
+                <strong>3. יד על הגוף</strong> —  
+                הניחו יד בכל פעם באזור אחר בגופכם.  
+                דברו אליו.  
+                התאים מקשיבים לכם.  
+                הביאו נשימה עמוקה אליהם.
+                <br><br>
+
+                <strong>4. ההילה שלכם</strong> —  
+                האוויר סביבכם הוא ההילה שלכם.  
+                הרגישו אותה בכפות ידיכם.
+                <br><br>
+
+                <strong>5. תנועה</strong> —  
+                הגוף שלכם ברובו מים.  
+                מים מבקשים תנועה.  
+                הניעו את גופכם בכל דרך שתבחרו:  
+                הליכה, שחייה, או כל תנועה שהנשמה שלכם תבחר.  
+                כל יום ביומו.
+                <br><br>
+
+                <strong>6. חסד</strong> —  
+                הנשמה שלכם פורחת במעשי חסד.  
+                עשו הרגל בכל יום:  
+                האירו פניכם לאחר — במעשה, במחווה, בחיוך, בברכה.
+                <br><br>
+
+                <strong>7. הודיה</strong> —  
+                בסוף היום ברכו את הכוונה אשר התגשמה.  
+                יום ביומו.
+                <br><br>
+
+                <strong>8. הקשבה לנשמה</strong> —  
+                שבו בשקט 18 דקות והקשיבו להודיה  
+                של גופכם ושל העולם סביבכם.  
+                הוא מדבר אליכם ללא מילים.  
+                התחברו אלינו — אנחנו איתכם בלבבכם  
+                מראים לכם את הדרך לשלום ולאחווה  
+                בין הנשמות, בני האדם עלי ארץ.
+                <br><br>
+
+                כאן אור האלה ממלכת האור האלוהי  
+                וכל המדריכים איתכם —  
+                מאירים לכם את הדרך לשלום ושלווה בלבבכם.  
+                היו בשלם — והשלום ישכון בעולמכם.
+            </p>
+        </div>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="שמונה שערי הנשמה" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareTikshur()">שתפו את התקשור</button>
+
+</div>
+
+<script>
+    var tikId = "11-08-2024";
+</script>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote, deleteTikshurimNote } from "./notes-tikshurim.js";
+
+    initTikshurimNotes(tikId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם התקשור: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const saved = await saveTikshurimNote(name, song, note, tikId);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const noteId = e.target.dataset.id;
+            await deleteTikshurimNote(noteId, tikId);
+            e.target.closest(".note-card").remove();
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את התקשור הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
