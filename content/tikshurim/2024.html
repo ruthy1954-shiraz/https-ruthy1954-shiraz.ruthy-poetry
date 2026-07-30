@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סיכום שנת 2024 – שערי תקווה נפתחו</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-image">
+        <img src="images/or_haela.jpeg" alt="אור האלה">
+    </div>
+
+    <h1 class="song-title">סיכום שנת 2024</h1>
+    <h2 class="song-author">שערי תקווה נפתחו</h2>
+
+    <div class="song-box">
+        <p>
+            שנת 2024 הייתה שנה של טלטלה, חשיפה, כאב, מלחמה, בלבול —  
+            אך גם שנה של אור, תקווה, ריפוי, אחדות ותקומה.
+            <br><br>
+            דרך כל התקשורים של השנה עלה מסר אחד ברור, חד, עמוק:
+            <br><br>
+            <strong>שערי תקווה נפתחו — והאור נכנס.</strong>
+            <br><br>
+            החושך לא היה סוף.  
+            הוא היה שער.  
+            הוא היה הכנה.  
+            הוא היה מפתח להתעוררות גדולה.
+        </p>
+
+        <a id="moreBtn" class="more-link">...</a>
+
+        <div id="moreText" class="hidden" style="margin-top:15px;">
+            <p>
+                <strong>ינואר–מרץ:</strong>  
+                תחילת השנה נפתחה בטלטלה גדולה.  
+                מלחמות, פחדים, חוסר בהירות — אך גם הבנה שהכאוס הוא חלק מתהליך התפקחות עולמי.  
+                הלב הוגדר ככלי המדויק ביותר.
+                <br><br>
+
+                <strong>אפריל–יוני:</strong>  
+                האור החל לחשוף את החושך.  
+                מנהיגות ישנה החלה להתערער.  
+                האדם למד חמלה דרך כאב.  
+                העולם התקרב לנקודת מפנה.
+                <br><br>
+
+                <strong>יולי–ספטמבר:</strong>  
+                המאבק בין אור לחושך הגיע לשיאו.  
+                האור חשף שחיתות, צביעות ורוע.  
+                העם התחזק מול אויביו — והחל להתחזק מבפנים.
+                <br><br>
+
+                <strong>אוקטובר:</strong>  
+                תחילת ההתבהרות.  
+                קריסת הישן.  
+                עליית חזון חדש למזרח התיכון.  
+                תפקיד מרכזי לעם ישראל בהובלת האור.
+                <br><br>
+
+                <strong>נובמבר:</strong>  
+                “הטלטלה הגדולה” — חשיפה עמוקה של האמת.  
+                “בשורת השינוי הגדול” — שינוי פוליטי ותדרי.  
+                “ראיית החזון של מעלה” — חזון אזורי של שלום ואחווה.  
+                ניצני השקט הראשונים הופיעו.
+                <br><br>
+
+                <strong>דצמבר:</strong>  
+                “שערי התקווה נפתחים” — פיסות שקט בלב, חיוך חדש, שמש חדשה.  
+                “לא עוד” — סיום עידן של רוע ושחיתות.  
+                “להיות השמש” — קריאה לעם ישראל להיות מקור אור לעולם כולו.
+                <br><br>
+
+                <strong>המסר המרכזי של השנה:</strong>  
+                שערי תקווה נפתחו.  
+                האור נכנס.  
+                החושך היה שער מעבר.  
+                הכאב היה מפתח.  
+                האחדות הייתה ריפוי.  
+                והאור — הוא הבשורה.
+                <br><br>
+
+                שנת 2024 הייתה שנת הכנה לעידן חדש.  
+                עידן של אור, חסד, שלום ושגשוג.  
+                עידן שבו עם ישראל חוזר להיות אור לגויים.
+                <br><br>
+
+                כאן אור האלה ממלכת האור האלוהי  
+                מברכת אתכם באור גדול של תקווה, חסד ושיקום.  
+                היו בשלום — וישכון שלום בליבכם ובעולמכם.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="../../index.html">עמוד ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+    <button class="share-btn" onclick="shareTikshur()">שתפו את הדף</button>
+
+</div>
+
+<script>
+    var tikId = "summary-2024";
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const moreBtn = document.getElementById("moreBtn");
+    const moreText = document.getElementById("moreText");
+
+    moreBtn.addEventListener("click", () => {
+        moreText.classList.remove("hidden");
+        moreBtn.style.display = "none";
+    });
+});
+</script>
+
+<script>
+function shareTikshur() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "סיכום שנת 2024 לפי התקשורים:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
