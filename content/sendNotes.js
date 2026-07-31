@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const note = document.getElementById("userNote")?.value.trim() || "";
         const page = window.location.pathname;
 
+        // ⭐ שליחת מייל דרך EmailJS
         emailjs.default.send("service_xnifjk9", "template_ij47s89", {
             user_name: name,
             user_song: song || page,
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(() => console.log("Email sent successfully!"))
         .catch(() => console.error("Email sending failed"));
 
+        // ⭐ שליחת הודעה לווצאפ
         const phone = "972545305123";
         const message =
             `שם הכותב: ${name}\n` +
