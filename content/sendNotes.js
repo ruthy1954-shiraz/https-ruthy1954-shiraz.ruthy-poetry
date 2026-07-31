@@ -1,4 +1,4 @@
-// sendNotes.js — שליחת מייל + ווצאפ לכל הערה חדשה באתר
+import * as emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
 
 import "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
 
