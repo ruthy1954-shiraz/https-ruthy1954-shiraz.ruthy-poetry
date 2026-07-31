@@ -6,6 +6,7 @@ script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
 document.head.appendChild(script);
 
 script.onload = () => {
+ console.log("EmailJS loaded successfully!");
     emailjs.init("FX0qVdNcYKk7MpMQ-");
 
     document.addEventListener("DOMContentLoaded", () => {
