@@ -19,7 +19,7 @@ script.onload = () => {
             const song = document.getElementById("userSong")?.value.trim() || "";
             const note = document.getElementById("userNote")?.value.trim() || "";
             const page = window.location.pathname;
-
+            console.log("Trying to send email...");
             emailjs.send("service_xnifjk9", "template_ij47s89", {
                 user_name: name,
                 user_song: song || page,
