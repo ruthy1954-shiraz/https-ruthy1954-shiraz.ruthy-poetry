@@ -1,6 +1,6 @@
-import * as emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+// sendNotes.js — שליחת מייל + ווצאפ לכל הערה חדשה באתר
 
-import "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+import * as emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
 
 // הפעלה עם ה‑Public Key שלך
 emailjs.init("FX0qVdNcYKk7MpMQ-");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // ⭐ שליחת מייל דרך EmailJS
         emailjs.send("service_xnifjk9", "template_ij47s89", {
             user_name: name,
-            user_song: song || page,   // אם אין שם שיר/תקשור — נשלח את כתובת הדף
+            user_song: song || page,
             user_note: note,
             user_email: "ruthy1954@gmail.com"
         })
@@ -48,3 +48,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
