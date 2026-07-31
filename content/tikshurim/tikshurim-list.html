@@ -151,6 +151,27 @@
 
 </div>
 
+<!-- כפתור הערות -->
+<button class="toggle-notes">הערות והארות</button>
+
+<!-- תיבת הערות -->
+<div class="notes-box hidden">
+    <h3>כתיבת הערות והארות</h3>
+
+    <input id="userName" placeholder="השם שלכם..." />
+    <input id="userSong" placeholder="שם הדף..." value="רשימת התקשורים" />
+    <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על הדף..."></textarea>
+
+    <div class="footer-nav" style="margin-top:15px;">
+        <a id="waLink">ווצאפ לכותבת</a> |
+        <a id="saveLink">שמירת הערה</a>
+    </div>
+
+    <h4>הערות קוראים שנשמרו:</h4>
+    <div id="notes"></div>
+</div>
+    
+    
 <button class="share-btn" onclick="shareTikshurim()">שתפו את התקשורים</button>
 
 <a href="../../index.html" class="back">חזרה לדף הראשי</a>
