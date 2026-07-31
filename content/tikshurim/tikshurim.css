@@ -179,6 +179,14 @@ input, textarea {
 .wrapper {
     max-width: 700px;
     margin: 0 auto;
+    
+}    
+
+    .btn span[dir="ltr"]{
+    unicode-bidi: embed;
+    direction: ltr;
 }
+ 
+
 
 
