@@ -67,7 +67,6 @@
             font-size: 18px;
         }
 
-        /* כפתור שיתוף */
         .share-btn {
             margin-top: 25px;
             padding: 12px 20px;
@@ -84,6 +83,12 @@
         .share-btn:hover {
             background-color: #ffdd9c;
         }
+
+        /* תיקון התאריכים */
+        .btn span[dir="ltr"] {
+            unicode-bidi: embed;
+            direction: ltr;
+        }
     </style>
 </head>
 
@@ -93,52 +98,61 @@
 
 <div class="tik-grid">
 
-    <a href="03-09-2023.html" class="btn">03-09-2023 אזהרת מלחמה</a>
-    <a href="08-10-2023.html" class="btn">יום אחרי אסון 7 באוקטובר</a>
-    <a href="01-11-2023.html" class="btn">01-11-2023 השארו באור</a>
-    <a href="10-12-2023.html" class="btn">10-12-2023 חטופים</a>
-    <a href="16-12-2023.html" class="btn">ריפוי הלב 16-12-2023</a>
-    <a href="25-10-2023.html" class="btn">היוולדות מחדש 25-10-2023</a>
-    <a href="29-11-2023.html" class="btn">29-11-2023 עידן ללא פחד</a>
+    <a href="03-09-2023.html" class="btn"><span dir="ltr">03-09-2023</span> אזהרת מלחמה</a>
+    <a href="08-10-2023.html" class="btn"><span dir="ltr">08-10-2023</span> יום אחרי אסון 7 באוקטובר</a>
+    <a href="01-11-2023.html" class="btn"><span dir="ltr">01-11-2023</span> השארו באור</a>
+    <a href="10-12-2023.html" class="btn"><span dir="ltr">10-12-2023</span> חטופים</a>
+    <a href="16-12-2023.html" class="btn"><span dir="ltr">16-12-2023</span> ריפוי הלב</a>
+    <a href="25-10-2023.html" class="btn"><span dir="ltr">25-10-2023</span> היוולדות מחדש</a>
+    <a href="29-11-2023.html" class="btn"><span dir="ltr">29-11-2023</span> עידן ללא פחד</a>
     <a href="2023.html" class="btn">סיכום copilot AI לשנת 2023</a>
-    <a href="23-01-2024.html" class="btn">23-01-2024 ימים של התפקחות</a>
-    <a href="22-02-2024.html" class="btn">חמלה ככוח ריפוי 22-02-2024</a>
-    <a href="14-03-2024.html" class="btn">ימים של חשבון נפש 14-03-2024</a>
-    <a href="30-04-2024.html" class="btn">30-04-2024 יציאת מצרים כתהליך פנימי</a> 
-    <a href="11-05-2024.html" class="btn">11-05-2024 תוהו ובוהו כשלב הכרחי</a>
-    <a href="08-06-2024.html" class="btn">08-06-2024 המשבר כרחם לבריאה חדשה</a>
-    <a href="21-06-2024.html" class="btn">21-06-2024 שיעור בהרפיה ואמון</a>
-    <a href="22-07-2024.html" class="btn">22-07-2024 האור חושף את הכול</a>
-    <a href="30-07-2024.html" class="btn">ימים של חסד בפתח 30-07-2024</a>
-    <a href="01-08-2024.html" class="btn">01-08-2024 הובלה נשית לעידן החדש</a>
-    <a href="11-08-2024.html" class="btn">11-08-2024 שמונה שערי הנשמה</a>
-    <a href="27-08-2024.html" class="btn">27-08-2024 חמלה שמרפאה את הלב ואת העולם</a>
-    <a href="12-08-2024.html" class="btn">12-08-2024 בשורת השינוי הגדול</a>
-    <a href="10-09-2024.html" class="btn">10-09-2024 החושך לפני האור</a>
-    <a href="21-09-2024.html" class="btn">21-09-2024 ימי אחווה ושיח — ימי משיח</a>
-    <a href="30-09-2024.html" class="btn">האור המשקם 30-09-2024</a>
-    <a href="13-09-2024.html" class="btn">13-09-2024 האור הקיומי</a>
-    <a href="03-10-2024.html" class="btn">החשך מתגלה 03-10-2024</a>
-    <a href="22-10-2024.html" class="btn">זרעי שלווה ושלום 22-10-2024</a>
-    <a href="31-10-2024.html" class="btn">תקומה ופריחה למזרח נתיכון 31-10-2024</a>
-    <a href="06-11-2024.html" class="btn">הטלטלה הגדולה 06-11-2024</a>
-    <a href="07-11-2024.html" class="btn">בשורת השינוי הגדול 07-11-2024</a>
-    <a href="17-11-2024.html" class="btn">ראיית החזון של מעלה 17-11-2024</a>
-    <a href="02-11-2024.html" class="btn">שליחת אור ואהבה ליקרים 02-11-2024</a>
-    <a href="04-12-2024.html" class="btn">שערי תקווה נפתחים 04-12-2024</a>
-    <a href="22-12-2024.html" class="btn">לא עוד 22-12-2024</a>
-    <a href="24-12-2024.html" class="btn">להיות שמש 24-12-2924</a>
+
+    <a href="23-01-2024.html" class="btn"><span dir="ltr">23-01-2024</span> ימים של התפקחות</a>
+    <a href="22-02-2024.html" class="btn"><span dir="ltr">22-02-2024</span> חמלה ככוח ריפוי</a>
+    <a href="14-03-2024.html" class="btn"><span dir="ltr">14-03-2024</span> ימים של חשבון נפש</a>
+    <a href="30-04-2024.html" class="btn"><span dir="ltr">30-04-2024</span> יציאת מצרים כתהליך פנימי</a>
+    <a href="11-05-2024.html" class="btn"><span dir="ltr">11-05-2024</span> תוהו ובוהו כשלב הכרחי</a>
+    <a href="08-06-2024.html" class="btn"><span dir="ltr">08-06-2024</span> המשבר כרחם לבריאה חדשה</a>
+    <a href="21-06-2024.html" class="btn"><span dir="ltr">21-06-2024</span> שיעור בהרפיה ואמון</a>
+    <a href="22-07-2024.html" class="btn"><span dir="ltr">22-07-2024</span> האור חושף את הכול</a>
+    <a href="30-07-2024.html" class="btn"><span dir="ltr">30-07-2024</span> ימים של חסד בפתח</a>
+    <a href="01-08-2024.html" class="btn"><span dir="ltr">01-08-2024</span> הובלה נשית לעידן החדש</a>
+    <a href="11-08-2024.html" class="btn"><span dir="ltr">11-08-2024</span> שמונה שערי הנשמה</a>
+    <a href="27-08-2024.html" class="btn"><span dir="ltr">27-08-2024</span> חמלה שמרפאה את הלב ואת העולם</a>
+    <a href="12-08-2024.html" class="btn"><span dir="ltr">12-08-2024</span> בשורת השינוי הגדול</a>
+    <a href="10-09-2024.html" class="btn"><span dir="ltr">10-09-2024</span> החושך לפני האור</a>
+    <a href="21-09-2024.html" class="btn"><span dir="ltr">21-09-2024</span> ימי אחווה ושיח — ימי משיח</a>
+    <a href="30-09-2024.html" class="btn"><span dir="ltr">30-09-2024</span> האור המשקם</a>
+    <a href="13-09-2024.html" class="btn"><span dir="ltr">13-09-2024</span> האור הקיומי</a>
+    <a href="03-10-2024.html" class="btn"><span dir="ltr">03-10-2024</span> החשך מתגלה</a>
+    <a href="22-10-2024.html" class="btn"><span dir="ltr">22-10-2024</span> זרעי שלווה ושלום</a>
+    <a href="31-10-2024.html" class="btn"><span dir="ltr">31-10-2024</span> תקומה ופריחה למזרח נתיכון</a>
+    <a href="06-11-2024.html" class="btn"><span dir="ltr">06-11-2024</span> הטלטלה הגדולה</a>
+    <a href="07-11-2024.html" class="btn"><span dir="ltr">07-11-2024</span> בשורת השינוי הגדול</a>
+    <a href="17-11-2024.html" class="btn"><span dir="ltr">17-11-2024</span> ראיית החזון של מעלה</a>
+    <a href="02-11-2024.html" class="btn"><span dir="ltr">02-11-2024</span> שליחת אור ואהבה ליקרים</a>
+    <a href="04-12-2024.html" class="btn"><span dir="ltr">04-12-2024</span> שערי תקווה נפתחים</a>
+    <a href="22-12-2024.html" class="btn"><span dir="ltr">22-12-2024</span> לא עוד</a>
+    <a href="24-12-2024.html" class="btn"><span dir="ltr">24-12-2024</span> להיות השמש</a>
+
     <a href="2024.html" class="btn">סיכום לפי COPILOT לשנת 2024</a>
-    <a href=".html" class="btn"></a>
-    <a href=".html" class="btn"></a>
-    <a href=".html" class="btn"></a>
-    <a href=".html" class="btn"></a>
+
+    <!-- 10 שורות ריקות -->
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+    <a href=".html" class="btn"><span dir="ltr"></span></a>
+
 </div>
 
-<!-- כפתור שיתוף -->
 <button class="share-btn" onclick="shareTikshurim()">שתפו את התקשורים</button>
 
-<!-- חזרה לדף הראשי -->
 <a href="../../index.html" class="back">חזרה לדף הראשי</a>
 
 <script>
@@ -157,6 +171,7 @@ function shareTikshurim() {
 
 </body>
 </html>
+
 
 
 
