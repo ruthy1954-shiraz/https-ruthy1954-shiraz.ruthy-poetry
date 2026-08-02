@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ברחתי מאהבה / רותי שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir_brachat.jpeg" alt="ציור לשיר ברחתי מאהבה">
+        <div class="song-intro">
+            <p>
+                שיר על פחד עדין,  
+                על לב שמבקש קרבה אבל לא יודע איך להחזיק אותה,  
+                על אהבה שנכנסת בשקט,  
+                ועל רגע שבו הפגיעות הופכת להיות הדרך היחידה  
+                לחזור ולהרגיש באמת.
+            </p>
+        </div>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">ברחתי מאהבה</h1>
+    <h2 class="song-author">רותי שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>ברחתי כי לא ידעתי<br>
+        להחזיק משהו עדין<br>
+        בלי לשבור אותו.<br>
+        הלב שלי רעד<br>
+        כמו ציפור שמצאה חלון פתוח<br>
+        ולא יודעת אם זה מפלט<br>
+        או סכנה.</p>
+
+        <p>האהבה מצאה אותי שם,<br>
+        במקום שבו אפילו הדמעות<br>
+        פחדו לצאת.<br>
+        התיישבה לידי בשקט,<br>
+        דיברה ללא מילים,<br>
+        ידעה שאני לא צריכה חיבוק,<br>
+        רק מקום לנשום.</p>
+
+        <p>מילים רכות<br>
+        באו להיות,<br>
+        להרגיש.<br>
+        ורק אז הבנתי<br>
+        כמה זמן עבר<br>
+        מאז שמישהו נשאר מספיק קרוב<br>
+        כדי לשמוע את הלב שלי<br>
+        בלי שאסתיר את השבר.</p>
+
+        <p>החשכה עטפה אותנו<br>
+        כמו שמיכה דקה<br>
+        שבאה להגן.<br>
+        בין נשימות עדינות<br>
+        לבין פחדים מהדהדים,<br>
+        הבנתי שהפגיעות שלי<br>
+        אינה חולשה,<br>
+        היא הדרך היחידה<br>
+        להרגיש באמת<br>
+        שוב את הלב.</p>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="ברחתי מאהבה" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "shir_brachat_meahava";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
+<!-- כפתור שיתוף -->
+<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    if (!toggleBtn || !notesBox) return;
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- עיצוב -->
+<style>
+.share-btn {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.toggle-notes {
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
+
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+</style>
+
+</body>
+</html>
