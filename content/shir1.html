@@ -116,7 +116,8 @@
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
-            <a id="sendAll">שליחת הערה</a>
+            <a id="sendAll">שליחת הערה</a> |
+            <a id="waLink">ווצאפ לכותבת</a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
@@ -139,6 +140,7 @@
 <!-- מערכת הערות + מייל + ווצאפ + שמירה מקומית + ענן -->
 <script>
     const sendAll = document.getElementById("sendAll");
+    const waLink = document.getElementById("waLink");
     const phone = "972545305123";
 
     // טעינת הערות מהענן
@@ -154,7 +156,7 @@
         notesDiv.appendChild(newNote);
     }
 
-    // כפתור אחד שעושה הכול
+    // כפתור שליחת הערה (מייל + ענן + אתר)
     sendAll.addEventListener("click", function() {
 
         const name = document.getElementById("userName").value.trim();
@@ -185,7 +187,15 @@
             })
         });
 
-        // 4. שליחה לווצאפ
+        alert("הערה נשמרה באתר, נשלחה למייל ונשמרה בענן");
+    });
+
+    // כפתור וואטסאפ נפרד
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const songTitle = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
         const message =
             `שם הכותב: ${name}\n` +
             `שם השיר: ${songTitle}\n` +
@@ -193,8 +203,6 @@
 
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-
-        alert("הערה נשמרה באתר, נשלחה למייל, נפתחה בווצאפ ונשמרה בענן");
     });
 </script>
 
