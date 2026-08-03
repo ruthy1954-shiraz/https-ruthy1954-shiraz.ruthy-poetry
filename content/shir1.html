@@ -12,6 +12,57 @@
 
   <!-- עיצוב -->
   <link rel="stylesheet" href="../style.css">
+
+  <!-- Firebase + Firestore -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+      authDomain: "ruthy-notes.firebaseapp.com",
+      projectId: "ruthy-notes",
+      storageBucket: "ruthy-notes.firebasestorage.app",
+      messagingSenderId: "276333962292",
+      appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+      measurementId: "G-6MDZNCXET4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // שמירה בענן
+    window.saveNoteToCloud = async function(name, note, songId, songTitle) {
+      try {
+        await addDoc(collection(db, "notes_51"), {
+          name: name,
+          note: note,
+          songId: songId,
+          songTitle: songTitle,
+          timestamp: new Date()
+        });
+        console.log("הערה נשמרה בענן!");
+      } catch (e) {
+        console.error("שגיאה בשמירה בענן: ", e);
+      }
+    };
+
+    // טעינת הערות מהענן
+    window.loadNotesFromCloud = async function(songId) {
+      const notesDiv = document.getElementById("notes");
+      notesDiv.innerHTML = "";
+
+      const snapshot = await getDocs(collection(db, "notes_51"));
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.songId === songId) {
+          const p = document.createElement("p");
+          p.textContent = `${data.name}: ${data.note}`;
+          notesDiv.appendChild(p);
+        }
+      });
+    };
+  </script>
 </head>
 
 <body>
@@ -85,41 +136,30 @@
     var songId = "shir1"; 
 </script>
 
-<!-- מערכת הערות + מייל + ווצאפ + שמירה ב-localStorage -->
+<!-- מערכת הערות + מייל + ווצאפ + שמירה מקומית + ענן -->
 <script>
     const sendAll = document.getElementById("sendAll");
-    const phone = "972545305123"; // מספר הווצאפ שלך
+    const phone = "972545305123";
 
-    // --- טעינת הערות שנשמרו ---
+    // טעינת הערות מהענן
     document.addEventListener("DOMContentLoaded", () => {
-        const savedNotes = JSON.parse(localStorage.getItem(songId)) || [];
-        const notesDiv = document.getElementById("notes");
-
-        savedNotes.forEach(n => {
-            const p = document.createElement("p");
-            p.textContent = `${n.name}: ${n.note}`;
-            notesDiv.appendChild(p);
-        });
+        loadNotesFromCloud(songId);
     });
 
-    // --- שמירת הערה ב-localStorage ---
+    // שמירה מקומית באתר
     function saveNoteLocally(name, note) {
-        const savedNotes = JSON.parse(localStorage.getItem(songId)) || [];
-        savedNotes.push({ name, note });
-        localStorage.setItem(songId, JSON.stringify(savedNotes));
-
         const notesDiv = document.getElementById("notes");
         const newNote = document.createElement("p");
         newNote.textContent = `${name}: ${note}`;
         notesDiv.appendChild(newNote);
     }
 
-    // --- כפתור אחד שעושה הכול ---
+    // כפתור אחד שעושה הכול
     sendAll.addEventListener("click", function() {
 
         const name = document.getElementById("userName").value.trim();
         const mail = document.getElementById("userMail").value.trim();
-        const song = document.getElementById("userSong").value.trim();
+        const songTitle = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
         if (!name || !mail || !note) {
@@ -127,31 +167,34 @@
             return;
         }
 
-        // --- 1. שמירה באתר ---
+        // 1. שמירה מקומית
         saveNoteLocally(name, note);
 
-        // --- 2. שליחה למייל דרך Formspree ---
+        // 2. שמירה בענן
+        saveNoteToCloud(name, note, songId, songTitle);
+
+        // 3. שליחה למייל
         fetch("https://formspree.io/f/xkoddqww", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 user_name: name,
                 user_mail: mail,
-                user_song: song,
+                user_song: songTitle,
                 user_note: note
             })
         });
 
-        // --- 3. שליחה לווצאפ ---
+        // 4. שליחה לווצאפ
         const message =
             `שם הכותב: ${name}\n` +
-            `שם השיר: ${song}\n` +
+            `שם השיר: ${songTitle}\n` +
             `הערה: ${note}`;
 
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
 
-        alert("הערה נשמרה באתר, נשלחה למייל ונפתחה בווצאפ");
+        alert("הערה נשמרה באתר, נשלחה למייל, נפתחה בווצאפ ונשמרה בענן");
     });
 </script>
 
@@ -236,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
