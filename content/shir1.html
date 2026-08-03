@@ -68,6 +68,7 @@
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
@@ -121,6 +122,7 @@
     /* שמירת הערה + שליחת מייל */
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
@@ -129,6 +131,7 @@
         /* שליחת מייל דרך EmailJS */
         emailjs.send("service_xnifjk9", "tikshurim_feedback", {
             user_name: name,
+            user_mail: mail,
             user_song: song,
             user_note: note,
             song_id: songId
@@ -224,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
