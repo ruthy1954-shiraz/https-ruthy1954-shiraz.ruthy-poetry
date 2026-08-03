@@ -12,14 +12,6 @@
 
   <!-- עיצוב -->
   <link rel="stylesheet" href="../style.css">
-
-  <!-- EmailJS -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("R6ei52ra4jmCaU9dJ"); /* Public Key שלך */
-    })();
-  </script>
 </head>
 
 <body>
@@ -73,8 +65,7 @@
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
-            <a id="waLink">ווצאפ לכותבת</a> |
-            <a id="saveLink">שמירת הערה</a>
+            <a id="sendAll">שליחת הערה</a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
@@ -94,18 +85,49 @@
     var songId = "shir1";
 </script>
 
-<!-- מערכת ההערות + ווצאפ + שליחת מייל -->
+<!-- מערכת הערות + מייל + ווצאפ -->
 <script>
-    const waLink = document.getElementById("waLink");
-    const saveLink = document.getElementById("saveLink");
-    const phone = "972545305123";
+    const sendAll = document.getElementById("sendAll");
+    const phone = "972545305123"; // מספר הווצאפ שלך
 
-    /* שליחת הודעה בווצאפ */
-    waLink.addEventListener("click", function() {
+    sendAll.addEventListener("click", function() {
+
+        // --- 1. איסוף נתונים ---
         const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
+        if (!name || !mail || !note) {
+            alert("נא למלא שם, מייל והערה");
+            return;
+        }
+
+        // --- 2. שמירת הערה באתר ---
+        const notesDiv = document.getElementById("notes");
+        const newNote = document.createElement("p");
+        newNote.textContent = `${name}: ${note}`;
+        notesDiv.appendChild(newNote);
+
+        // --- 3. שליחה למייל דרך Formspree ---
+        fetch("https://formspree.io/f/xkoddqww", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                user_name: name,
+                user_mail: mail,
+                user_song: song,
+                user_note: note
+            })
+        })
+        .then(() => {
+            console.log("נשלח למייל");
+        })
+        .catch(() => {
+            console.log("שגיאה בשליחת המייל");
+        });
+
+        // --- 4. שליחה לווצאפ ---
         const message =
             `שם הכותב: ${name}\n` +
             `שם השיר: ${song}\n` +
@@ -113,27 +135,8 @@
 
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
 
-    /* שמירת הערה + שליחת מייל */
-    saveLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const mail = document.getElementById("userMail").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        /* שליחת מייל דרך EmailJS */
-        emailjs.send("service_xnifjk9", "tikshurim_feedback", {
-            user_name: name,
-            user_mail: mail,
-            user_song: song,
-            user_note: note
-        }).then(() => {
-            alert("הערה נשמרה ונשלחה במייל");
-        }).catch((error) => {
-            alert("הייתה בעיה בשליחת המייל");
-            console.error(error);
-        });
+        alert("הערה נשמרה באתר, נשלחה למייל ונפתחה בווצאפ");
     });
 </script>
 
