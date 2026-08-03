@@ -82,17 +82,41 @@
 
 <!-- מזהה ייחודי לשיר -->
 <script>
-    var songId = "shir1";
+    var songId = "shir1"; 
 </script>
 
-<!-- מערכת הערות + מייל + ווצאפ -->
+<!-- מערכת הערות + מייל + ווצאפ + שמירה ב-localStorage -->
 <script>
     const sendAll = document.getElementById("sendAll");
     const phone = "972545305123"; // מספר הווצאפ שלך
 
+    // --- טעינת הערות שנשמרו ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedNotes = JSON.parse(localStorage.getItem(songId)) || [];
+        const notesDiv = document.getElementById("notes");
+
+        savedNotes.forEach(n => {
+            const p = document.createElement("p");
+            p.textContent = `${n.name}: ${n.note}`;
+            notesDiv.appendChild(p);
+        });
+    });
+
+    // --- שמירת הערה ב-localStorage ---
+    function saveNoteLocally(name, note) {
+        const savedNotes = JSON.parse(localStorage.getItem(songId)) || [];
+        savedNotes.push({ name, note });
+        localStorage.setItem(songId, JSON.stringify(savedNotes));
+
+        const notesDiv = document.getElementById("notes");
+        const newNote = document.createElement("p");
+        newNote.textContent = `${name}: ${note}`;
+        notesDiv.appendChild(newNote);
+    }
+
+    // --- כפתור אחד שעושה הכול ---
     sendAll.addEventListener("click", function() {
 
-        // --- 1. איסוף נתונים ---
         const name = document.getElementById("userName").value.trim();
         const mail = document.getElementById("userMail").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -103,13 +127,10 @@
             return;
         }
 
-        // --- 2. שמירת הערה באתר ---
-        const notesDiv = document.getElementById("notes");
-        const newNote = document.createElement("p");
-        newNote.textContent = `${name}: ${note}`;
-        notesDiv.appendChild(newNote);
+        // --- 1. שמירה באתר ---
+        saveNoteLocally(name, note);
 
-        // --- 3. שליחה למייל דרך Formspree ---
+        // --- 2. שליחה למייל דרך Formspree ---
         fetch("https://formspree.io/f/xkoddqww", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -119,15 +140,9 @@
                 user_song: song,
                 user_note: note
             })
-        })
-        .then(() => {
-            console.log("נשלח למייל");
-        })
-        .catch(() => {
-            console.log("שגיאה בשליחת המייל");
         });
 
-        // --- 4. שליחה לווצאפ ---
+        // --- 3. שליחה לווצאפ ---
         const message =
             `שם הכותב: ${name}\n` +
             `שם השיר: ${song}\n` +
@@ -221,26 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
