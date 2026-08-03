@@ -12,6 +12,14 @@
 
   <!-- עיצוב -->
   <link rel="stylesheet" href="../style.css">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("R6ei52ra4jmCaU9dJ"); /* ה‑Public Key שלך */
+    })();
+  </script>
 </head>
 
 <body>
@@ -85,7 +93,7 @@
     var songId = "shir1";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
+<!-- מערכת ההערות + ווצאפ + שליחת מייל -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
@@ -95,6 +103,7 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
+    /* שליחת הודעה בווצאפ */
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -109,12 +118,26 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    /* שמירת הערה + שליחת מייל */
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
         saveNoteToFirestore(name, song, note, songId);
+
+        /* שליחת מייל דרך EmailJS */
+        emailjs.send("service_tikshurim", "template_contact_us", {
+            user_name: name,
+            user_song: song,
+            user_note: note,
+            song_id: songId
+        }).then(() => {
+            alert("הערה נשמרה ונשלחה במייל");
+        }).catch((error) => {
+            alert("הייתה בעיה בשליחת המייל");
+            console.error(error);
+        });
     });
 </script>
 
@@ -151,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- עיצוב כפתור השיתוף -->
+<!-- עיצוב -->
 <style>
 .share-btn {
     margin: 25px auto;
@@ -201,6 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
+
 
 
 
