@@ -95,11 +95,7 @@
 </script>
 
 <!-- מערכת ההערות + ווצאפ + שליחת מייל -->
-<script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-
-    initNoteSystem(songId);
-
+<script>
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
@@ -126,15 +122,12 @@
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        saveNoteToFirestore(name, song, note, songId);
-
         /* שליחת מייל דרך EmailJS */
         emailjs.send("service_xnifjk9", "tikshurim_feedback", {
             user_name: name,
             user_mail: mail,
             user_song: song,
-            user_note: note,
-            song_id: songId
+            user_note: note
         }).then(() => {
             alert("הערה נשמרה ונשלחה במייל");
         }).catch((error) => {
@@ -223,10 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 </style>
 
-<script type="module" src="./sendNotes.js"></script>
-
 </body>
 </html>
+
 
 
 
