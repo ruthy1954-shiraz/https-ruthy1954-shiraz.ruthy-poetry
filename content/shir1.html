@@ -3,22 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>שיר 1</title>
+  <title>בגידה / רות שנן</title>
 
   <!-- אייקון האתר -->
-  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
-  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
-  <link rel="manifest" href="favicon_io/site.webmanifest">
+  <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" href="../favicon_io/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon_io/site.webmanifest">
 
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בגידה / רות שנן</title>
-    <link rel="stylesheet" href="../style.css">
+  <!-- עיצוב -->
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -62,7 +55,7 @@
     <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- תיבת הערות מוסתרת בהתחלה -->
+    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -102,7 +95,6 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -117,7 +109,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -144,13 +135,11 @@ function shareSong() {
 }
 </script>
 
-<!-- קוד פתיחה/סגירה פשוט ויציב -->
+<!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
     const notesBox = document.querySelector(".notes-box");
-
-    if (!toggleBtn || !notesBox) return;
 
     toggleBtn.addEventListener("click", () => {
         notesBox.classList.toggle("hidden");
@@ -162,8 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- עיצוב כפתור השיתוף -->
 <style>
-/* העיצוב של כפתור השיתוף */
 .share-btn {
     margin: 25px auto;
     padding: 12px 20px;
@@ -181,22 +170,18 @@ document.addEventListener("DOMContentLoaded", () => {
     background-color: #e8d6ff;
 }
 
-/* תיבת הערות ממוסגרת */
 .notes-box {
     border: 2px solid #d3b8ff;
     padding: 15px;
     border-radius: 10px;
     background-color: #faf6ff;
     margin-top: 20px;
-    transition: 0.3s ease;
 }
 
-/* מוסתר בהתחלה */
 .hidden {
     display: none;
 }
 
-/* כפתור הערות */
 .toggle-notes {
     background-color: #f2e6ff;
     border: 1px solid #d3b8ff;
@@ -206,18 +191,17 @@ document.addEventListener("DOMContentLoaded", () => {
     font-size: 18px;
     color: #4a2c6b;
     margin-top: 20px;
-    transition: 0.2s;
 }
 .toggle-notes:hover {
     background-color: #e8d6ff;
 }
 </style>
-    
-<script type="module" src="./sendNotes.js"></script>
 
+<script type="module" src="./sendNotes.js"></script>
 
 </body>
 </html>
+
 
 
 
