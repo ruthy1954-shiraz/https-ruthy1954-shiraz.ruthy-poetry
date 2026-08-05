@@ -1,85 +1,43 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בין תשומת הלב לאהבה / רות שנן</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>שיר 2 / רות שנן</title>
+
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
 
 <div class="wrapper">
 
-    <!-- תמונת השיר -->
     <div class="song-image">
-        <img src="images/shir2.jpeg" alt="ציור לשיר בין תשומת הלב לאהבה">
+        <img src="images/shir2.jpeg" alt="ציור לשיר 2">
     </div>
 
-    <!-- כותרות -->
-    <h1 class="song-title">בין תשומת הלב לאהבה</h1>
+    <h1 class="song-title">שיר 2</h1>
     <h2 class="song-author">רות שנן</h2>
 
-    <!-- טקסט השיר -->
     <div class="song-box">
-        <p>שתי דמויות בחיי.<br>
-        האחת מאוד מורגשת,<br>
-        אור חד על פני מים,<br>
-        מעלה בי רטט של עכשיו,<br>
-        מבקשת תשובה מיידית.</p>
-
-        <p>השנייה יודעת את מפת הלב שלי,<br>
-        מבינה אותי<br>
-        דרך שכבות של שקט<br>
-        לעומקם של שנים.<br>
-        לא זקוקה להופיע כדי להיות.</p>
-
-        <p>כשהן נפגשות,<br>
-        זהו רגע נדיר שבו הברק של האחת<br>
-        נשען על העומק של השנייה,<br>
-        והעולם מתיישר סביבי<br>
-        לרגעים של קסם אמיתי.</p>
-
-        <p>כאשר אני צריכה לבחור,<br>
-        תשומת הלב כובשת,<br>
-        מנצנצת כמו הבטחה<br>
-        שנולדה רק עכשיו.</p>
-
-        <p>האהבה ממתינה,<br>
-        לא מתוך חולשה,<br>
-        אלא מתוך ידיעה קדומה<br>
-        שמה שנועד להישאר<br>
-        אינו צריך לרדוף.</p>
-
-        <p>אני עומדת ביניהן,<br>
-        האחת מורגשת על עורי,<br>
-        שופעת הבטחות.<br>
-        השנייה מהדהדת אל ליבי<br>
-        מבלי לומר דבר.</p>
-
-        <p>ומתוך הרווח הדק ביניהן<br>
-        אני לומדת את עצמי מחדש:<br>
-        כמה קל להימשך לאור חולף,<br>
-        וכמה עמוק הדבר<br>
-        שאינו מבקש דבר<br>
-        ובכל זאת נשאר.</p>
+        <p>
+            כאן יהיה הטקסט של שיר מספר 2.<br>
+            את יכולה להחליף אותו בכל רגע בטקסט האמיתי שלך.
+        </p>
     </div>
 
-    <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
         <input id="userMail" placeholder="כתובת המייל שלכם..." />
-        <input id="userSong" placeholder="שם השיר..." value="בין תשומת הלב לאהבה" />
+        <input id="userSong" placeholder="שם השיר..." value="שיר 2" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
             <a id="saveLink">שמירת הערה</a> |
-            <a id="mailLink">שליחת מייל</a> |
             <a id="waLink">ווצאפ לכותבת</a>
         </div>
 
@@ -87,7 +45,6 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
@@ -95,19 +52,20 @@
 
 </div>
 
-<!-- וואטסאפ -->
 <script>
     const waLink = document.getElementById("waLink");
     const phone = "972545305123";
 
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
+        const songTitle = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
         const message =
             `שם הכותב: ${name}\n` +
-            `שם השיר: ${song}\n` +
+            `מייל: ${mail}\n` +
+            `שם השיר: ${songTitle}\n` +
             `הערה: ${note}`;
 
         const encoded = encodeURIComponent(message);
@@ -115,32 +73,6 @@
     });
 </script>
 
-<!-- שליחת מייל -->
-<script>
-    const mailLink = document.getElementById("mailLink");
-
-    mailLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const mail = document.getElementById("userMail").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        fetch("https://formspree.io/f/xkoddqww", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                user_name: name,
-                user_mail: mail,
-                user_song: song,
-                user_note: note
-            })
-        });
-
-        alert("הערה נשלחה למייל!");
-    });
-</script>
-
-<!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -156,13 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- מערכת הערות אוטומטית -->
 <script type="module">
     import { initNoteSystem } from "../notes.js";
-    initNoteSystem();   <!-- ⭐ מזהה אוטומטית שזה shir2 -->
+    initNoteSystem();
 </script>
 
-<!-- עיצוב -->
 <style>
 .notes-box {
     border: 2px solid #d3b8ff;
@@ -205,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
