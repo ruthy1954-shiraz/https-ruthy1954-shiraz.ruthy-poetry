@@ -231,6 +231,31 @@ h2.song-author {
     line-height: 1.3;
 }
 
+/* ===== עיצוב הערות עם תאריך + מחיקה ===== */
+.note-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d3b8ff;
+    padding: 5px 0;
+}
+
+.note-date {
+    font-size: 14px;
+    color: #777;
+    margin-right: 10px;
+}
+
+.delete-note {
+    cursor: pointer;
+    color: #b30000;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.delete-note:hover {
+    color: #ff0000;
+}
 
 
 
