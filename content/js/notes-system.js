@@ -159,7 +159,7 @@ export function sendWhatsApp(name, songTitle, note) {
 }
 
 // -----------------------------
-// Main buttons logic
+// Main buttons logic + פתיחת תיבה
 // -----------------------------
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -201,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // פתיחת תיבת הערות
   const toggleBtn = document.querySelector(".toggle-notes");
   const notesBox = document.querySelector(".notes-box");
 
