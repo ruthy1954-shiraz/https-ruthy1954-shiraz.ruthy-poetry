@@ -6,7 +6,7 @@
   <title>בגידה / רות שנן</title>
 
   <!-- אייקון האתר -->
-  <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
   <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
   <link rel="manifest" href="favicon_io/site.webmanifest">
 
@@ -56,9 +56,15 @@
       snapshot.forEach((doc) => {
         const data = doc.data();
         if (data.songId === songId) {
-        const p = document.createElement("p");
-        p.innerHTML = `${data.name}: ${data.note} <span class="delete-note">❌</span>`;
-        notesDiv.appendChild(p);  
+
+          const p = document.createElement("p");
+          p.innerHTML = `${data.name}: ${data.note} <span class="delete-note">❌</span>`;
+          notesDiv.appendChild(p);
+
+          // מחיקה מהמסך
+          p.querySelector(".delete-note").addEventListener("click", () => {
+              p.remove();
+          });
         }
       });
     };
@@ -152,8 +158,13 @@
     function saveNoteLocally(name, note) {
         const notesDiv = document.getElementById("notes");
         const newNote = document.createElement("p");
-        newNote.textContent = `${name}: ${note}`;
+        newNote.innerHTML = `${name}: ${note} <span class="delete-note">❌</span>`;
         notesDiv.appendChild(newNote);
+
+        // מחיקה מהמסך
+        newNote.querySelector(".delete-note").addEventListener("click", () => {
+            newNote.remove();
+        });
     }
 
     // כפתור שליחת הערה (מייל + ענן + אתר)
@@ -283,10 +294,21 @@ document.addEventListener("DOMContentLoaded", () => {
 .toggle-notes:hover {
     background-color: #e8d6ff;
 }
+
+.delete-note {
+    cursor: pointer;
+    color: #a00;
+    margin-right: 10px;
+    font-weight: bold;
+}
+.delete-note:hover {
+    color: red;
+}
 </style>
 
 </body>
 </html>
+
 
 
 
