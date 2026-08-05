@@ -6,16 +6,62 @@
   <title>בגידה / רות שנן</title>
 
   <!-- אייקון האתר -->
-  <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
-  <link rel="apple-touch-icon" href="../favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
   <link rel="manifest" href="favicon_io/site.webmanifest">
 
   <!-- עיצוב -->
   <link rel="stylesheet" href="../style.css">
 
-  <!-- מזהה שיר למערכת ההערות -->
-  <script>
-    window.songId = "shir1";
+  <!-- Firebase + Firestore -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+      authDomain: "ruthy-notes.firebaseapp.com",
+      projectId: "ruthy-notes",
+      storageBucket: "ruthy-notes.firebasestorage.app",
+      messagingSenderId: "276333962292",
+      appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+      measurementId: "G-6MDZNCXET4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // שמירה בענן
+    window.saveNoteToCloud = async function(name, note, songId, songTitle) {
+      try {
+        await addDoc(collection(db, "notes_51"), {
+          name: name,
+          note: note,
+          songId: songId,
+          songTitle: songTitle,
+          timestamp: new Date()
+        });
+        console.log("הערה נשמרה בענן!");
+      } catch (e) {
+        console.error("שגיאה בשמירה בענן: ", e);
+      }
+    };
+
+    // טעינת הערות מהענן
+    window.loadNotesFromCloud = async function(songId) {
+      const notesDiv = document.getElementById("notes");
+      notesDiv.innerHTML = "";
+
+      const snapshot = await getDocs(collection(db, "notes_51"));
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.songId === songId) {
+          const p = document.createElement("p");
+          p.textContent = `${data.name}: ${data.note}`;
+          notesDiv.appendChild(p);
+        }
+      });
+    };
   </script>
 </head>
 
@@ -66,7 +112,7 @@
 
         <input id="userName" placeholder="השם שלכם..." />
         <input id="userMail" placeholder="כתובת המייל שלכם..." />
-        <input id="userSong" value="בגידה" />
+        <input id="userSong" placeholder="שם השיר..." value="בגידה" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
@@ -86,6 +132,97 @@
 
 </div>
 
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "shir1"; 
+</script>
+
+<!-- מערכת הערות + מייל + ווצאפ + שמירה מקומית + ענן -->
+<script>
+    const sendAll = document.getElementById("sendAll");
+    const waLink = document.getElementById("waLink");
+    const phone = "972545305123";
+
+    // טעינת הערות מהענן
+    document.addEventListener("DOMContentLoaded", () => {
+        loadNotesFromCloud(songId);
+    });
+
+    // שמירה מקומית באתר
+    function saveNoteLocally(name, note) {
+        const notesDiv = document.getElementById("notes");
+        const newNote = document.createElement("p");
+        newNote.textContent = `${name}: ${note}`;
+        notesDiv.appendChild(newNote);
+    }
+
+    // כפתור שליחת הערה (מייל + ענן + אתר)
+    sendAll.addEventListener("click", function() {
+
+        const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
+        const songTitle = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        if (!name || !mail || !note) {
+            alert("נא למלא שם, מייל והערה");
+            return;
+        }
+
+        // 1. שמירה מקומית
+        saveNoteLocally(name, note);
+
+        // 2. שמירה בענן
+        saveNoteToCloud(name, note, songId, songTitle);
+
+        // 3. שליחה למייל
+        fetch("https://formspree.io/f/xkoddqww", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                user_name: name,
+                user_mail: mail,
+                user_song: songTitle,
+                user_note: note
+            })
+        });
+
+        alert("הערה נשמרה באתר, נשלחה למייל ונשמרה בענן");
+    });
+
+    // כפתור וואטסאפ נפרד
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const songTitle = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${songTitle}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+</script>
+
+<!-- כפתור שיתוף -->
+<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
 <!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -102,11 +239,55 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- מערכת הערות החדשה -->
-<script type="module" src="js/notes-system.js?v=6"></script>
+<!-- עיצוב -->
+<style>
+.share-btn {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.toggle-notes {
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    margin-top: 20px;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
+</style>
 
 </body>
 </html>
+
 
 
 
