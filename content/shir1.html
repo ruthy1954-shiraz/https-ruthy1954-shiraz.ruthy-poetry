@@ -56,9 +56,9 @@
       snapshot.forEach((doc) => {
         const data = doc.data();
         if (data.songId === songId) {
-          const p = document.createElement("p");
-          p.textContent = `${data.name}: ${data.note}`;
-          notesDiv.appendChild(p);
+        const p = document.createElement("p");
+        p.innerHTML = `${data.name}: ${data.note} <span class="delete-note">❌</span>`;
+        notesDiv.appendChild(p);  
         }
       });
     };
