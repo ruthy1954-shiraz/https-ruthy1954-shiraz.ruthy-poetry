@@ -54,11 +54,13 @@
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
             <a id="saveLink">שמירת הערה</a> |
+            <a id="mailLink">שליחת מייל</a> |
             <a id="waLink">ווצאפ לכותבת</a>
         </div>
 
@@ -94,6 +96,31 @@
     });
 </script>
 
+<!-- שליחת מייל -->
+<script>
+    const mailLink = document.getElementById("mailLink");
+
+    mailLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        fetch("https://formspree.io/f/xkoddqww", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                user_name: name,
+                user_mail: mail,
+                user_song: song,
+                user_note: note
+            })
+        });
+
+        alert("הערה נשלחה למייל!");
+    });
+</script>
+
 <!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -110,13 +137,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- חיבור למערכת ההערות האוטומטית -->
+<!-- מערכת הערות אוטומטית -->
 <script type="module">
     import { initNoteSystem } from "../notes.js";
-    initNoteSystem();   // ⭐ מזהה אוטומטית שזה shir1
+    initNoteSystem();   <!-- ⭐ מזהה אוטומטית שזה shir1 -->
 </script>
 
-<!-- עיצוב קטן -->
+<!-- עיצוב -->
 <style>
 .notes-box {
     border: 2px solid #d3b8ff;
@@ -159,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
