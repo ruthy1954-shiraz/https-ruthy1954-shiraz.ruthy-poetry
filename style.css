@@ -198,32 +198,10 @@ h2.song-author {
     border-bottom-color: #a06cd5;
 }
 
-/* ===== כרטיסי הערות ===== */
-.note-card {
-    background-color: #fff7f2;
-    border: 1px solid #e3c7b8;
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin-bottom: 18px;
-    position: relative;
-}
+/* ===== כרטיסי הערות ישנים (בוטל) ===== */
+/* נמחק — כדי לא להתנגש עם המערכת החדשה */
 
-.delete-note {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #d8c3a5;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-    font-size: 1.6rem;
-    cursor: pointer;
-    border: none;
-}
-
+/* ===== אזור הצגת הערות ===== */
 #notes {
     margin-top: 20px;
     text-align: right;
@@ -256,6 +234,7 @@ h2.song-author {
 .delete-note:hover {
     color: #ff0000;
 }
+
 
 
 
