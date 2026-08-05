@@ -60,7 +60,6 @@
 
         <div class="footer-nav" style="margin-top:15px;">
             <a id="saveLink">שמירת הערה</a> |
-            <a id="mailLink">שליחת מייל</a> |
             <a id="waLink">ווצאפ לכותבת</a>
         </div>
 
@@ -83,42 +82,18 @@
 
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
         const songTitle = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
         const message =
             `שם הכותב: ${name}\n` +
-            `מייל: ${document.getElementById("userMail").value.trim()}\n` +
+            `מייל: ${mail}\n` +
             `שם השיר: ${songTitle}\n` +
             `הערה: ${note}`;
 
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
-</script>
-
-<!-- שליחת מייל -->
-<script>
-    const mailLink = document.getElementById("mailLink");
-
-    mailLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const mail = document.getElementById("userMail").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        fetch("https://formspree.io/f/xkoddqww", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                user_name: name,
-                user_mail: mail,
-                user_song: song,
-                user_note: note
-            })
-        });
-
-        alert("הערה נשלחה למייל!");
     });
 </script>
 
@@ -211,3 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
+</body>
+</html>
