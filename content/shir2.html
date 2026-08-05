@@ -68,7 +68,7 @@
     <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- תיבת הערות מוסתרת -->
+    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -77,8 +77,8 @@
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
-            <a id="waLink">ווצאפ לכותבת</a> |
-            <a id="saveLink">שמירת הערה</a>
+            <a id="saveLink">שמירת הערה</a> |
+            <a id="waLink">ווצאפ לכותבת</a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
@@ -93,22 +93,11 @@
 
 </div>
 
-<!-- מזהה ייחודי לשיר -->
+<!-- וואטסאפ -->
 <script>
-    var songId = "shir2";
-</script>
-
-<!-- מערכת ההערות + ווצאפ -->
-<script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-
-    initNoteSystem(songId);
-
     const waLink = document.getElementById("waLink");
-    const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -122,35 +111,9 @@
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
-
-    // שמירת הערה בענן
-    saveLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        saveNoteToFirestore(name, song, note, songId);
-    });
 </script>
 
-<!-- כפתור שיתוף -->
-<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
-
-<script>
-function shareSong() {
-    if (navigator.share) {
-        navigator.share({
-            title: document.title,
-            text: "רציתי לשתף את השיר הזה:",
-            url: window.location.href
-        });
-    } else {
-        alert("הדפדפן לא תומך בשיתוף אוטומטי");
-    }
-}
-</script>
-
-<!-- קוד פתיחה/סגירה -->
+<!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -166,45 +129,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<style>
-/* כפתור שיתוף — תואם לשיר 1 */
-.share-btn {
-    display: block;
-    margin: 25px auto;
-    padding: 12px 20px;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    border-radius: 8px;
-    font-size: 18px;
-    color: #4a2c6b;
-    cursor: pointer;
-    width: 200px;
-    text-align: center;
-    transition: 0.2s;
-}
-.share-btn:hover {
-    background-color: #e8d6ff;
-}
+<!-- חיבור למערכת ההערות האוטומטית -->
+<script type="module">
+    import { initNoteSystem } from "../notes.js";
+    initNoteSystem();   <!-- ⭐ מזהה אוטומטית שזה shir2 -->
+</script>
 
-/* תיבת הערות */
+<!-- עיצוב -->
+<style>
 .notes-box {
     border: 2px solid #d3b8ff;
     padding: 15px;
     border-radius: 10px;
     background-color: #faf6ff;
     margin-top: 20px;
-    transition: 0.3s ease;
 }
 
-/* מוסתר בהתחלה */
-.hidden {
-    display: none !important;
-}
+.hidden { display: none; }
 
-/* כפתור הערות */
 .toggle-notes {
-    display: block;
-    margin: 20px auto;
     background-color: #f2e6ff;
     border: 1px solid #d3b8ff;
     padding: 10px 15px;
@@ -212,17 +155,30 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor: pointer;
     font-size: 18px;
     color: #4a2c6b;
-    width: 200px;
-    text-align: center;
-    transition: 0.2s;
+    margin-top: 20px;
 }
-.toggle-notes:hover {
-    background-color: #e8d6ff;
+.toggle-notes:hover { background-color: #e8d6ff; }
+
+.note-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+}
+
+.delete-note {
+    color: #a00;
+    font-weight: bold;
+}
+.delete-note:hover {
+    color: red;
 }
 </style>
 
 </body>
 </html>
+
 
 
 
