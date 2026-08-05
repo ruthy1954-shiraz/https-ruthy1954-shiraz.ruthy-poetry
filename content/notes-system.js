@@ -21,7 +21,7 @@ const db = getFirestore(app);
 // Save note to Firebase
 // -----------------------------
 export async function saveNoteToCloud(name, note, songId, songTitle) {
-  await addDoc(collection(db, "notes_51"), {
+  await addDoc(collection(db, `notes_${songId}`), {
     name,
     note,
     songId,
@@ -33,12 +33,12 @@ export async function saveNoteToCloud(name, note, songId, songTitle) {
 // -----------------------------
 // Delete note from Firebase
 // -----------------------------
-async function deleteNoteFromCloud(noteId) {
-  await deleteDoc(doc(db, "notes_51", noteId));
+async function deleteNoteFromCloud(noteId, songId) {
+  await deleteDoc(doc(db, `notes_${songId}`, noteId));
 }
 
 // -----------------------------
-// Load notes from Firebase
+// Load notes from Firebase (sorted)
 // -----------------------------
 export async function loadNotesFromCloud(songId) {
   const notesDiv = document.getElementById("notes");
@@ -46,41 +46,45 @@ export async function loadNotesFromCloud(songId) {
 
   notesDiv.innerHTML = "";
 
-  const snapshot = await getDocs(collection(db, "notes_51"));
-  snapshot.forEach((docSnap) => {
+  const snapshot = await getDocs(collection(db, `notes_${songId}`));
+
+  // מיון לפי תאריך — מהחדש לישן
+  const sortedNotes = snapshot.docs.sort((a, b) => {
+    return b.data().timestamp.seconds - a.data().timestamp.seconds;
+  });
+
+  sortedNotes.forEach((docSnap) => {
     const data = docSnap.data();
 
-    if (data.songId === songId) {
+    // עטיפה לכל הערה
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("note-item");
 
-      // עטיפה לכל הערה
-      const wrapper = document.createElement("div");
-      wrapper.classList.add("note-item");
+    // טקסט ההערה
+    const p = document.createElement("p");
+    p.textContent = `${data.name}: ${data.note}`;
 
-      // טקסט ההערה
-      const p = document.createElement("p");
-      p.textContent = `${data.name}: ${data.note}`;
+    // תאריך לפי שעון ישראל
+    const date = new Date(data.timestamp.seconds * 1000);
+    const localDate = date.toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" });
+    const dateSpan = document.createElement("span");
+    dateSpan.textContent = ` (${localDate})`;
+    dateSpan.classList.add("note-date");
+    p.appendChild(dateSpan);
 
-      // תאריך
-      const date = new Date(data.timestamp.seconds * 1000).toLocaleString("he-IL");
-      const dateSpan = document.createElement("span");
-      dateSpan.textContent = ` (${date})`;
-      dateSpan.classList.add("note-date");
-      p.appendChild(dateSpan);
+    // כפתור מחיקה ❌
+    const del = document.createElement("span");
+    del.textContent = "❌";
+    del.classList.add("delete-note");
 
-      // כפתור מחיקה ❌
-      const del = document.createElement("span");
-      del.textContent = "❌";
-      del.classList.add("delete-note");
+    del.addEventListener("click", () => {
+      wrapper.remove();
+      deleteNoteFromCloud(docSnap.id, songId);
+    });
 
-      del.addEventListener("click", () => {
-        wrapper.remove();
-        deleteNoteFromCloud(docSnap.id);
-      });
-
-      wrapper.appendChild(p);
-      wrapper.appendChild(del);
-      notesDiv.appendChild(wrapper);
-    }
+    wrapper.appendChild(p);
+    wrapper.appendChild(del);
+    notesDiv.appendChild(wrapper);
   });
 }
 
@@ -97,7 +101,7 @@ export function saveNoteLocally(name, note) {
   p.textContent = `${name}: ${note}`;
 
   const dateSpan = document.createElement("span");
-  dateSpan.textContent = ` (${new Date().toLocaleString("he-IL")})`;
+  dateSpan.textContent = ` (${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })})`;
   dateSpan.classList.add("note-date");
   p.appendChild(dateSpan);
 
@@ -111,7 +115,9 @@ export function saveNoteLocally(name, note) {
 
   wrapper.appendChild(p);
   wrapper.appendChild(del);
-  notesDiv.appendChild(wrapper);
+
+  // מוסיפים למעלה — כמו מיון חדש לישן
+  notesDiv.prepend(wrapper);
 }
 
 // -----------------------------
