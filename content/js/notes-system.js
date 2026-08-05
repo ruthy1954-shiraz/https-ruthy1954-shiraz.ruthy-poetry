@@ -48,9 +48,11 @@ export async function loadNotesFromCloud(songId) {
 
   const snapshot = await getDocs(collection(db, `notes_${songId}`));
 
-  // מיון לפי תאריך — מהחדש לישן
+  // מיון לפי תאריך — מהחדש לישן, עם בדיקה לשדות חסרים
   const sortedNotes = snapshot.docs.sort((a, b) => {
-    return b.data().timestamp.seconds - a.data().timestamp.seconds;
+    const aTime = a.data().timestamp ? a.data().timestamp.seconds || 0 : 0;
+    const bTime = b.data().timestamp ? b.data().timestamp.seconds || 0 : 0;
+    return bTime - aTime;
   });
 
   sortedNotes.forEach((docSnap) => {
@@ -65,8 +67,14 @@ export async function loadNotesFromCloud(songId) {
     p.textContent = `${data.name}: ${data.note}`;
 
     // תאריך לפי שעון ישראל
-    const date = new Date(data.timestamp.seconds * 1000);
-    const localDate = date.toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" });
+    let localDate = "";
+    if (data.timestamp) {
+      const date = new Date(data.timestamp.seconds * 1000);
+      localDate = date.toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" });
+    } else {
+      localDate = new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" });
+    }
+
     const dateSpan = document.createElement("span");
     dateSpan.textContent = ` (${localDate})`;
     dateSpan.classList.add("note-date");
