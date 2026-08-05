@@ -2,7 +2,7 @@
 // Firebase Initialization
 // -----------------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
@@ -31,6 +31,13 @@ export async function saveNoteToCloud(name, note, songId, songTitle) {
 }
 
 // -----------------------------
+// Delete note from Firebase
+// -----------------------------
+async function deleteNoteFromCloud(noteId) {
+  await deleteDoc(doc(db, "notes_51", noteId));
+}
+
+// -----------------------------
 // Load notes from Firebase
 // -----------------------------
 export async function loadNotesFromCloud(songId) {
@@ -40,12 +47,39 @@ export async function loadNotesFromCloud(songId) {
   notesDiv.innerHTML = "";
 
   const snapshot = await getDocs(collection(db, "notes_51"));
-  snapshot.forEach((doc) => {
-    const data = doc.data();
+  snapshot.forEach((docSnap) => {
+    const data = docSnap.data();
+
     if (data.songId === songId) {
+
+      // עטיפה לכל הערה
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("note-item");
+
+      // טקסט ההערה
       const p = document.createElement("p");
       p.textContent = `${data.name}: ${data.note}`;
-      notesDiv.appendChild(p);
+
+      // תאריך
+      const date = new Date(data.timestamp.seconds * 1000).toLocaleString("he-IL");
+      const dateSpan = document.createElement("span");
+      dateSpan.textContent = ` (${date})`;
+      dateSpan.classList.add("note-date");
+      p.appendChild(dateSpan);
+
+      // כפתור מחיקה ❌
+      const del = document.createElement("span");
+      del.textContent = "❌";
+      del.classList.add("delete-note");
+
+      del.addEventListener("click", () => {
+        wrapper.remove();
+        deleteNoteFromCloud(docSnap.id);
+      });
+
+      wrapper.appendChild(p);
+      wrapper.appendChild(del);
+      notesDiv.appendChild(wrapper);
     }
   });
 }
@@ -55,9 +89,29 @@ export async function loadNotesFromCloud(songId) {
 // -----------------------------
 export function saveNoteLocally(name, note) {
   const notesDiv = document.getElementById("notes");
-  const newNote = document.createElement("p");
-  newNote.textContent = `${name}: ${note}`;
-  notesDiv.appendChild(newNote);
+
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("note-item");
+
+  const p = document.createElement("p");
+  p.textContent = `${name}: ${note}`;
+
+  const dateSpan = document.createElement("span");
+  dateSpan.textContent = ` (${new Date().toLocaleString("he-IL")})`;
+  dateSpan.classList.add("note-date");
+  p.appendChild(dateSpan);
+
+  const del = document.createElement("span");
+  del.textContent = "❌";
+  del.classList.add("delete-note");
+
+  del.addEventListener("click", () => {
+    wrapper.remove();
+  });
+
+  wrapper.appendChild(p);
+  wrapper.appendChild(del);
+  notesDiv.appendChild(wrapper);
 }
 
 // -----------------------------
@@ -95,7 +149,6 @@ export function sendWhatsApp(name, songTitle, note) {
 // -----------------------------
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Load notes from cloud
   if (window.songId) {
     loadNotesFromCloud(window.songId);
   }
@@ -134,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Toggle notes box
   const toggleBtn = document.querySelector(".toggle-notes");
   const notesBox = document.querySelector(".notes-box");
 
@@ -148,3 +200,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
