@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -96,8 +97,10 @@
             return;
         }
 
+        // ⭐ שמירה לענן
         await saveNoteToFirestore(name, song, note, songId, date);
 
+        // ⭐ שמירה למייל
         await fetch("https://formspree.io/f/xkoddqww", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -129,7 +132,7 @@
     });
 </script>
 
-<!-- ⭐ פתיחה/סגירה של תיבת הערות + תיקון העלמות ווצאפ -->
+<!-- ⭐ פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -141,20 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleBtn.textContent = notesBox.classList.contains("hidden")
             ? "הערות והארות"
             : "הסתרת הערות";
-
-        // ⭐ תיקון העלמות כפתור ווצאפ בנייד
-        setTimeout(() => {
-            const wa = document.getElementById("waLink");
-            if (wa) wa.style.display = "inline-block";
-        }, 50);
     });
 });
 </script>
 
 <style>
-/* ⭐ הסתרת הערות מהדף */
 #notes {
-    display: none;
+    display: block;
 }
 
 .notes-box {
