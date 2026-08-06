@@ -21,20 +21,11 @@ const db = getFirestore(app);
 
 // פונקציה שמחזירה את שם האוסף לפי השיר
 function getCollectionName(songId) {
-    return `notes_${songId.replace("shir", "")}`;
+    return `notes_${songId}`; // עכשיו זה notes_shir1
 }
 
-// שמירה בענן
-export async function saveNoteToFirestore(name, song, note, songId) {
-    const date = new Date().toLocaleString("he-IL");
-
-    await addDoc(collection(db, "notes_" + songId), {
-        name,
-        song,
-        note,
-        date
-    });
-}
+// ⭐ שמירה בענן עם תאריך
+export async function saveNoteToFirestore(name, song, note, songId, date) {
     const col = getCollectionName(songId);
 
     await addDoc(collection(db, col), {
@@ -42,11 +33,12 @@ export async function saveNoteToFirestore(name, song, note, songId) {
         song,
         note,
         songId,
+        date,
         timestamp: new Date()
     });
 }
 
-// טעינה מהענן
+// ⭐ טעינה מהענן
 async function loadNotes(songId) {
     const col = getCollectionName(songId);
     const notesDiv = document.getElementById("notes");
@@ -62,7 +54,7 @@ async function loadNotes(songId) {
             p.innerHTML = `${data.name}: ${data.note} <span class="delete-note">❌</span>`;
             notesDiv.appendChild(p);
 
-            // מחיקה מהמסך בלבד
+            // ⭐ מחיקה מהמסך בלבד
             p.querySelector(".delete-note").addEventListener("click", () => {
                 p.remove();
             });
@@ -70,7 +62,7 @@ async function loadNotes(songId) {
     });
 }
 
-// שמירה מקומית
+// ⭐ שמירה מקומית
 function saveLocal(name, note) {
     const notesDiv = document.getElementById("notes");
     const p = document.createElement("p");
@@ -82,15 +74,12 @@ function saveLocal(name, note) {
     });
 }
 
-// הפעלת המערכת
+// ⭐ הפעלת המערכת
 export function initNoteSystem(songId) {
-
-    // טעינה מהענן
     document.addEventListener("DOMContentLoaded", () => {
         loadNotes(songId);
     });
 
-    // כפתור שמירה
     const saveLink = document.getElementById("saveLink");
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
@@ -103,11 +92,12 @@ export function initNoteSystem(songId) {
         }
 
         saveLocal(name, note);
-        saveNoteToFirestore(name, song, note, songId);
+        saveNoteToFirestore(name, song, note, songId, new Date().toLocaleString("he-IL"));
 
         alert("הערה נשמרה!");
     });
 }
+
 
 
 
