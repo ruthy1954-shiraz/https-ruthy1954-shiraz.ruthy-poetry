@@ -120,10 +120,15 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleBtn.textContent = notesBox.classList.contains("hidden")
             ? "הערות והארות"
             : "הסתרת הערות";
+
+        // ⭐ כאן מוסיפים את השורה!
+        setTimeout(() => {
+            document.getElementById("waLink").style.display = "inline-block";
+        }, 50);
     });
 });
 </script>
-
+  
 <style>
 .notes-box {
     border: 2px solid #d3b8ff;
