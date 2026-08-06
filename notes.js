@@ -19,9 +19,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// פונקציה שמחזירה את שם האוסף לפי השיר
+// שם האוסף — notes_shir1
 function getCollectionName(songId) {
-    return `notes_${songId}`; // עכשיו זה notes_shir1
+    return `notes_${songId}`;
 }
 
 // ⭐ שמירה בענן עם תאריך
@@ -38,7 +38,7 @@ export async function saveNoteToFirestore(name, song, note, songId, date) {
     });
 }
 
-// ⭐ טעינה מהענן
+// ⭐ טעינה מהענן — מציג הערות באתר
 async function loadNotes(songId) {
     const col = getCollectionName(songId);
     const notesDiv = document.getElementById("notes");
@@ -51,7 +51,11 @@ async function loadNotes(songId) {
 
         if (data.songId === songId) {
             const p = document.createElement("p");
-            p.innerHTML = `${data.name}: ${data.note} <span class="delete-note">❌</span>`;
+            p.innerHTML = `
+                <strong>${data.name}</strong>: ${data.note}
+                <br><small>${data.date}</small>
+                <span class="delete-note">❌</span>
+            `;
             notesDiv.appendChild(p);
 
             // ⭐ מחיקה מהמסך בלבד
@@ -62,11 +66,17 @@ async function loadNotes(songId) {
     });
 }
 
-// ⭐ שמירה מקומית
-function saveLocal(name, note) {
+// ⭐ שמירה מקומית — מוסיף הערה למסך
+function saveLocal(name, note, date) {
     const notesDiv = document.getElementById("notes");
     const p = document.createElement("p");
-    p.innerHTML = `${name}: ${note} <span class="delete-note">❌</span>`;
+
+    p.innerHTML = `
+        <strong>${name}</strong>: ${note}
+        <br><small>${date}</small>
+        <span class="delete-note">❌</span>
+    `;
+
     notesDiv.appendChild(p);
 
     p.querySelector(".delete-note").addEventListener("click", () => {
@@ -76,23 +86,30 @@ function saveLocal(name, note) {
 
 // ⭐ הפעלת המערכת
 export function initNoteSystem(songId) {
+
+    // טעינה מהענן
     document.addEventListener("DOMContentLoaded", () => {
         loadNotes(songId);
     });
 
+    // כפתור שמירה
     const saveLink = document.getElementById("saveLink");
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
 
         if (!name || !note) {
             alert("נא למלא שם והערה");
             return;
         }
 
-        saveLocal(name, note);
-        saveNoteToFirestore(name, song, note, songId, new Date().toLocaleString("he-IL"));
+        // ⭐ שמירה למסך
+        saveLocal(name, note, date);
+
+        // ⭐ שמירה לענן
+        saveNoteToFirestore(name, song, note, songId, date);
 
         alert("הערה נשמרה!");
     });
