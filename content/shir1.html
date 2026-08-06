@@ -53,10 +53,10 @@
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-<div class="footer-nav" style="margin-top:15px;">
-    <a id="saveLink">שמירת הערה</a> |
-    <a id="waLink">ווצאפ לכותבת</a>
-</div>
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="saveLink">שמירת הערה</a> |
+            <a id="waLink">ווצאפ לכותבת</a>
+        </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
@@ -73,13 +73,17 @@
     var songId = "shir1";
 </script>
 
+<!-- ⭐ מודול שמירה + מייל + ווצאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
     initNoteSystem(songId);
 
     const saveLink = document.getElementById("saveLink");
+    const waLink = document.getElementById("waLink");
+    const phone = "972545305123";
 
+    // ⭐ שמירת הערה + שליחת מייל
     saveLink.addEventListener("click", async () => {
         const name = document.getElementById("userName").value.trim();
         const mail = document.getElementById("userMail").value.trim();
@@ -91,10 +95,8 @@
             return;
         }
 
-        // ⭐ שמירה בענן Firebase
         await saveNoteToFirestore(name, song, note, songId);
 
-        // ⭐ שליחת מייל
         await fetch("https://formspree.io/f/xkoddqww", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -108,8 +110,24 @@
 
         alert("הערה נשמרה ונשלחה!");
     });
+
+    // ⭐ ווצאפ
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
 </script>
 
+<!-- ⭐ פתיחה/סגירה של תיבת הערות + תיקון העלמות ווצאפ -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -122,14 +140,15 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "הערות והארות"
             : "הסתרת הערות";
 
-        // ⭐ כאן מוסיפים את השורה!
+        // ⭐ תיקון העלמות כפתור ווצאפ בנייד
         setTimeout(() => {
-            document.getElementById("waLink").style.display = "inline-block";
+            const wa = document.getElementById("waLink");
+            if (wa) wa.style.display = "inline-block";
         }, 50);
     });
 });
 </script>
-  
+
 <style>
 .notes-box {
     border: 2px solid #d3b8ff;
@@ -153,20 +172,16 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 .toggle-notes:hover { background-color: #e8d6ff; }
 
-.note-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 6px;
+#waLink {
+    display: inline-block !important;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #4a2c6b;
 }
-
-.delete-note {
-    color: #a00;
-    font-weight: bold;
-}
-.delete-note:hover {
-    color: red;
+#waLink:hover {
+    background-color: #e8d6ff;
 }
 </style>
 
