@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ⭐ שם אוסף אחיד — notes_shir1
+// שם האוסף — notes_shir1
 function getCollectionName(songId) {
     return `notes_${songId}`;   // notes_shir1
 }
