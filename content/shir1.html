@@ -84,29 +84,35 @@
     const phone = "972545305123";
 
     // ⭐ שמירת הערה + שליחת מייל
-    saveLink.addEventListener("click", async () => {
-        const name = document.getElementById("userName").value.trim();
-        const mail = document.getElementById("userMail").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
+ saveLink.addEventListener("click", async () => {
+    const name = document.getElementById("userName").value.trim();
+    const mail = document.getElementById("userMail").value.trim();
+    const song = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+    const date = new Date().toLocaleString("he-IL");
 
-        if (!name || !note) {
-            alert("נא למלא שם והערה");
-            return;
-        }
+    if (!name || !note) {
+        alert("נא למלא שם והערה");
+        return;
+    }
 
-        await saveNoteToFirestore(name, song, note, songId);
+    await saveNoteToFirestore(name, song, note, songId);
 
-        await fetch("https://formspree.io/f/xkoddqww", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                user_name: name,
-                user_mail: mail,
-                user_song: song,
-                user_note: note
-            })
-        });
+    await fetch("https://formspree.io/f/xkoddqww", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_name: name,
+            user_mail: mail,
+            user_song: song,
+            user_note: note,
+            user_date: date
+        })
+    });
+
+    alert("הערה נשמרה ונשלחה!");
+});
+
 
         alert("הערה נשמרה ונשלחה!");
     });
