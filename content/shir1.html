@@ -12,16 +12,13 @@
 
 <div class="wrapper">
 
-    <!-- תמונת השיר -->
     <div class="song-image">
         <img src="images/shir1.jpeg" alt="ציור לשיר בגידה">
     </div>
 
-    <!-- כותרות -->
     <h1 class="song-title">בגידה</h1>
     <h2 class="song-author">רות שנן</h2>
 
-    <!-- טקסט השיר -->
     <div class="song-box">
         <p>משהו שבר את האמון שלי.<br>
         הגוף התכווץ באחת,<br>
@@ -46,10 +43,8 @@
         עד שהוא נרגע.</p>
     </div>
 
-    <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -59,15 +54,13 @@
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
-            <a id="saveLink">שמירת הערה</a> |      
-            <a id="waLink">ווצאפ לכותבת</a>
+            <a id="saveLink">שמירת הערה</a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
@@ -75,37 +68,33 @@
 
 </div>
 
-<!-- וואטסאפ -->
 <script>
-    const waLink = document.getElementById("waLink");
-    const phone = "972545305123";
-
-    waLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const songTitle = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        const message =
-            `שם הכותב: ${name}\n` +
-            `שם השיר: ${songTitle}\n` +
-            `הערה: ${note}`;
-
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
+    var songId = "shir1";
 </script>
 
-<!-- שליחת מייל -->
-<script>
-    const mailLink = document.getElementById("mailLink");
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-    mailLink.addEventListener("click", function() {
+    initNoteSystem(songId);
+
+    const saveLink = document.getElementById("saveLink");
+
+    saveLink.addEventListener("click", async () => {
         const name = document.getElementById("userName").value.trim();
         const mail = document.getElementById("userMail").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        fetch("https://formspree.io/f/xkoddqww", {
+        if (!name || !note) {
+            alert("נא למלא שם והערה");
+            return;
+        }
+
+        // ⭐ שמירה בענן Firebase
+        await saveNoteToFirestore(name, song, note, songId);
+
+        // ⭐ שליחת מייל
+        await fetch("https://formspree.io/f/xkoddqww", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -116,11 +105,10 @@
             })
         });
 
-        alert("הערה נשלחה למייל!");
+        alert("הערה נשמרה ונשלחה!");
     });
 </script>
 
-<!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -136,13 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- מערכת הערות אוטומטית -->
-<script type="module">
-    import { initNoteSystem } from "../notes.js";
-    initNoteSystem("shir1");
-</script>
-
-<!-- עיצוב -->
 <style>
 .notes-box {
     border: 2px solid #d3b8ff;
@@ -185,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
