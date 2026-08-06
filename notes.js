@@ -1,4 +1,4 @@
-// notes.js — שמירה בענן + שליחת מייל מעוצב דרך Formspree
+// notes.js — שמירה בענן + שליחת מייל דרך Formspree
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { 
@@ -24,41 +24,24 @@ function getCollectionName(songId) {
     return `notes_${songId}`;
 }
 
-// שליחת מייל מעוצב דרך Formspree
+// ⭐ שליחת מייל תקינה דרך Formspree
 async function sendEmail(name, email, song, note, date, link) {
-
-    const message = `
-📬 התקבלה הערה חדשה באתר השירים
-
-👤 שם הכותב:
-${name}
-
-📧 כתובת מייל:
-${email}
-
-🎵 שם השיר:
-${song}
-
-🕒 תאריך ושעה:
-${date}
-
-💬 תוכן ההערה:
-${note}
-
-🔗 קישור לשיר באתר:
-${link}
-    `;
 
     await fetch("https://formspree.io/f/xkoddqww", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            message: message
+            name: name,
+            email: email,
+            song: song,
+            note: note,
+            date: date,
+            link: link
         })
     });
 }
 
-// שמירה בענן
+// ⭐ שמירה בענן
 export async function saveNoteToFirestore(name, email, song, note, songId, date, link) {
     const col = getCollectionName(songId);
 
@@ -76,7 +59,7 @@ export async function saveNoteToFirestore(name, email, song, note, songId, date,
     sendEmail(name, email, song, note, date, link);
 }
 
-// טעינה מהענן
+// ⭐ טעינה מהענן
 async function loadNotes(songId) {
     const col = getCollectionName(songId);
     const notesDiv = document.getElementById("notes");
@@ -105,7 +88,7 @@ async function loadNotes(songId) {
     });
 }
 
-// שמירה מקומית
+// ⭐ שמירה מקומית
 function saveLocal(name, email, note, date, link) {
     const notesDiv = document.getElementById("notes");
     const p = document.createElement("p");
@@ -125,7 +108,7 @@ function saveLocal(name, email, note, date, link) {
     });
 }
 
-// הפעלת המערכת
+// ⭐ הפעלת המערכת
 export function initNoteSystem(songId) {
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -152,6 +135,7 @@ export function initNoteSystem(songId) {
         alert("הערה נשמרה ונשלחה!");
     });
 }
+
 
 
 
