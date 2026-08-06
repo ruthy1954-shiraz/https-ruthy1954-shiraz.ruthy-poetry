@@ -121,13 +121,17 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "הערות והארות"
             : "הסתרת הערות";
 
-        // ⭐ כאן מוסיפים את השורה!
+        // ⭐ כאן בדיוק מוסיפים את השדרוג
         setTimeout(() => {
-            document.getElementById("waLink").style.display = "inline-block";
+            const wa = document.getElementById("waLink");
+            if (wa) {
+                wa.style.display = "inline-block";
+            }
         }, 50);
     });
 });
 </script>
+
   
 <style>
 .notes-box {
