@@ -19,9 +19,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ⭐ חזרה לפורמט הישן — notes_1
+// ⭐ הפורמט החדש — notes_shirX
 function getCollectionName(songId) {
-    return `notes_${songId.replace("shir", "")}`;  // shir1 → 1 → notes_1
+    return `notes_${songId}`;   // shir1 → notes_shir1
 }
 
 // ⭐ שמירה בענן
@@ -65,7 +65,7 @@ async function loadNotes(songId) {
     });
 }
 
-// ⭐ שמירה מקומית
+// ⭐ שמירה מקומית (להציג מיד באתר)
 function saveLocal(name, note, date) {
     const notesDiv = document.getElementById("notes");
     const p = document.createElement("p");
