@@ -26,6 +26,15 @@ function getCollectionName(songId) {
 
 // שמירה בענן
 export async function saveNoteToFirestore(name, song, note, songId) {
+    const date = new Date().toLocaleString("he-IL");
+
+    await addDoc(collection(db, "notes_" + songId), {
+        name,
+        song,
+        note,
+        date
+    });
+}
     const col = getCollectionName(songId);
 
     await addDoc(collection(db, col), {
