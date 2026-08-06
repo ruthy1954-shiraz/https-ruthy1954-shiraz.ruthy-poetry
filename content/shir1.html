@@ -55,13 +55,11 @@
 
         <div class="footer-nav" style="margin-top:15px;">
             <a id="saveLink">שמירת הערה</a>
-</div>
-      
-<div class="footer-nav" style="margin-top:15px;">
-    <a id="saveLink">שמירת הערה</a> |
-    <a id="waLink">ווצאפ לכותבת</a>
-</div>
+        </div>
 
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
 
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
@@ -123,17 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "הערות והארות"
             : "הסתרת הערות";
 
-        // ⭐ כאן בדיוק מוסיפים את השדרוג
+        // ⭐ כאן מוסיפים את השורה!
         setTimeout(() => {
-            const wa = document.getElementById("waLink");
-            if (wa) {
-                wa.style.display = "inline-block";
-            }
+            document.getElementById("waLink").style.display = "inline-block";
         }, 50);
     });
 });
 </script>
-
   
 <style>
 .notes-box {
@@ -177,6 +171,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
