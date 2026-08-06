@@ -19,12 +19,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// שם האוסף — notes_shir1
+// ⭐ חזרה לפורמט הישן — notes_1
 function getCollectionName(songId) {
-    return `notes_${songId}`;   // notes_shir1
+    return `notes_${songId.replace("shir", "")}`;  // shir1 → 1 → notes_1
 }
 
-// ⭐ שמירה בענן עם תאריך
+// ⭐ שמירה בענן
 export async function saveNoteToFirestore(name, song, note, songId, date) {
     const col = getCollectionName(songId);
 
@@ -38,7 +38,7 @@ export async function saveNoteToFirestore(name, song, note, songId, date) {
     });
 }
 
-// ⭐ טעינה מהענן — מציג הערות באתר
+// ⭐ טעינה מהענן
 async function loadNotes(songId) {
     const col = getCollectionName(songId);
     const notesDiv = document.getElementById("notes");
@@ -58,7 +58,6 @@ async function loadNotes(songId) {
             `;
             notesDiv.appendChild(p);
 
-            // ⭐ מחיקה מהמסך בלבד
             p.querySelector(".delete-note").addEventListener("click", () => {
                 p.remove();
             });
@@ -66,7 +65,7 @@ async function loadNotes(songId) {
     });
 }
 
-// ⭐ שמירה מקומית — מוסיף הערה למסך
+// ⭐ שמירה מקומית
 function saveLocal(name, note, date) {
     const notesDiv = document.getElementById("notes");
     const p = document.createElement("p");
@@ -87,12 +86,10 @@ function saveLocal(name, note, date) {
 // ⭐ הפעלת המערכת
 export function initNoteSystem(songId) {
 
-    // טעינה מהענן
     document.addEventListener("DOMContentLoaded", () => {
         loadNotes(songId);
     });
 
-    // כפתור שמירה
     const saveLink = document.getElementById("saveLink");
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
@@ -105,15 +102,13 @@ export function initNoteSystem(songId) {
             return;
         }
 
-        // ⭐ שמירה למסך
         saveLocal(name, note, date);
-
-        // ⭐ שמירה לענן
         saveNoteToFirestore(name, song, note, songId, date);
 
         alert("הערה נשמרה!");
     });
 }
+
 
 
 
