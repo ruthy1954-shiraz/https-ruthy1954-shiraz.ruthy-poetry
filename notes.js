@@ -21,7 +21,7 @@ const db = getFirestore(app);
 
 // שם האוסף — notes_shir1
 function getCollectionName(songId) {
-    return `notes_${songId}`;
+    return `notes_${songId}`;   // notes_shir1
 }
 
 // ⭐ שמירה בענן עם תאריך
@@ -114,7 +114,6 @@ export function initNoteSystem(songId) {
         alert("הערה נשמרה!");
     });
 }
-
 
 
 
