@@ -83,8 +83,6 @@ notesDiv.appendChild(p);
                 p.remove();
             });
         }
-    });
-}
 
 // ⭐ שמירה מקומית
 function saveLocal(name, email, note, date, link) {
