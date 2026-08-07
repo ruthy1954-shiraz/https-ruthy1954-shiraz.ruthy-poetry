@@ -105,6 +105,17 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
+    saveLink.addEventListener("click", function() {
+    const name = document.getElementById("userName").value.trim();
+    const email = document.getElementById("userMail").value.trim();
+    const song = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+    const date = new Date().toLocaleString("he-IL");
+    const link = window.location.href;
+
+    saveNoteToFirestore(name, email, song, note, songId, date, link);
+});
+
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
