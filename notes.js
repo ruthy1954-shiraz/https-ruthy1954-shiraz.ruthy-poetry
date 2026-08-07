@@ -70,17 +70,15 @@ async function loadNotes(songId) {
     snapshot.forEach(docSnap => {
         const data = docSnap.data();
 
-        if (data.songId === songId) {
-            const p = document.createElement("p");
-            p.innerHTML = `
-                <strong>${data.name}</strong> (${data.email})<br>
-                ${data.note}<br>
-                <small>${data.date}</small><br>
-                <a href="${data.link}" target="_blank">קישור לשיר</a>
-                <span class="delete-note">❌</span>
-            `;
-            notesDiv.appendChild(p);
-
+    const p = document.createElement("p");
+p.innerHTML = `
+    <strong>${data.name || "קורא/ת אנונימי/ת"}</strong><br>
+    ${data.note || ""}<br>
+    <small>${data.date || new Date(data.timestamp).toLocaleString("he-IL")}</small><br>
+    <span class="delete-note">❌</span>
+`;
+notesDiv.appendChild(p);
+        
             p.querySelector(".delete-note").addEventListener("click", () => {
                 p.remove();
             });
