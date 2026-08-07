@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>רגישות יתר / רות שנן</title>
+
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-image">
+        <img src="images/shir72.jpeg" alt="ציור לשיר רגישות יתר">
+    </div>
+
+    <h1 class="song-title">רגישות יתר</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <div class="song-box">
+        <p>כאב של אחר<br>
+        חותך בי<br>
+        את מה<br>
+        שלא נרפא.</p>
+
+        <p>האור שלו<br>
+        מבליט<br>
+        את הצל שבי<br>
+        המחפש אור.</p>
+    </div>
+
+    <button class="toggle-notes">הערות והארות</button>
+
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="רגישות יתר" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="saveLink">שמירת הערה</a> |
+            <a id="waLink">ווצאפ לכותבת</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+</div>
+
+<script>
+    var songId = "shir72";
+</script>
+
+<!-- ⭐ מודול שמירה + מייל + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const saveLink = document.getElementById("saveLink");
+    const waLink = document.getElementById("waLink");
+    const phone = "972545305123";
+
+    // ⭐ שמירת הערה + שליחת מייל + תאריך
+    saveLink.addEventListener("click", async () => {
+        const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
+
+        if (!name || !note) {
+            alert("נא למלא שם והערה");
+            return;
+        }
+
+        // ⭐ שמירה לענן
+        await saveNoteToFirestore(name, mail, song, note, songId, date, link);
+
+        // ⭐ שליחת מייל
+        await fetch("https://formspree.io/f/xkoddqww", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                user_name: name,
+                user_mail: mail,
+                user_song: song,
+                user_note: note,
+                user_date: date,
+                user_link: link
+            })
+        });
+
+        alert("הערה נשמרה ונשלחה!");
+    });
+
+    // ⭐ ווצאפ
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+</script>
+
+<!-- ⭐ פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<style>
+#notes {
+    display: block;
+}
+
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+}
+
+.hidden { display: none; }
+
+.toggle-notes {
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    margin-top: 20px;
+}
+.toggle-notes:hover { background-color: #e8d6ff; }
+
+#waLink {
+    display: inline-block !important;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #4a2c6b;
+}
+#waLink:hover {
+    background-color: #e8d6ff;
+}
+</style>
+
+</body>
+</html>
