@@ -59,7 +59,7 @@ export async function saveNoteToFirestore(name, email, song, note, songId, date,
     sendEmail(name, email, song, note, date, link);
 }
 
-// ⭐ טעינה מהענן
+// ⭐ טעינה מהענן — כולל תמיכה בהערות ישנות
 async function loadNotes(songId) {
     const col = getCollectionName(songId);
     const notesDiv = document.getElementById("notes");
@@ -70,19 +70,20 @@ async function loadNotes(songId) {
     snapshot.forEach(docSnap => {
         const data = docSnap.data();
 
-    const p = document.createElement("p");
-p.innerHTML = `
-    <strong>${data.name || "קורא/ת אנונימי/ת"}</strong><br>
-    ${data.note || ""}<br>
-    <small>${data.date || new Date(data.timestamp).toLocaleString("he-IL")}</small><br>
-    <span class="delete-note">❌</span>
-`;
-notesDiv.appendChild(p);
-        
-            p.querySelector(".delete-note").addEventListener("click", () => {
-                p.remove();
-            });
-        }
+        const p = document.createElement("p");
+        p.innerHTML = `
+            <strong>${data.name || "קורא/ת אנונימי/ת"}</strong><br>
+            ${data.note || ""}<br>
+            <small>${data.date || new Date(data.timestamp).toLocaleString("he-IL")}</small><br>
+            <span class="delete-note">❌</span>
+        `;
+        notesDiv.appendChild(p);
+
+        p.querySelector(".delete-note").addEventListener("click", () => {
+            p.remove();
+        });
+    });
+}
 
 // ⭐ שמירה מקומית
 function saveLocal(name, email, note, date, link) {
