@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>שקט מופתי / רות שנן</title>
+
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-image">
+        <img src="images/shir73.jpeg" alt="ציור לשיר שקט מופתי">
+    </div>
+
+    <h1 class="song-title">שקט מופתי</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <div class="song-box">
+        <p>דמייני ענן קיץ,<br>
+        מרחף נמוך מעל ים שקט.<br>
+        לא כבד, לא מאיים,<br>
+        רק נוגע לא נוגע באוויר<br>
+        כמו אצבע על מצח עייף.</p>
+
+        <p>הצבעים רכים,<br>
+        הלבן נמס לתוך תכלת,<br>
+        קצוות מטושטשים<br>
+        נוגעים בנשימה ארוכה.</p>
+
+        <p>מתחתיו מרחב פתוח,<br>
+        אור רך הנשפך בלי למהר,<br>
+        והכול עטוף באותה שלווה,<br>
+        בשקט המחזיר אותך לעצמך.</p>
+    </div>
+
+    <button class="toggle-notes">הערות והארות</button>
+
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="שקט מופתי" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="saveLink">שמירת הערה</a> |
+            <a id="waLink">ווצאפ לכותבת</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+</div>
+
+<script>
+    var songId = "shir73";
+</script>
+
+<!-- ⭐ מודול שמירה + מייל + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const saveLink = document.getElementById("saveLink");
+    const waLink = document.getElementById("waLink");
+    const phone = "972545305123";
+
+    saveLink.addEventListener("click", async () => {
+        const name = document.getElementById("userName").value.trim();
+        const mail = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+
+        if (!name || !note) {
+            alert("נא למלא שם והערה");
+            return;
+        }
+
+        await saveNoteToFirestore(name, song, note, songId, date);
+
+        await fetch("https://formspree.io/f/xkoddqww", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                user_name: name,
+                user_mail: mail,
+                user_song: song,
+                user_note: note,
+                user_date: date
+            })
+        });
+
+        alert("הערה נשמרה ונשלחה!");
+    });
+
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<style>
+#notes { display: block; }
+
+.notes-box {
+    border: 2px solid #b8e0ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f0faff;
+    margin-top: 20px;
+}
+
+.hidden { display: none; }
+
+.toggle-notes {
+    background-color: #e6f7ff;
+    border: 1px solid #b8e0ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #2c4a6b;
+    margin-top: 20px;
+}
+.toggle-notes:hover { background-color: #d6f0ff; }
+
+#waLink {
+    display: inline-block !important;
+    background-color: #e6f7ff;
+    border: 1px solid #b8e0ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #2c4a6b;
+}
+#waLink:hover { background-color: #d6f0ff; }
+</style>
+
+</body>
+</html>
