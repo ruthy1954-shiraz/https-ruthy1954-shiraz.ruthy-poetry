@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבות / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir75.jpeg" alt="ציור לשיר מחשבות">
+    </div>
+
+    <!-- ⭐ פתיח השיר -->
+    <div class="song-intro">
+        <p>
+            יש מחשבות שנולדות בשקט, יש כאלו שמרעישות,  
+            ויש מחשבות שמבקשות רק מקום לנוח בו.  
+            השיר הזה נכתב מתוך הקשבה עדינה לכל אלו.
+        </p>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">מחשבות</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>
+        ישנן מחשבות הנולדות קטנות,<br>
+        כמו יצורים שקופים<br>
+        המרחפים סביב הראש<br>
+        ונעלמים אם לא מבחינים בהם.
+        </p>
+
+        <p>
+        ישנן מחשבות,<br>
+        בעלות גוף ורגליים,<br>
+        הולכות אחרינו,<br>
+        מנסות לטפס על הכתף<br>
+        שנקשיב להן סוף־סוף.
+        </p>
+
+        <p>
+        ישנן מחשבות פראיות,<br>
+        שבורחות מאיתנו ברגע שמתקרבים,<br>
+        משאירות אחריהן עקבות של רעש<br>
+        ושאלה שלא נאמרה.
+        </p>
+
+        <p>
+        וישנן מחשבות המגדלות כנפיים,<br>
+        עפות גבוה מדי<br>
+        עד שבטוחים שהלכו לאיבד,<br>
+        אבל הן חוזרות בלילה<br>
+        ונוחתות על הכרית<br>
+        כמו ציפור שמצאה את ביתה.
+        </p>
+
+        <p>
+        וישנן מחשבות כבדות,<br>
+        המתיישבות על החזה<br>
+        ולא זזות,<br>
+        עד שמוצאים להן שם<br>
+        שורה, דף או פסיכולוג,<br>
+        מקום בו יוכלו לנוח.
+        </p>
+
+        <p>
+        וכאשר המחשבות האלו<br>
+        מוצאות את דרכן אל הנייר,<br>
+        הן מפסיקות לרדוף,<br>
+        מפסיקות לברוח,<br>
+        ומקבלות סוף־סוף צורה<br>
+        שאפשר לאהוב.<br>
+        לשחרר.
+        </p>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="מחשבות" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "shir75";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const email = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
+
+        saveNoteToFirestore(name, email, song, note, songId, date, link);
+    });
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+</script>
+
+<!-- שיתוף -->
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- עיצוב פתיח -->
+<style>
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+</style>
+
+</body>
+</html>
