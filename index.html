@@ -6,7 +6,7 @@
     <title>לגעת / רות שנן</title>
 
     <!-- אייקון לכרטיסייה -->
-    <link rel="icon" type="image/png" sizes="512x512" href="icon/oklagaat-512x512.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 
     <!-- קישור ל־manifest.json (חובה ל-PWA) -->
     <link rel="manifest" href="manifest.json">
@@ -16,8 +16,6 @@
 </head>
 
 <body>
-
-
 
 <div class="wrapper">
 
@@ -141,6 +139,15 @@ function shareSong() {
 }
 </script>
 
+<!-- ⭐ רישום Service Worker (חובה ל-PWA) -->
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("Service Worker registered"))
+        .catch(err => console.log("SW error:", err));
+}
+</script>
+
 <style>
 .share-btn {
     margin: 25px auto;
@@ -186,6 +193,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
