@@ -1,8 +1,8 @@
 {
   "name": "לגעת שבנינו - ספר שירה",
   "short_name": "לגעת",
-  "start_url": "/ruthy/"
-  "display": "standalone",
+ ,"start_url": "/ruthy/"
+  "display": "standalone"
   "background_color": "#ffffff",
   "theme_color": "#d3b8ff",
   "icons": [
