@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>רותי שנן - דף הבית</title>
+    <title>לגעת / רות שנן</title>
+
+    <!-- אייקון לכרטיסייה -->
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/oklagaat-512x512.png">
+    <link rel="icon" type="image/png" href="icons/oklagaat-192x192.png">
+
+    <!-- קישור ל־manifest.json -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- עיצוב -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,15 +20,29 @@
 
 <div class="wrapper">
 
-    <h1 class="main-title">ברוכים הבאים לעולמי</h1>
-    <p class="main-subtitle">שירים, מחשבות, ציורים, ורגעים של אמת.</p>
-
-    <!-- כפתור מעבר לשירים -->
-    <div class="footer-nav">
-        <a href="songs/song.html">מעבר לשירים</a>
+    <!-- תמונת הדף -->
+    <div class="song-image">
+        <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
     </div>
 
-    <!-- כפתור פתיחת הערות -->
+    <!-- כותרות -->
+    <h1 class="song-title">לגעת</h1>
+    <h2 class="song-author">ספר השירה של רות שנן</h2>
+
+    <!-- טקסט הדף -->
+    <div class="song-box">
+        <p>
+            רגע לפני שהמילים נולדות,<br>
+            היד נוגעת בדף,<br>
+            והלב נפתח.<br><br>
+            הזמנה לגעת, להרגיש, להקשיב.
+        </p>
+    </div>
+
+    <!-- כפתור התקנה למסך הבית -->
+    <button id="installAppBtn">📱 התקן את האתר למסך הבית</button>
+
+    <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
     <!-- תיבת הערות -->
@@ -27,9 +50,8 @@
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
-        <input id="userMail" placeholder="האימייל שלכם..." type="email" />
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
-        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם..."></textarea>
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על האתר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
@@ -42,9 +64,19 @@
 
 </div>
 
+<!-- ניווט -->
+<div class="footer-nav">
+    <a href="content/poets/write-poem.html" class="join-btn">כתיבת שיר חדש</a> |
+    <a href="content/poets/poets.html" class="join-btn">בימת המשוררים</a> |
+    <a href="content/song.html">שירים</a> |
+    <a href="content/tikshurim/tikshurim-list.html">תקשורים</a> |
+    <a href="content/about.html">על הספר</a> |
+    <a href="content/about-author.html">אודות המחברת</a>
+</div>
+
 <!-- מזהה ייחודי לדף -->
 <script>
-    var songId = "index";
+    var songId = "homepage";
 </script>
 
 <!-- מערכת ההערות + ווצאפ -->
@@ -54,6 +86,7 @@
     initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
     waLink.addEventListener("click", () => {
@@ -61,13 +94,17 @@
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        const message =
-            `שם הכותב: ${name}\n` +
-            `שם הדף: ${song}\n` +
-            `הערה: ${note}`;
-
+        const message = `שם הכותב: ${name}\nדף: ${song}\nהערה: ${note}`;
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
     });
 </script>
 
@@ -76,6 +113,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
     const notesBox = document.querySelector(".notes-box");
+
+    if (!toggleBtn || !notesBox) return;
 
     toggleBtn.addEventListener("click", () => {
         notesBox.classList.toggle("hidden");
@@ -87,8 +126,71 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- כפתור שיתוף -->
+<button class="share-btn" onclick="shareSong()">שתפו את הספר</button>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: "לגעת — ספר השירה של רות שנן",
+            text: "רציתי לשתף אתך באתר ספר השירים גם התקשורים:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<!-- התקנה למסך הבית -->
+<script>
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById("installAppBtn").style.display = "block";
+});
+
+document.getElementById("installAppBtn").addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log(`User response: ${outcome}`);
+  deferredPrompt = null;
+});
+</script>
+
+<!-- עיצוב כפתור התקנה -->
+<style>
+#installAppBtn {
+    display: none;
+    margin: 20px auto;
+    padding: 12px 20px;
+    background-color: #d3b8ff;
+    color: #4a2c6b;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+</style>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
