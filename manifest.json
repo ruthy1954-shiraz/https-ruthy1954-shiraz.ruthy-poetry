@@ -16,6 +16,15 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+
+  "screenshots": [
+    {
+      "src": "content/images/shir.jpeg",
+      "sizes": "800x600",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
   ]
 }
 
