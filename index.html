@@ -162,6 +162,8 @@ document.getElementById("installAppBtn").addEventListener("click", async () => {
 });
 </script>
 
+<!-- רישום ה־Service Worker -->
+<script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
     .then(() => console.log("Service Worker registered"))
@@ -186,6 +188,7 @@ if ('serviceWorker' in navigator) {
 
 </body>
 </html>
+
 
 
 
