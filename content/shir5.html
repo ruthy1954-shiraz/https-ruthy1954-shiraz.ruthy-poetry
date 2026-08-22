@@ -67,12 +67,12 @@
     <!-- ⭐ כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- ⭐ תיבת הערות מוסתרת -->
+    <!-- ⭐ תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
-        <input id="userSong" placeholder="שם השיר..." value="בחג חירותי" />
+        <input id="userSong" value="בחג חירותי" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
@@ -100,7 +100,7 @@
     var songId = "shir5";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
+<!-- ⭐ מערכת הערות + מייל + וואטסאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
@@ -110,6 +110,7 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
+    // ⭐ וואטסאפ
     waLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -124,12 +125,31 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    // ⭐ שמירת הערה + שליחת מייל + שמירה בענן
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
 
+        // שמירה ב-Firestore
         saveNoteToFirestore(name, song, note, songId);
+
+        // ⭐ שליחת מייל דרך Formspree
+        fetch("https://formspree.io/f/xxxxabcd", {   <!-- החליפי לכתובת שלך -->
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name,
+                song: song,
+                note: note,
+                date: date,
+                link: link
+            })
+        })
+        .then(() => alert("הערתך נשלחה בהצלחה!"))
+        .catch(() => alert("אירעה שגיאה בשליחת ההערה."));
     });
 </script>
 
@@ -237,6 +257,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
