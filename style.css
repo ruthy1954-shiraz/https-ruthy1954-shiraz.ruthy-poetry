@@ -9,7 +9,6 @@ html, body {
     direction: rtl;
     color: #222;
     line-height: 1.8;
-    * {
     box-sizing: border-box;
     max-width: 100%;
     .back-home-btn {
