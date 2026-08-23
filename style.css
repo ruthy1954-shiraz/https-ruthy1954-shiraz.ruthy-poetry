@@ -11,7 +11,16 @@ html, body {
     line-height: 1.8;
     box-sizing: border-box;
     max-width: 100%;
-    .back-home-btn {
+}
+
+/* מניעת גלילה אופקית לכל האלמנטים */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* ===== כפתור חזרה לדף הבית ===== */
+.back-home-btn {
     display: inline-block;
     max-width: 100%;
 }
@@ -203,9 +212,6 @@ h2.song-author {
     border-bottom-color: #a06cd5;
 }
 
-/* ===== כרטיסי הערות ישנים (בוטל) ===== */
-/* נמחק — כדי לא להתנגש עם המערכת החדשה */
-
 /* ===== אזור הצגת הערות ===== */
 #notes {
     margin-top: 20px;
@@ -239,15 +245,19 @@ h2.song-author {
 .delete-note:hover {
     color: #ff0000;
 }
+
+/* ===== מסגרת לדף ההסברה ===== */
 .install-wrapper {
-    max-width: 480px;        /* רוחב מקסימלי לנייד */
-    margin: 0 auto;          /* מרכז את הדף */
-    padding: 20px;           /* רווח פנימי */
-    background: #ffffff;     /* רקע לבן נקי */
-    border: 2px solid #d3b8ff; /* מסגרת לבנדר רכה */
-    border-radius: 16px;     /* פינות מעוגלות */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* צל עדין */
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    border: 2px solid #d3b8ff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow-x: hidden;
 }
+
 
 
 
