@@ -234,6 +234,15 @@ h2.song-author {
 .delete-note:hover {
     color: #ff0000;
 }
+.install-wrapper {
+    max-width: 480px;        /* רוחב מקסימלי לנייד */
+    margin: 0 auto;          /* מרכז את הדף */
+    padding: 20px;           /* רווח פנימי */
+    background: #ffffff;     /* רקע לבן נקי */
+    border: 2px solid #d3b8ff; /* מסגרת לבנדר רכה */
+    border-radius: 16px;     /* פינות מעוגלות */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* צל עדין */
+}
 
 
 
