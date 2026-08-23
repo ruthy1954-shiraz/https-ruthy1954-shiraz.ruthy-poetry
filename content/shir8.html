@@ -99,4 +99,89 @@
 
 <!-- ⭐ מערכת הערות + מייל + וואטסאפ — כמו shir5 -->
 <script type="module">
-    import { initNoteSystem, saveNoteToFirestore }
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    // ⭐ וואטסאפ
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // ⭐ שמירת הערה + שליחת מייל + שמירה בענן
+    saveLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const email = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
+
+        // ⭐ שמירה ב-Firestore
+        saveNoteToFirestore(name, email, song, note, songId, date, link);
+
+        // ⭐ שליחת מייל דרך Formspree
+        fetch("https://formspree.io/f/xxxxabcd", {   <!-- החליפי לכתובת שלך -->
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                song: song,
+                note: note,
+                date: date,
+                link: link
+            })
+        })
+        .then(() => alert("הערתך נשלחה בהצלחה!"))
+        .catch(() => alert("אירעה שגיאה בשליחת ההערה."));
+    });
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- פונקציית שיתוף -->
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
