@@ -63,7 +63,7 @@
     <!-- ⭐ כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- ⭐ תיבת הערות עם מייל — כמו shir5 -->
+    <!-- ⭐ תיבת הערות עם מייל -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -92,12 +92,12 @@
 
 </div>
 
-<!-- מזהה ייחודי לשיר -->
+<!-- ⭐ מזהה ייחודי לשיר -->
 <script>
     var songId = "shir8";
 </script>
 
-<!-- ⭐ מערכת הערות + מייל + וואטסאפ — כמו shir5 -->
+<!-- ⭐ מערכת הערות + מייל + וואטסאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
@@ -131,28 +131,11 @@
         const date = new Date().toLocaleString("he-IL");
         const link = window.location.href;
 
-        // ⭐ שמירה ב-Firestore
         saveNoteToFirestore(name, email, song, note, songId, date, link);
-
-        // ⭐ שליחת מייל דרך Formspree
-        fetch("https://formspree.io/f/xxxxabcd", {   <!-- החליפי לכתובת שלך -->
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                song: song,
-                note: note,
-                date: date,
-                link: link
-            })
-        })
-        .then(() => alert("הערתך נשלחה בהצלחה!"))
-        .catch(() => alert("אירעה שגיאה בשליחת ההערה."));
     });
 </script>
 
-<!-- פתיחה/סגירה של תיבת הערות -->
+<!-- ⭐ פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -168,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- פונקציית שיתוף -->
+<!-- ⭐ פונקציית שיתוף -->
 <script>
 function shareSong() {
     if (navigator.share) {
