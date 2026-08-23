@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -72,7 +73,6 @@
     <a href="content/tikshurim/tikshurim-list.html">תקשורים</a> |
     <a href="content/about.html">על הספר</a> |
     <a href="content/about-author.html">אודות המחברת</a>
-     <!-- ⭐ כפתור חדש: פתרון בעיות התקנה -->
     <a href="help-install.html" class="join-btn" style="color:#4a2c6b; font-weight:bold;">
         🛠️ פתרון בעיות התקנה
     </a>
@@ -128,23 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
             : "הסתרת הערות";
     });
 });
-</script>
-
-<!-- כפתור שיתוף -->
-<button class="share-btn" onclick="shareSong()">שתפו את הספר</button>
-
-<script>
-function shareSong() {
-    if (navigator.share) {
-        navigator.share({
-            title: "לגעת — ספר השירה של רות שנן",
-            text: "רציתי לשתף אתך באתר ספר השירים גם התקשורים:",
-            url: window.location.href
-        });
-    } else {
-        alert("הדפדפן לא תומך בשיתוף אוטומטי");
-    }
-}
 </script>
 
 <!-- התקנה למסך הבית -->
