@@ -12,6 +12,9 @@ html, body {
     * {
     box-sizing: border-box;
     max-width: 100%;
+    .back-home-btn {
+    display: inline-block;
+    max-width: 100%;
 }
 
 /* ===== מרכז הדף ===== */
