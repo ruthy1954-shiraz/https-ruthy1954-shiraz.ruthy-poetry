@@ -81,12 +81,13 @@
     <!-- ⭐ כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- ⭐ תיבת הערות מוסתרת -->
+    <!-- ⭐ תיבת הערות עם מייל — כמו בשיר 5 -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
-        <input id="userSong" placeholder="שם השיר..." value="דיירת לרגע" />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
+        <input id="userSong" value="דיירת לרגע" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
@@ -96,17 +97,6 @@
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
-    </div>
-
-    <!-- ⭐ משבצת מייל כמו בשיר 5 -->
-    <div class="song-mail-box">
-        <h3>שליחת השיר במייל</h3>
-        <p>רוצים לשלוח את השיר למישהו אהוב?</p>
-
-        <a href="mailto:?subject=שיר: דיירת לרגע&body=רציתי לשלוח לך את השיר הזה מהאתר לגעת:%0A%0Aקישור לשיר:%20https://ruthy1954-shiraz.github.io/ruthy/songs/shir6.html"
-           class="mail-btn">
-            ✉️ שליחת השיר במייל
-        </a>
     </div>
 
     <!-- ניווט -->
@@ -125,7 +115,7 @@
     var songId = "shir6";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
+<!-- ⭐ מערכת הערות + מייל + וואטסאפ — כמו בשיר 5 -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
@@ -135,6 +125,7 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
+    // ⭐ וואטסאפ
     waLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -149,12 +140,33 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    // ⭐ שמירת הערה + שליחת מייל + שמירה בענן
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
+        const email = document.getElementById("userMail").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
 
-        saveNoteToFirestore(name, song, note, songId);
+        // ⭐ שמירה ב-Firestore
+        saveNoteToFirestore(name, email, song, note, songId, date, link);
+
+        // ⭐ שליחת מייל דרך Formspree
+        fetch("https://formspree.io/f/xxxxabcd", {   <!-- החליפי לכתובת שלך -->
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                song: song,
+                note: note,
+                date: date,
+                link: link
+            })
+        })
+        .then(() => alert("הערתך נשלחה בהצלחה!"))
+        .catch(() => alert("אירעה שגיאה בשליחת ההערה."));
     });
 </script>
 
@@ -191,6 +203,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
