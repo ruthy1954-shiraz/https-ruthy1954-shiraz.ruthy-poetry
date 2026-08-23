@@ -43,3 +43,9 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+self.addEventListener("activate", () => {
+  self.registration.showNotification("לגעת", {
+    body: "האתר זמין גם ללא אינטרנט 🌸",
+    icon: "icons/oklagaat-192x192.png"
+  });
+});
