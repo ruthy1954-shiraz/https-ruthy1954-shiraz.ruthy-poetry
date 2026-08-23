@@ -19,7 +19,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// הפעלה – ניקוי גרסאות ישנות
+// הפעלה – ניקוי גרסאות ישנות + הודעת זמינות
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -33,6 +33,12 @@ self.addEventListener("activate", (event) => {
       )
     )
   );
+
+  // הודעת זמינות
+  self.registration.showNotification("לגעת", {
+    body: "האתר זמין גם ללא אינטרנט 🌸",
+    icon: "icons/oklagaat-192x192.png"
+  });
 });
 
 // שליפה – טעינה מה‑cache או מהרשת
@@ -43,9 +49,4 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-self.addEventListener("activate", () => {
-  self.registration.showNotification("לגעת", {
-    body: "האתר זמין גם ללא אינטרנט 🌸",
-    icon: "icons/oklagaat-192x192.png"
-  });
-});
+
