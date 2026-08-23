@@ -98,6 +98,17 @@
         <div id="notes"></div>
     </div>
 
+    <!-- ⭐ משבצת מייל כמו בשיר 5 -->
+    <div class="song-mail-box">
+        <h3>שליחת השיר במייל</h3>
+        <p>רוצים לשלוח את השיר למישהו אהוב?</p>
+
+        <a href="mailto:?subject=שיר: דיירת לרגע&body=רציתי לשלוח לך את השיר הזה מהאתר לגעת:%0A%0Aקישור לשיר:%20https://ruthy1954-shiraz.github.io/ruthy/songs/shir6.html"
+           class="mail-btn">
+            ✉️ שליחת השיר במייל
+        </a>
+    </div>
+
     <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
@@ -178,79 +189,9 @@ function shareSong() {
 }
 </script>
 
-<!-- עיצוב פתיח -->
-<style>
-.song-intro {
-    background: #f8f2ff;
-    border-right: 4px solid #d3b8ff;
-    padding: 18px 22px;
-    margin: 20px 0 25px 0;
-    border-radius: 8px;
-    font-size: 20px;
-    line-height: 1.8;
-    color: #4a2c6b;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-.song-intro p {
-    margin: 0;
-    white-space: pre-line;
-}
-
-/* כפתור שיתוף */
-.share-btn {
-    display: block;
-    margin: 25px auto;
-    padding: 12px 20px;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    border-radius: 8px;
-    font-size: 18px;
-    color: #4a2c6b;
-    cursor: pointer;
-    width: 200px;
-    text-align: center;
-    transition: 0.2s;
-}
-.share-btn:hover {
-    background-color: #e8d6ff;
-}
-
-/* תיבת הערות */
-.notes-box {
-    border: 2px solid #d3b8ff;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #faf6ff;
-    margin-top: 20px;
-}
-
-/* מוסתר */
-.hidden {
-    display: none !important;
-}
-
-/* כפתור הערות */
-.toggle-notes {
-    display: block;
-    margin: 20px auto;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #4a2c6b;
-    width: 200px;
-    text-align: center;
-    transition: 0.2s;
-}
-.toggle-notes:hover {
-    background-color: #e8d6ff;
-}
-</style>
-
 </body>
 </html>
+
 
 
 
