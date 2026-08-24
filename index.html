@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="icons/oklagaat-192x192.png">
 
   <!-- קישור ל־manifest.json -->
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/ruth/manifest.json">
 
   <!-- עיצוב -->
   <link rel="stylesheet" href="style.css">
@@ -32,7 +32,7 @@
   <!-- טקסט הדף -->
   <div class="song-box">
     <p>
-      רגע לפני שהמילים נולדות,<br>
+      רגע לפני שהמילים נוללות,<br>
       היד נוגעת בדף,<br>
       והלב נפתח.<br><br>
       הזמנה לגעת, להרגיש, להקשיב.
@@ -79,7 +79,6 @@
 
 <!-- מזהה ייחודי לדף -->
 <script>
-  // הגדרה מוקדמת של המשתנה לפני כל שימוש
   window.songId = "homepage";
 </script>
 
@@ -87,7 +86,6 @@
 <script type="module">
   import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
-  // ודא שהמשתנה songId מוגדר
   initNoteSystem(window.songId);
 
   const waLink = document.getElementById("waLink");
@@ -175,16 +173,6 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 
