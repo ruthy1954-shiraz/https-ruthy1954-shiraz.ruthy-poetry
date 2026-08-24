@@ -1,49 +1,26 @@
 {
   "manifest_version": 3,
-  "name": "לגעת שבנינו - ספר שירה",
+  "name": "לגעת",
   "short_name": "לגעת",
-  "description": "ספר השירה של רות שנן - מרחב יצירה חי שבו שירים מגיבים לקורא.",
-  "start_url": "/ruthy/",
-  "scope": "/ruthy/",
+  "description": "ספר השירה של רותי שן",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "display_override": ["standalone", "fullscreen"],
-  "background_color": "#ffffff",
-  "theme_color": "#d3b8ff",
+  "background_color": "#FFFFFF",
+  "theme_color": "#D4AF37",
   "orientation": "portrait",
   "lang": "he",
   "dir": "rtl",
-
   "icons": [
     {
       "src": "icons/oklagaat-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "icons/oklagaat-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-
-  "screenshots": [
-    {
-      "src": "content/images/shir.jpeg",
-      "sizes": "800x600",
-      "type": "image/jpeg",
-      "form_factor": "wide"
-    }
-  ],
-
-  "categories": ["books", "education", "art", "literature"],
-  "prefer_related_applications": false,
-  "shortcuts": [
-    {
-      "name": "ספר השירה",
-      "url": "/ruthy/",
-      "icons": [{ "src": "icons/oklagaat-192x192.png", "sizes": "192x192" }]
+      "type": "image/png"
     }
   ]
 }
