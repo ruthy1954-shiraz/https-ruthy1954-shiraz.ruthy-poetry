@@ -6,11 +6,11 @@
   <title>לגעת / רות שנן</title>
 
   <!-- אייקון לכרטיסייה -->
-  <link rel="icon" type="image/png" sizes="512x512" href="icons/oklagaat-512x512.png">
-  <link rel="icon" type="image/png" href="icons/oklagaat-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
 
-  <!-- קישור ל־manifest.json -->
-  <link rel="manifest" href="/ruth/manifest.json">
+  <!-- קישור תקני ל־manifest.json -->
+  <link rel="manifest" href="manifest.json">
 
   <!-- עיצוב -->
   <link rel="stylesheet" href="style.css">
@@ -85,6 +85,7 @@
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
   import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
+  import "./firebase.js";
 
   initNoteSystem(window.songId);
 
@@ -156,23 +157,9 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 
-<!-- עיצוב כפתור התקנה -->
-<style>
-#installAppBtn {
-  display: none;
-  margin: 20px auto;
-  padding: 12px 20px;
-  background-color: #d3b8ff;
-  color: #4a2c6b;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-}
-</style>
-
 </body>
 </html>
+
 
 
 
